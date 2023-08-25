@@ -16,7 +16,7 @@ namespace dmdspirit.Core.UI
         private IShowTransitionHandler[]? _showTransitionHandlers;
         private IHideTransitionHandler[]? _hideTransitionHandlers;
 
-        protected UIManager UIManager = null!;
+        protected IUIManager UIManager = null!;
 
         public IObservable<IUIScreen> OnScreenShown => _onScreenShown;
         public IObservable<IUIScreen> OnScreenHidden => _onScreenHidden;
@@ -25,7 +25,7 @@ namespace dmdspirit.Core.UI
         public bool IsShown => _isShown;
 
         [Inject]
-        protected void Register(UIManager uiManager)
+        protected void Register(IUIManager uiManager)
         {
             UIManager = uiManager;
             _showTransitionHandlers = GetComponents<IShowTransitionHandler>();
@@ -33,6 +33,8 @@ namespace dmdspirit.Core.UI
             uiManager.Register(this);
         }
 
+        // FIXME (Stas): May be it will be better to also use TransitionHandlers
+        // - Stas 25 August 2023
         public void Initialize()
         {
             OnInitialize();
@@ -57,9 +59,9 @@ namespace dmdspirit.Core.UI
             _onScreenHidden.OnNext(this);
         }
 
+        protected abstract void OnInitialize();
         protected abstract void OnShow();
         protected abstract void OnHide();
-        protected abstract void OnInitialize();
 
         private void HandleShowTransitions()
         {
