@@ -1,0 +1,100 @@
+#nullable enable
+using System;
+using UniRx;
+using UnityEngine;
+using Zenject;
+
+namespace dmdspirit.Core.UI
+{
+    public abstract class UIScreen : MonoBehaviour, IUIScreen
+    {
+        private readonly Subject<IUIScreen> _onScreenShown = new();
+        private readonly Subject<IUIScreen> _onScreenHidden = new();
+
+        private bool _isShown;
+        private bool _isInitialized;
+        private IShowTransitionHandler[]? _showTransitionHandlers;
+        private IHideTransitionHandler[]? _hideTransitionHandlers;
+
+        protected UIManager UIManager = null!;
+
+        public IObservable<IUIScreen> OnScreenShown => _onScreenShown;
+        public IObservable<IUIScreen> OnScreenHidden => _onScreenHidden;
+
+        public bool IsInitialized => _isInitialized;
+        public bool IsShown => _isShown;
+
+        [Inject]
+        protected void Register(UIManager uiManager)
+        {
+            UIManager = uiManager;
+            _showTransitionHandlers = GetComponents<IShowTransitionHandler>();
+            _hideTransitionHandlers = GetComponents<IHideTransitionHandler>();
+            uiManager.Register(this);
+        }
+
+        public void Initialize()
+        {
+            OnInitialize();
+            _isInitialized = true;
+        }
+
+        public void Show()
+        {
+            _isShown = true;
+            StopHideTransitions();
+            HandleShowTransitions();
+            OnShow();
+            _onScreenShown.OnNext(this);
+        }
+
+        public void Hide()
+        {
+            _isShown = false;
+            OnHide();
+            StopShowTransitions();
+            HandleHideTransitions();
+            _onScreenHidden.OnNext(this);
+        }
+
+        protected abstract void OnShow();
+        protected abstract void OnHide();
+        protected abstract void OnInitialize();
+
+        private void HandleShowTransitions()
+        {
+            if (_showTransitionHandlers == null)
+                return;
+
+            foreach (IShowTransitionHandler showTransitionHandler in _showTransitionHandlers)
+                showTransitionHandler.OnShow();
+        }
+
+        private void HandleHideTransitions()
+        {
+            if (_hideTransitionHandlers == null)
+                return;
+
+            foreach (IHideTransitionHandler hideTransitionHandler in _hideTransitionHandlers)
+                hideTransitionHandler.OnHide();
+        }
+
+        private void StopShowTransitions()
+        {
+            if (_showTransitionHandlers == null)
+                return;
+
+            foreach (IShowTransitionHandler showTransitionHandler in _showTransitionHandlers)
+                showTransitionHandler.Stop();
+        }
+
+        private void StopHideTransitions()
+        {
+            if (_hideTransitionHandlers == null)
+                return;
+
+            foreach (IHideTransitionHandler hideTransitionHandler in _hideTransitionHandlers)
+                hideTransitionHandler.Stop();
+        }
+    }
+}
