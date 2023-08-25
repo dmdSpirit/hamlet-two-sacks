@@ -1,3 +1,7 @@
 1. Extenject
-   - Project URL: https://github.com/Mathijs-Bakker/Extenject
-   - Description: Lightweight highly performant dependency injection framework built specifically to target Unity 3D 
+    - Project URL: https://github.com/Mathijs-Bakker/Extenject
+    - Description: Lightweight highly performant dependency injection framework built specifically to target Unity 3D 
+   
+2. UniRx - Reactive Extensions for Unity
+    - Project URL: https://github.com/neuecc/UniRx
+    - Description: Reimplementation of the .NET Reactive Extensions, designed to be compatible with iOS IL2CPP
