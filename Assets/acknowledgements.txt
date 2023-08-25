@@ -5,3 +5,7 @@
 2. UniRx - Reactive Extensions for Unity
     - Project URL: https://github.com/neuecc/UniRx
     - Description: Reimplementation of the .NET Reactive Extensions, designed to be compatible with iOS IL2CPP
+    
+3. DOTween
+    - Project URL: http://dotween.demigiant.com
+    - Description: Fast, efficient, fully type-safe object-oriented animation engine for Unity
