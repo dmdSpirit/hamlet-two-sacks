@@ -3,7 +3,8 @@
     "rootNamespace": "HamletTwoSacks",
     "references": [
         "GUID:0d8beb7f090555447a6cf5ce9e54dbb4",
-        "GUID:c7c9ad44e6b393d4c98e1b982b590fe9"
+        "GUID:c7c9ad44e6b393d4c98e1b982b590fe9",
+        "GUID:75469ad4d38634e559750d17036d5f7c"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
