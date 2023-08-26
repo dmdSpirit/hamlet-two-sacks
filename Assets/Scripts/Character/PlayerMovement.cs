@@ -1,6 +1,5 @@
 ﻿#nullable enable
 
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,6 +7,12 @@ namespace HamletTwoSacks.Character
 {
     public sealed class PlayerMovement : MonoBehaviour
     {
+        [SerializeField]
+        private Rigidbody2D _rigidbody2D = null!;
+
+        [SerializeField]
+        private SpriteFlipper _spriteFlipper = null!;
+
         [SerializeField]
         private InputAction _moveAction = null!;
 
@@ -25,7 +30,8 @@ namespace HamletTwoSacks.Character
             if (!_moveAction.IsInProgress())
                 return;
             var value = _moveAction.ReadValue<float>();
-            transform.Translate(value * _speed * Time.fixedDeltaTime, 0, 0);
+            _rigidbody2D.velocity = new Vector2(value * _speed * Time.fixedDeltaTime, _rigidbody2D.velocity.y);
+            _spriteFlipper.FlipSprite(value);
         }
     }
 }

@@ -12,7 +12,7 @@ namespace HamletTwoSacks.Infrastructure
     {
         [SerializeField]
         private CharacterFactory _characterFactory = null!;
-        
+
         public override void InstallBindings()
         {
             BindCharacters();
@@ -27,7 +27,7 @@ namespace HamletTwoSacks.Infrastructure
         private void BindLifeCycle()
         {
             Container.BindInterfacesTo<GameLifeCycle>().AsSingle();
-            
+
             Container.Bind<InitializeGameState>().AsSingle();
             Container.Bind<MainMenuState>().AsSingle();
             Container.Bind<NewGameState>().AsSingle();

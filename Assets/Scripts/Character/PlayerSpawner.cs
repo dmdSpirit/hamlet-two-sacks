@@ -9,8 +9,6 @@ namespace HamletTwoSacks.Character
     {
         private CharacterFactory _characterFactory = null!;
 
-        private Player? _player;
-        
         [SerializeField]
         private Transform _spawnPosition = null!;
 
@@ -23,16 +21,11 @@ namespace HamletTwoSacks.Character
             _characterFactory = characterFactory;
         }
 
-        private void SpawnPlayer()
+        public Player SpawnPlayer()
         {
-            if (_player != null)
-            {
-                Debug.LogWarning($"Player is already spawned", _player);
-                return;
-            }
-
-            _player = _characterFactory.CreatePlayer();
-            _player.transform.position = _spawnPosition.position;
+            Player player = _characterFactory.CreatePlayer();
+            player.transform.position = _spawnPosition.position;
+            return player;
         }
     }
 }
