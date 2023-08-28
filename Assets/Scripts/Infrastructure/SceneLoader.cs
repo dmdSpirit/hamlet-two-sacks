@@ -14,11 +14,12 @@ namespace HamletTwoSacks.Infrastructure
     {
         private readonly List<Scene> _loadedScenes = new();
 
-        public async UniTask LoadSceneAdditive(int index)
+        public async UniTask<Scene> LoadSceneAdditive(int index)
         {
             await SceneManager.LoadSceneAsync(index, LoadSceneMode.Additive);
             Scene loadedScene = SceneManager.GetSceneByBuildIndex(index);
             _loadedScenes.Add(loadedScene);
+            return loadedScene;
         }
 
         public async UniTask UnloadScene(int index)
@@ -31,6 +32,11 @@ namespace HamletTwoSacks.Infrastructure
                 return;
             }
 
+            await UnloadScene(scene);
+        }
+
+        public async UniTask UnloadScene(Scene scene)
+        {
             _loadedScenes.Remove(scene);
             await SceneManager.UnloadSceneAsync(scene);
         }

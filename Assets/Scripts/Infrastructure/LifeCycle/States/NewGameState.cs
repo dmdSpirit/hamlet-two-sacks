@@ -12,7 +12,7 @@ namespace HamletTwoSacks.Infrastructure.LifeCycle.States
         {
             // HACK (Stas): Hardcoded scene index.
             // - Stas 28 August 2023
-            stateMachine.TriggerTransition(stateMachine.GetState<LoadLevelState>(), 2);
+            stateMachine.TriggerTransition(stateMachine.GetState<GameState>(), 1);
         }
 
         public void Exit() { }

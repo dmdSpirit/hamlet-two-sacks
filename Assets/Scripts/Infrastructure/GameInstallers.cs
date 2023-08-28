@@ -32,12 +32,12 @@ namespace HamletTwoSacks.Infrastructure
             Container.Bind<IGameLifeCycle>().To<GameLifeCycle>().AsSingle();
             Container.BindInterfacesAndSelfTo<LoadingScreenShower>().AsSingle().NonLazy();
             Container.Bind<SceneLoader>().AsSingle();
+            Container.Bind<LevelManager>().AsSingle();
 
             Container.Bind<InitializeGameState>().AsSingle();
             Container.Bind<MainMenuState>().AsSingle();
             Container.Bind<NewGameState>().AsSingle();
             Container.Bind<ExitGameState>().AsSingle();
-            Container.Bind<LoadLevelState>().AsSingle();
             Container.Bind<GameState>().AsSingle();
         }
     }
