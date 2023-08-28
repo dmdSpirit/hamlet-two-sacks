@@ -21,6 +21,7 @@ namespace dmdspirit.Core.UI.Buttons
         }
 
         private readonly Subject<Unit> _onClick = new();
+        private readonly CompositeDisposable _subs = new();
 
         protected bool IsMouseOver { get; private set; }
         protected bool IsClicked { get; private set; }
@@ -36,6 +37,9 @@ namespace dmdspirit.Core.UI.Buttons
 
         public bool IsLocked { get; private set; }
         public IObservable<Unit> OnClick => _onClick;
+
+        private void OnDestroy()
+            => _subs.Clear();
 
         public void ResetState()
         {
@@ -89,6 +93,13 @@ namespace dmdspirit.Core.UI.Buttons
             UpdateState();
         }
 
+        public void BindScreen(IUIScreen uiScreen)
+        {
+            _subs.Clear();
+            uiScreen.OnScreenShown.Subscribe(OnScreenShown);
+            uiScreen.OnScreenHidden.Subscribe(OnScreenHidden);
+        }
+
         protected virtual void UpdateState()
         {
             if (IsLocked)
@@ -114,5 +125,17 @@ namespace dmdspirit.Core.UI.Buttons
 
         protected virtual void UpdateSkinValues()
             => _skinController.SetValues(Enum.GetNames(typeof(ButtonStates)));
+        
+        protected virtual void OnShown(){}
+        protected virtual void OnHidden(){}
+
+        private void OnScreenShown(IUIScreen _)
+        {
+            ResetState();
+            OnShown();
+        }
+
+        private void OnScreenHidden(IUIScreen _)
+            => OnHidden();
     }
 }

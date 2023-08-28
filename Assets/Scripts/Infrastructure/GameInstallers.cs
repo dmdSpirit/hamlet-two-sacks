@@ -38,6 +38,7 @@ namespace HamletTwoSacks.Infrastructure
             Container.Bind<NewGameState>().AsSingle();
             Container.Bind<ExitGameState>().AsSingle();
             Container.Bind<LoadLevelState>().AsSingle();
+            Container.Bind<GameState>().AsSingle();
         }
     }
 }

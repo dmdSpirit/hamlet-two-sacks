@@ -12,7 +12,7 @@ namespace HamletTwoSacks.Infrastructure.LifeCycle
         private readonly StateMachine _stateMachine = new("Life cycle");
 
         public GameLifeCycle(InitializeGameState initializeGameState, MainMenuState mainMenuState,
-            NewGameState newGameState, ExitGameState exitGameState, LoadLevelState loadLevelState)
+            NewGameState newGameState, ExitGameState exitGameState, LoadLevelState loadLevelState, GameState gameState)
         {
             _stateMachine.RegisterState<InitializeGameState>(initializeGameState);
             _stateMachine.AddTransition(initializeGameState, _stateMachine.NextState<MainMenuState>);
@@ -25,7 +25,11 @@ namespace HamletTwoSacks.Infrastructure.LifeCycle
             _stateMachine.AddTransition(newGameState, _stateMachine.ToState<LoadLevelState, int>);
 
             _stateMachine.RegisterState<LoadLevelState>(loadLevelState);
-            _stateMachine.AddTransition(loadLevelState, _stateMachine.NextState<ExitGameState>);
+            _stateMachine.AddTransition(loadLevelState, _stateMachine.NextState<GameState>);
+            
+            _stateMachine.RegisterState<GameState>(gameState);
+            _stateMachine.AddTransition(gameState, _stateMachine.ToState<ExitGameState>);
+            _stateMachine.AddTransition(gameState, _stateMachine.ToState<MainMenuState>);
 
             _stateMachine.RegisterState<ExitGameState>(exitGameState);
         }

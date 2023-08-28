@@ -1,7 +1,6 @@
 #nullable enable
 
 using dmdspirit.Core;
-using HamletTwoSacks.Character;
 using JetBrains.Annotations;
 
 namespace HamletTwoSacks.Infrastructure.LifeCycle.States
@@ -9,16 +8,10 @@ namespace HamletTwoSacks.Infrastructure.LifeCycle.States
     [UsedImplicitly]
     public sealed class NewGameState : IState
     {
-        private readonly ICharactersManager _charactersManager;
-
-        public NewGameState(ICharactersManager charactersManager)
-        {
-            _charactersManager = charactersManager;
-        }
-
         public void Enter(StateMachine stateMachine, object? arg)
         {
-            // _charactersManager.SpawnPlayer();
+            // HACK (Stas): Hardcoded scene index.
+            // - Stas 28 August 2023
             stateMachine.TriggerTransition(stateMachine.GetState<LoadLevelState>(), 2);
         }
 

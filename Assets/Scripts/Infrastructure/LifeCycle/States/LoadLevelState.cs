@@ -2,10 +2,21 @@
 
 using dmdspirit.Core;
 using JetBrains.Annotations;
-using UnityEngine;
 
 namespace HamletTwoSacks.Infrastructure.LifeCycle.States
 {
+    public sealed class GameState : IState
+    {
+        public void Enter(StateMachine stateMachine, object? arg)
+        {
+            
+        }
+
+        public void Exit()
+        {
+        }
+    }
+    
     [UsedImplicitly]
     public sealed class LoadLevelState : IState
     {
@@ -18,20 +29,8 @@ namespace HamletTwoSacks.Infrastructure.LifeCycle.States
 
         public async void Enter(StateMachine stateMachine, object? arg)
         {
-            if (arg == null)
-            {
-                Debug.LogError($"{nameof(LoadLevelState)} got unexpected null argument");
-                return;
-            }
-
-            if (arg is not int sceneIndex)
-            {
-                Debug.LogError($"{nameof(LoadLevelState)} got unexpected argument of type {arg.GetType()}");
-                return;
-            }
-
-            _sceneIndex = sceneIndex;
-            await _sceneLoader.LoadSceneAdditive(sceneIndex);
+            _sceneIndex = (int)arg!;
+            await _sceneLoader.LoadSceneAdditive(_sceneIndex);
         }
 
         public void Exit() { }
