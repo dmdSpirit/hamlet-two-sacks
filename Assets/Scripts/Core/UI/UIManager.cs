@@ -32,6 +32,7 @@ namespace dmdspirit.Core.UI
             screen.OnScreenShown.Subscribe(OnShown);
             screen.OnScreenHidden.Subscribe(OnHidden);
             _screens[screen.GetType()] = screen;
+            screen.Initialize();
         }
 
         public T GetScreen<T>() where T : class, IUIScreen
@@ -48,7 +49,7 @@ namespace dmdspirit.Core.UI
             var screen = GetScreen<T>();
             screen.Hide();
         }
-        
+
         private void OnShown(IUIScreen screen)
             => _onScreenShown.OnNext(screen);
 

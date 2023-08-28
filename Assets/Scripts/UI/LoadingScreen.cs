@@ -9,7 +9,10 @@ namespace HamletTwoSacks.UI
         [SerializeField]
         private RectTransform _progress = null!;
 
-        protected override void OnInitialize() { }
+        protected override void OnInitialize()
+        {
+            gameObject.SetActive(false);
+        }
 
         protected override void OnShow() { }
 

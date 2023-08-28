@@ -207,6 +207,30 @@ PrefabInstance:
       propertyPath: _reactors.Array.data[4]
       value: 
       objectReference: {fileID: 7433413999729417754}
+    - target: {fileID: 1776668821753005654, guid: 55dfcc067acfccb4b9292a8de7113749, type: 3}
+      propertyPath: _colors.Array.data[1].b
+      value: 0.31764707
+      objectReference: {fileID: 0}
+    - target: {fileID: 1776668821753005654, guid: 55dfcc067acfccb4b9292a8de7113749, type: 3}
+      propertyPath: _colors.Array.data[1].g
+      value: 0.3372549
+      objectReference: {fileID: 0}
+    - target: {fileID: 1776668821753005654, guid: 55dfcc067acfccb4b9292a8de7113749, type: 3}
+      propertyPath: _colors.Array.data[1].r
+      value: 0.34117648
+      objectReference: {fileID: 0}
+    - target: {fileID: 1776668821753005654, guid: 55dfcc067acfccb4b9292a8de7113749, type: 3}
+      propertyPath: _colors.Array.data[2].b
+      value: 0.5647059
+      objectReference: {fileID: 0}
+    - target: {fileID: 1776668821753005654, guid: 55dfcc067acfccb4b9292a8de7113749, type: 3}
+      propertyPath: _colors.Array.data[2].g
+      value: 0.62352943
+      objectReference: {fileID: 0}
+    - target: {fileID: 1776668821753005654, guid: 55dfcc067acfccb4b9292a8de7113749, type: 3}
+      propertyPath: _colors.Array.data[2].r
+      value: 0.627451
+      objectReference: {fileID: 0}
     - target: {fileID: 3581587550354661313, guid: 55dfcc067acfccb4b9292a8de7113749, type: 3}
       propertyPath: m_Name
       value: reactors
@@ -373,5 +397,5 @@ MonoBehaviour:
   _colors:
   - {r: 0.91764706, g: 0.9098039, b: 0.8117647, a: 1}
   - {r: 0.91764706, g: 0.9098039, b: 0.8117647, a: 1}
-  - {r: 0.91764706, g: 0.9098039, b: 0.8117647, a: 1}
+  - {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   - {r: 0.91764706, g: 0.9098039, b: 0.8117647, a: 1}

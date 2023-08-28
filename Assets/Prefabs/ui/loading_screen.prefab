@@ -86,11 +86,10 @@ GameObject:
   - component: {fileID: 1513615889696543983}
   - component: {fileID: 9090837666210412661}
   - component: {fileID: 3721248773386877500}
-  - component: {fileID: 3291737099870779747}
   - component: {fileID: 2609444283442336160}
   - component: {fileID: 5691836529835364663}
-  - component: {fileID: 4653828520462974402}
-  - component: {fileID: 8802150471285147437}
+  - component: {fileID: 2930432545407876494}
+  - component: {fileID: 4791810781960697412}
   m_Layer: 5
   m_Name: loading_screen
   m_TagString: Untagged
@@ -156,18 +155,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!225 &3291737099870779747
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 618177859645927198}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!114 &2609444283442336160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,7 +195,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &4653828520462974402
+--- !u!114 &2930432545407876494
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -217,12 +204,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 618177859645927198}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 888056163c7c43538890f9fbf4586bbc, type: 3}
+  m_Script: {fileID: 11500000, guid: 3b16dadfad174d2daaa2aff42ebbd651, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _log: 0
-  _canvasGroup: {fileID: 3291737099870779747}
---- !u!114 &8802150471285147437
+--- !u!114 &4791810781960697412
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -231,11 +217,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 618177859645927198}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82232aa4aaa24d50a34ac67a90c82f08, type: 3}
+  m_Script: {fileID: 11500000, guid: a11410cfebf24fa58176fc7039db3a5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _log: 0
-  _canvasGroup: {fileID: 3291737099870779747}
 --- !u!1 &2974338877340658036
 GameObject:
   m_ObjectHideFlags: 0
