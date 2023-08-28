@@ -6,26 +6,37 @@ using UnityEngine;
 namespace HamletTwoSacks.Character
 {
     [UsedImplicitly]
-    public sealed class CharactersManager : ICharactersManager
+    public sealed class CharactersManager
     {
-        // private readonly IPlayerSpawner _playerSpawner;
-        
-        public Player? Player { get; private set; }
+        private IPlayerSpawner? _playerSpawner;
 
-        // TODO (Stas): 28 August 2023
-        // - Stas Handle this.
-        
-        // public CharactersManager(IPlayerSpawner playerSpawner)
-        // {
-        //     _playerSpawner = playerSpawner;
-        // }
+        public Player? Player { get; private set; }
 
         public void SpawnPlayer()
         {
-            // if (Player != null)
-            //     return;
-            // Player = _playerSpawner.SpawnPlayer();
-            Debug.Log($"Player spawned.");
+            _playerSpawner!.SpawnPlayer();
+        }
+
+        public void RegisterPlayerSpawner(IPlayerSpawner playerSpawner)
+        {
+            if (_playerSpawner != null)
+            {
+                Debug.LogError($"Trying to register multiple player spawners.");
+                return;
+            }
+
+            _playerSpawner = playerSpawner;
+        }
+
+        public void UnregisterPlayerSpawner(IPlayerSpawner playerSpawner)
+        {
+            if (_playerSpawner != playerSpawner)
+            {
+                Debug.LogError($"Trying to unregister player spawner, but it does not match the registered one.");
+                return;
+            }
+
+            _playerSpawner = null;
         }
     }
 }

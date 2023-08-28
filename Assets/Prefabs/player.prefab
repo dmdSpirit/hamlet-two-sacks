@@ -158,6 +158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcbb345c1a2749d589e30634ed28ed7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rigidbody2D: {fileID: 2432046906185920961}
   _spriteFlipper: {fileID: 5214073573096031969}
   _moveAction:
     m_Name: Move
@@ -192,7 +193,7 @@ MonoBehaviour:
       m_Action: Move
       m_Flags: 8
     m_Flags: 0
-  _speed: 1.4
+  _speed: 140
 --- !u!50 &2432046906185920961
 Rigidbody2D:
   serializedVersion: 4

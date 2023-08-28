@@ -5,18 +5,6 @@ using JetBrains.Annotations;
 
 namespace HamletTwoSacks.Infrastructure.LifeCycle.States
 {
-    public sealed class GameState : IState
-    {
-        public void Enter(StateMachine stateMachine, object? arg)
-        {
-            
-        }
-
-        public void Exit()
-        {
-        }
-    }
-    
     [UsedImplicitly]
     public sealed class LoadLevelState : IState
     {
@@ -31,6 +19,7 @@ namespace HamletTwoSacks.Infrastructure.LifeCycle.States
         {
             _sceneIndex = (int)arg!;
             await _sceneLoader.LoadSceneAdditive(_sceneIndex);
+            stateMachine.TriggerTransition();
         }
 
         public void Exit() { }

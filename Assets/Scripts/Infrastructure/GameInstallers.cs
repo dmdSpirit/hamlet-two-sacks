@@ -24,7 +24,7 @@ namespace HamletTwoSacks.Infrastructure
         private void BindCharacters()
         {
             Container.Bind<IPlayerFactory>().FromInstance(_characterFactory);
-            Container.Bind<ICharactersManager>().To<CharactersManager>().AsSingle();
+            Container.Bind<CharactersManager>().AsSingle();
         }
 
         private void BindLifeCycle()
