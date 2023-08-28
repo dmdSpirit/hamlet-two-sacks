@@ -1,5 +1,5 @@
 #nullable enable
-namespace dmdspirit.Core.UI
+namespace dmdspirit.Core.UI.Transitions
 {
     public interface IShowTransitionHandler
     {

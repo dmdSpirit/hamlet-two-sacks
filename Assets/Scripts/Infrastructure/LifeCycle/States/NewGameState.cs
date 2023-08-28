@@ -9,16 +9,17 @@ namespace HamletTwoSacks.Infrastructure.LifeCycle.States
     [UsedImplicitly]
     public sealed class NewGameState : IState
     {
-        private readonly CharactersManager _charactersManager;
+        private readonly ICharactersManager _charactersManager;
 
-        public NewGameState(CharactersManager charactersManager)
+        public NewGameState(ICharactersManager charactersManager)
         {
             _charactersManager = charactersManager;
         }
-        
+
         public void Enter(StateMachine stateMachine, object? arg)
         {
-            _charactersManager.SpawnPlayer();
+            // _charactersManager.SpawnPlayer();
+            stateMachine.TriggerTransition(stateMachine.GetState<LoadLevelState>(), 2);
         }
 
         public void Exit() { }

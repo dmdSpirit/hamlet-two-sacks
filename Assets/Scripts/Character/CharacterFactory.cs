@@ -5,7 +5,7 @@ using Zenject;
 
 namespace HamletTwoSacks.Character
 {
-    public sealed class CharacterFactory : MonoBehaviour
+    public sealed class CharacterFactory : MonoBehaviour, IPlayerFactory
     {
         private DiContainer _container = null!;
 

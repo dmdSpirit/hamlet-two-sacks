@@ -17,7 +17,27 @@ MonoBehaviour:
   m_SharedData: {fileID: 11400000, guid: 7fbeca26c9a3d1c478282ee23d96ccf7, type: 2}
   m_Metadata:
     m_Items: []
-  m_TableData: []
+  m_TableData:
+  - m_Id: 475602701344768
+    m_Localized: New Game
+    m_Metadata:
+      m_Items: []
+  - m_Id: 475642824056832
+    m_Localized: Quit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 476555861123072
+    m_Localized: Hamlet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 476596772364288
+    m_Localized: Two Sacks
+    m_Metadata:
+      m_Items: []
+  - m_Id: 828791755083776
+    m_Localized: Loading...
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

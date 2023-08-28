@@ -14,7 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_TableCollectionName: ui
   m_TableCollectionNameGuidString: 7fbeca26c9a3d1c478282ee23d96ccf7
-  m_Entries: []
+  m_Entries:
+  - m_Id: 475602701344768
+    m_Key: new_game
+    m_Metadata:
+      m_Items: []
+  - m_Id: 475642824056832
+    m_Key: quit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 476555861123072
+    m_Key: hamlet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 476596772364288
+    m_Key: two_sacks
+    m_Metadata:
+      m_Items: []
+  - m_Id: 828791755083776
+    m_Key: loading
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -9,3 +9,7 @@
 3. DOTween
     - Project URL: http://dotween.demigiant.com
     - Description: Fast, efficient, fully type-safe object-oriented animation engine for Unity
+
+4. UniTask
+    - Project URL: https://github.com/Cysharp/UniTask
+    - Description: Efficient allocation free async/await integration for Unity

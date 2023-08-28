@@ -1,5 +1,6 @@
 #nullable enable
 using System;
+using dmdspirit.Core.UI.Transitions;
 using UniRx;
 using UnityEngine;
 using Zenject;
