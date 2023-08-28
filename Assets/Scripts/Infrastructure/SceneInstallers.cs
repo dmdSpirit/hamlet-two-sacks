@@ -1,4 +1,5 @@
 ﻿#nullable enable
+
 using HamletTwoSacks.Character;
 using UnityEngine;
 using Zenject;
@@ -17,7 +18,7 @@ namespace HamletTwoSacks.Infrastructure
 
         private void BindCharacters()
         {
-            Container.Bind<PlayerSpawner>().FromInstance(_playerSpawner);
+            Container.Bind<IPlayerSpawner>().FromInstance(_playerSpawner);
         }
     }
 }

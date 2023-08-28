@@ -7,7 +7,7 @@ using UniRx;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace dmdspirit.Core.UI
+namespace dmdspirit.Core.UI.Buttons
 {
     public class ButtonWithStates : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler,
         IPointerUpHandler

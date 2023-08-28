@@ -1,8 +1,10 @@
 #nullable enable
 
+using dmdspirit.Core;
 using HamletTwoSacks.Character;
 using HamletTwoSacks.Infrastructure.LifeCycle;
 using HamletTwoSacks.Infrastructure.LifeCycle.States;
+using HamletTwoSacks.UI;
 using UnityEngine;
 using Zenject;
 
@@ -21,12 +23,15 @@ namespace HamletTwoSacks.Infrastructure
 
         private void BindCharacters()
         {
-            Container.Bind<CharacterFactory>().FromInstance(_characterFactory);
+            Container.Bind<IPlayerFactory>().FromInstance(_characterFactory);
+            Container.Bind<ICharactersManager>().To<CharactersManager>().AsSingle();
         }
 
         private void BindLifeCycle()
         {
-            Container.BindInterfacesTo<GameLifeCycle>().AsSingle();
+            Container.Bind<IGameLifeCycle>().To<GameLifeCycle>().AsSingle();
+            Container.BindInterfacesAndSelfTo<LoadingScreenShower>().AsSingle().NonLazy();
+            Container.Bind<SceneLoader>().AsSingle();
 
             Container.Bind<InitializeGameState>().AsSingle();
             Container.Bind<MainMenuState>().AsSingle();

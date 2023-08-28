@@ -9,9 +9,9 @@ namespace HamletTwoSacks.Infrastructure.LifeCycle.States
     [UsedImplicitly]
     public sealed class NewGameState : IState
     {
-        private readonly CharactersManager _charactersManager;
+        private readonly ICharactersManager _charactersManager;
 
-        public NewGameState(CharactersManager charactersManager)
+        public NewGameState(ICharactersManager charactersManager)
         {
             _charactersManager = charactersManager;
         }

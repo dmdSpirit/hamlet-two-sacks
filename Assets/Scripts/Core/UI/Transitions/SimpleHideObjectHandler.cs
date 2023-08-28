@@ -2,7 +2,7 @@
 
 using UnityEngine;
 
-namespace dmdspirit.Core.UI
+namespace dmdspirit.Core.UI.Transitions
 {
     public class SimpleHideObjectHandler : MonoBehaviour, IHideTransitionHandler
     {
