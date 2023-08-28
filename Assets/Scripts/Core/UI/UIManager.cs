@@ -9,7 +9,7 @@ using UnityEngine;
 namespace dmdspirit.Core.UI
 {
     [UsedImplicitly]
-    public sealed class UIManager : IUIManager
+    public sealed class UIManager
     {
         private readonly Subject<IUIScreen> _onScreenShown = new();
         private readonly Subject<IUIScreen> _onScreenHidden = new();

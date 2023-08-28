@@ -10,12 +10,12 @@ namespace HamletTwoSacks.Infrastructure.LifeCycle.States
     [UsedImplicitly]
     public sealed class MainMenuState : IState
     {
-        private readonly IUIManager _uiManager;
+        private readonly UIManager _uiManager;
         private readonly LoadingScreenShower _loadingScreenShower;
 
         private MainMenuScreen _mainMenu = null!;
 
-        public MainMenuState(IUIManager uiManager, LoadingScreenShower loadingScreenShower)
+        public MainMenuState(UIManager uiManager, LoadingScreenShower loadingScreenShower)
         {
             _loadingScreenShower = loadingScreenShower;
             _uiManager = uiManager;

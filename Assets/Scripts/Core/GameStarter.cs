@@ -11,9 +11,7 @@ namespace dmdspirit.Core
 
         [Inject]
         private void Construct(IGameLifeCycle gameLifeCycle)
-        {
-            _gameLifeCycle = gameLifeCycle;
-        }
+            => _gameLifeCycle = gameLifeCycle;
 
         private void Start()
             => _gameLifeCycle.Start();

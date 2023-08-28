@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace dmdspirit.Core
 {
-    public class StateMachine : IStateMachine
+    public class StateMachine
     {
         private readonly bool _verboseStateSwitch;
         private readonly string _name;

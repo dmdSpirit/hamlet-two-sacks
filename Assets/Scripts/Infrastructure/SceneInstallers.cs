@@ -11,6 +11,7 @@ namespace HamletTwoSacks.Infrastructure
         [SerializeField]
         private PlayerSpawner _playerSpawner = null!;
 
+        
         public override void InstallBindings()
         {
             BindCharacters();

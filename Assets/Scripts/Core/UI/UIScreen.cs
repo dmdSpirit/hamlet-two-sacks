@@ -1,4 +1,5 @@
 #nullable enable
+
 using System;
 using dmdspirit.Core.UI.Transitions;
 using UniRx;
@@ -17,7 +18,7 @@ namespace dmdspirit.Core.UI
         private IShowTransitionHandler[]? _showTransitionHandlers;
         private IHideTransitionHandler[]? _hideTransitionHandlers;
 
-        protected IUIManager UIManager = null!;
+        protected UIManager UIManager = null!;
 
         public IObservable<IUIScreen> OnScreenShown => _onScreenShown;
         public IObservable<IUIScreen> OnScreenHidden => _onScreenHidden;
@@ -26,7 +27,7 @@ namespace dmdspirit.Core.UI
         public bool IsShown => _isShown;
 
         [Inject]
-        protected void Register(IUIManager uiManager)
+        protected void Register(UIManager uiManager)
         {
             UIManager = uiManager;
             _showTransitionHandlers = GetComponents<IShowTransitionHandler>();

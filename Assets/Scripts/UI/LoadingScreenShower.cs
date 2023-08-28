@@ -8,11 +8,11 @@ namespace HamletTwoSacks.UI
     [UsedImplicitly]
     public sealed class LoadingScreenShower : IInitializable
     {
-        private readonly IUIManager _uiManager;
+        private readonly UIManager _uiManager;
 
         private LoadingScreen _loadingScreen = null!;
 
-        public LoadingScreenShower(IUIManager uiManager)
+        public LoadingScreenShower(UIManager uiManager)
             => _uiManager = uiManager;
 
         public void Initialize()

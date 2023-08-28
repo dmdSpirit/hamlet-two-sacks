@@ -488,7 +488,7 @@ GameObject:
   - component: {fileID: 1127118678}
   - component: {fileID: 1127118677}
   m_Layer: 0
-  m_Name: starter
+  m_Name: game starter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -622,8 +622,8 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1127118678}
   - {fileID: 519420032}
   - {fileID: 826169028}
-  - {fileID: 1127118678}
   - {fileID: 907382159}
   - {fileID: 6356615841829974837}

@@ -20,7 +20,7 @@ namespace HamletTwoSacks.Infrastructure.LifeCycle.States
         {
             if (arg == null)
             {
-                Debug.LogError($"{nameof(LoadLevelState)} got unexpected argument of type {arg.GetType()}");
+                Debug.LogError($"{nameof(LoadLevelState)} got unexpected null argument");
                 return;
             }
 

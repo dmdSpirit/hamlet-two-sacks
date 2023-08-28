@@ -6,7 +6,6 @@ using Cysharp.Threading.Tasks;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Zenject;
 
 namespace HamletTwoSacks.Infrastructure
 {

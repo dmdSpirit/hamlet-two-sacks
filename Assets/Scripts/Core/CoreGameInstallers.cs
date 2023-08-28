@@ -10,7 +10,7 @@ namespace dmdspirit.Core
     {
         public override void InstallBindings()
         {
-            Container.Bind<IUIManager>().To<UIManager>().AsSingle().NonLazy();
+            Container.Bind<UIManager>().AsSingle().NonLazy();
             Container.Bind<IAssetProvider>().To<AssetProvider>().AsSingle().NonLazy();
             Container.Bind<IGameQuitter>().To<GameQuitter>().AsSingle();
         }
