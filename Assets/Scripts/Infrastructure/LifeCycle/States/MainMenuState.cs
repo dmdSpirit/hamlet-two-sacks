@@ -23,9 +23,10 @@ namespace HamletTwoSacks.Infrastructure.LifeCycle.States
 
         public void Enter(StateMachine stateMachine, object? arg)
         {
-            _mainMenu = _uiManager.GetScreen<MainMenuScreen>();
             _loadingScreenShower.HideLoadingScreen();
+            _mainMenu = _uiManager.GetScreen<MainMenuScreen>();
             _mainMenu.Show();
+            stateMachine.TriggerTransition(stateMachine.GetState<NewGameState>());
         }
 
         public void Exit()

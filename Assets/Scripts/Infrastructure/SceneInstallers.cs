@@ -18,7 +18,7 @@ namespace HamletTwoSacks.Infrastructure
 
         private void BindCharacters()
         {
-            Container.Bind<IPlayerSpawner>().FromInstance(_playerSpawner);
+            // Container.Bind<IPlayerSpawner>().FromInstance(_playerSpawner);
         }
     }
 }

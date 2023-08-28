@@ -15,10 +15,11 @@ namespace HamletTwoSacks.Infrastructure.LifeCycle.States
         {
             _charactersManager = charactersManager;
         }
-        
+
         public void Enter(StateMachine stateMachine, object? arg)
         {
-            _charactersManager.SpawnPlayer();
+            // _charactersManager.SpawnPlayer();
+            stateMachine.TriggerTransition(stateMachine.GetState<LoadLevelState>(), 2);
         }
 
         public void Exit() { }
