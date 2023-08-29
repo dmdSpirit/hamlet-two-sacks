@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3432828198873257976}
   - component: {fileID: 6154244855778771700}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 1667064262736989507}
   - component: {fileID: 8479893447836628305}
   - component: {fileID: 1155005423283271110}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: crystal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -133,7 +133,7 @@ CircleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 247
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

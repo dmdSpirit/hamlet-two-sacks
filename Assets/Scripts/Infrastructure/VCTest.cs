@@ -4,10 +4,12 @@ using UnityEngine;
 
 namespace HamletTwoSacks.Infrastructure
 {
+    // HACK (Stas): Temporary for testing.
+    // - Stas 29 August 2023
     public sealed class VCTest : MonoBehaviour
     {
         private Transform? _target;
-        
+
         [SerializeField]
         private CinemachineVirtualCamera _virtualCamera = null!;
 
