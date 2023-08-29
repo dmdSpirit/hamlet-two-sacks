@@ -1,7 +1,10 @@
 ﻿#nullable enable
 
+using HamletTwoSacks.Infrastructure;
+using UniRx;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Zenject;
 
 namespace HamletTwoSacks.Character
 {
@@ -19,16 +22,18 @@ namespace HamletTwoSacks.Character
         [SerializeField]
         private float _speed;
 
+        [Inject]
+        private void Construct(TimeController timeController)
+            => timeController.FixedUpdate.Subscribe(OnFixedUpdate);
+
         private void OnEnable()
             => _moveAction.Enable();
 
         private void OnDisable()
             => _moveAction.Disable();
 
-        private void FixedUpdate()
+        private void OnFixedUpdate(Unit _)
         {
-            if (!_moveAction.IsInProgress())
-                return;
             var value = _moveAction.ReadValue<float>();
             _rigidbody2D.velocity = new Vector2(value * _speed * Time.fixedDeltaTime, _rigidbody2D.velocity.y);
             _spriteFlipper.FlipSprite(value);

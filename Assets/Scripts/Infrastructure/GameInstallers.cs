@@ -15,10 +15,17 @@ namespace HamletTwoSacks.Infrastructure
         [SerializeField]
         private CharacterFactory _characterFactory = null!;
 
+        [SerializeField]
+        private CameraController _cameraController = null!;
+
+        [SerializeField]
+        private CameraTargetFollow _cameraTargetFollow = null!;
+
         public override void InstallBindings()
         {
             BindCharacters();
             BindLifeCycle();
+            BindCamera();
         }
 
         private void BindCharacters()
@@ -33,12 +40,19 @@ namespace HamletTwoSacks.Infrastructure
             Container.BindInterfacesAndSelfTo<LoadingScreenShower>().AsSingle().NonLazy();
             Container.Bind<SceneLoader>().AsSingle();
             Container.Bind<LevelManager>().AsSingle();
+            Container.BindInterfacesAndSelfTo<TimeController>().AsSingle();
 
             Container.Bind<InitializeGameState>().AsSingle();
             Container.Bind<MainMenuState>().AsSingle();
             Container.Bind<NewGameState>().AsSingle();
             Container.Bind<ExitGameState>().AsSingle();
             Container.Bind<GameState>().AsSingle();
+        }
+
+        private void BindCamera()
+        {
+            Container.Bind<CameraController>().FromInstance(_cameraController);
+            Container.Bind<CameraTargetFollow>().FromInstance(_cameraTargetFollow);
         }
     }
 }

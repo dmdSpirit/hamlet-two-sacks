@@ -13,9 +13,7 @@ namespace HamletTwoSacks.Character
         public Player? Player { get; private set; }
 
         public void SpawnPlayer()
-        {
-            _playerSpawner!.SpawnPlayer();
-        }
+            => Player = _playerSpawner!.SpawnPlayer();
 
         public void RegisterPlayerSpawner(IPlayerSpawner playerSpawner)
         {
