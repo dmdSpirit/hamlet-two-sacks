@@ -18,8 +18,8 @@ namespace HamletTwoSacks.Infrastructure
         [SerializeField]
         private CameraController _cameraController = null!;
 
-        [SerializeField]
-        private CameraTargetFollow _cameraTargetFollow = null!;
+        // [SerializeField]
+        // private CameraTargetFollow _cameraTargetFollow = null!;
 
         public override void InstallBindings()
         {
@@ -52,7 +52,7 @@ namespace HamletTwoSacks.Infrastructure
         private void BindCamera()
         {
             Container.Bind<CameraController>().FromInstance(_cameraController);
-            Container.Bind<CameraTargetFollow>().FromInstance(_cameraTargetFollow);
+            // Container.Bind<CameraTargetFollow>().FromInstance(_cameraTargetFollow);
         }
     }
 }

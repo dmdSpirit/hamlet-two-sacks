@@ -11,10 +11,18 @@ namespace HamletTwoSacks.Infrastructure
         [SerializeField]
         private PlayerSpawner _playerSpawner = null!;
 
+        [SerializeField]
+        private VCTest _vcTest = null!;
         
         public override void InstallBindings()
         {
             BindCharacters();
+            BindCamera();
+        }
+
+        private void BindCamera()
+        {
+            Container.Bind<VCTest>().FromInstance(_vcTest);
         }
 
         private void BindCharacters()
