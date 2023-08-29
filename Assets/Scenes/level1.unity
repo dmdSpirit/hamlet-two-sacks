@@ -655,6 +655,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 849263029}
+  - component: {fileID: 849263031}
   - component: {fileID: 849263030}
   m_Layer: 0
   m_Name: background
@@ -730,6 +731,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &849263031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 849263028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60472011d5e0474dad7ae30cdf69c149, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _background: {fileID: 849263030}
+  _levelBounds: {fileID: 740907232}
+  _virtualCamera: {fileID: 1437661806}
 --- !u!1001 &926876342
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1096,14 +1112,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1437661804}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2fba25a5cd15594e8f050a11e386c80, type: 3}
+  m_Script: {fileID: 11500000, guid: f453f694addf4275988fac205bc91968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ConfineMode: 0
-  m_BoundingVolume: {fileID: 0}
   m_BoundingShape2D: {fileID: 740907232}
-  m_ConfineScreenEdges: 1
-  m_Damping: 0
+  m_Damping: 0.5
+  m_MaxWindowSize: -1
 --- !u!1 &1460620536
 GameObject:
   m_ObjectHideFlags: 0
