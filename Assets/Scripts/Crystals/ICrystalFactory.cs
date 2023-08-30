@@ -6,6 +6,6 @@ namespace HamletTwoSacks.Crystals
 {
     public interface ICrystalFactory
     {
-        Crystal SpawnCrystalAt(Transform spawnPoint);
+        Crystal SpawnCrystal();
     }
 }

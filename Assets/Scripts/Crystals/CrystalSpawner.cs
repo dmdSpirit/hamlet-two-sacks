@@ -8,20 +8,24 @@ namespace HamletTwoSacks.Crystals
 {
     public sealed class CrystalSpawner : MonoBehaviour
     {
-        private CrystalFactory _crystalFactory = null!;
+        private ICrystalFactory _crystalFactory = null!;
+        private CrystalsTransform _crystalsTransform = null!;
 
         [SerializeField, Button(nameof(SpawnCrystal))]
         private bool _spawnCrystal;
 
         [Inject]
-        private void Construct(CrystalFactory crystalFactory)
+        private void Construct(ICrystalFactory crystalFactory, CrystalsTransform crystalsTransform)
         {
+            _crystalsTransform = crystalsTransform;
             _crystalFactory = crystalFactory;
         }
 
         public void SpawnCrystal()
         {
-            _crystalFactory.SpawnCrystalAt(transform);
+            Crystal crystal = _crystalFactory.SpawnCrystal();
+            crystal.transform.SetParent(_crystalsTransform.transform);
+            crystal.transform.position = transform.position;
         }
     }
 }

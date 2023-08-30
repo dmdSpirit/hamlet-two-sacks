@@ -16,19 +16,15 @@ namespace HamletTwoSacks.Crystals
         private Crystal _crystalPrefab = null!;
 
         [Inject]
-        private void Construct(DiContainer container, StaticDataProvider staticDataProvider,
-            CrystalsTransform crystalsTransform)
+        private void Construct(DiContainer container, StaticDataProvider staticDataProvider)
         {
-            _crystalsTransform = crystalsTransform;
             _container = container;
             _crystalPrefab = staticDataProvider.GetConfig<PrefabsConfig>().GetPrefab<Crystal>();
         }
 
-        public Crystal SpawnCrystalAt(Transform spawnPoint)
+        public Crystal SpawnCrystal()
         {
             var crystal = _container.InstantiatePrefabForComponent<Crystal>(_crystalPrefab);
-            crystal.transform.SetParent(_crystalsTransform.transform);
-            crystal.transform.position = spawnPoint.position;
             return crystal;
         }
     }
