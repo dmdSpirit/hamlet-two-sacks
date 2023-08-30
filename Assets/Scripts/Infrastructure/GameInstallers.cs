@@ -26,6 +26,9 @@ namespace HamletTwoSacks.Infrastructure
             BindCharacters();
             BindLifeCycle();
             BindCamera();
+            BindCrystals();
+
+            Container.Bind<StaticDataProvider>().AsSingle().NonLazy();
         }
 
         private void BindCharacters()
