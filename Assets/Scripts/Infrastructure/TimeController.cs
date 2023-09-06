@@ -11,14 +11,14 @@ namespace HamletTwoSacks.Infrastructure
     public sealed class TimeController : ITickable, IFixedTickable, ILateTickable
     {
         private readonly ReactiveProperty<bool> _isTimeRunning = new();
-        private readonly Subject<Unit> _update = new();
-        private readonly Subject<Unit> _fixedUpdate = new();
-        private readonly Subject<Unit> _lateUpdate = new();
+        private readonly Subject<float> _update = new();
+        private readonly Subject<float> _fixedUpdate = new();
+        private readonly Subject<float> _lateUpdate = new();
 
         public IReadOnlyReactiveProperty<bool> IsTimeRunning => _isTimeRunning;
-        public IObservable<Unit> Update => _update;
-        public IObservable<Unit> FixedUpdate => _fixedUpdate;
-        public IObservable<Unit> LateUpdate => _lateUpdate;
+        public IObservable<float> Update => _update;
+        public IObservable<float> FixedUpdate => _fixedUpdate;
+        public IObservable<float> LateUpdate => _lateUpdate;
 
         public float DeltaTime => Time.deltaTime;
         public float FixedDeltaTime => Time.fixedDeltaTime;
@@ -33,21 +33,21 @@ namespace HamletTwoSacks.Infrastructure
         {
             if (!_isTimeRunning.Value)
                 return;
-            _update.OnNext(Unit.Default);
+            _update.OnNext(DeltaTime);
         }
 
         public void FixedTick()
         {
             if (!_isTimeRunning.Value)
                 return;
-            _fixedUpdate.OnNext(Unit.Default);
+            _fixedUpdate.OnNext(FixedDeltaTime);
         }
 
         public void LateTick()
         {
             if (!_isTimeRunning.Value)
                 return;
-            _lateUpdate.OnNext(Unit.Default);
+            _lateUpdate.OnNext(DeltaTime);
         }
     }
 }

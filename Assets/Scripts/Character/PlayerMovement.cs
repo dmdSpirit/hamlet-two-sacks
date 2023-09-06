@@ -32,10 +32,10 @@ namespace HamletTwoSacks.Character
         private void OnDisable()
             => _moveAction.Disable();
 
-        private void OnFixedUpdate(Unit _)
+        private void OnFixedUpdate(float time)
         {
             var value = _moveAction.ReadValue<float>();
-            _rigidbody2D.velocity = new Vector2(value * _speed * Time.fixedDeltaTime, _rigidbody2D.velocity.y);
+            _rigidbody2D.velocity = new Vector2(value * _speed * time, _rigidbody2D.velocity.y);
             _spriteFlipper.FlipSprite(value);
         }
     }
