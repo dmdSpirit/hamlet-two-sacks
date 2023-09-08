@@ -21,11 +21,12 @@ namespace HamletTwoSacks.Crystals
             _crystalFactory = crystalFactory;
         }
 
-        public void SpawnCrystal()
+        public Crystal SpawnCrystal()
         {
             Crystal crystal = _crystalFactory.SpawnCrystal();
             crystal.transform.SetParent(_crystalsTransform.transform);
             crystal.transform.position = transform.position;
+            return crystal;
         }
     }
 }
