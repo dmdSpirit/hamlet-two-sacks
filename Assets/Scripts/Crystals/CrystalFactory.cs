@@ -27,5 +27,8 @@ namespace HamletTwoSacks.Crystals
             var crystal = _container.InstantiatePrefabForComponent<Crystal>(_crystalPrefab);
             return crystal;
         }
+
+        public void DestroyCrystal(Crystal crystal)
+            => Object.Destroy(crystal.gameObject);
     }
 }

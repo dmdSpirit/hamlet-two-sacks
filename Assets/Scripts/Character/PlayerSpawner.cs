@@ -36,13 +36,13 @@ namespace HamletTwoSacks.Character
         private void OnDestroy()
             => _charactersManager.UnregisterPlayerSpawner(this);
 
-        public Player SpawnPlayer()
+        public PlayerBehaviour SpawnPlayer()
         {
-            Player player = _playerFactory.CreatePlayer();
-            player.transform.SetParent(_unitsTransform.transform, false);
-            player.transform.position = _spawnPosition.position;
-            _vcTest.SetTarget(player.transform);
-            return player;
+            PlayerBehaviour playerBehaviour = _playerFactory.CreatePlayer();
+            playerBehaviour.transform.SetParent(_unitsTransform.transform, false);
+            playerBehaviour.transform.position = _spawnPosition.position;
+            _vcTest.SetTarget(playerBehaviour.transform);
+            return playerBehaviour;
         }
     }
 }

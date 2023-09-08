@@ -4,6 +4,6 @@ namespace HamletTwoSacks.Character
 {
     public interface IPlayerFactory
     {
-        Player CreatePlayer();
+        PlayerBehaviour CreatePlayer();
     }
 }

@@ -3,6 +3,6 @@ namespace HamletTwoSacks.Character
 {
     public interface IPlayerSpawner
     {
-        Player SpawnPlayer();
+        PlayerBehaviour SpawnPlayer();
     }
 }

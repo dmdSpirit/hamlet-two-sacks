@@ -10,16 +10,16 @@ namespace HamletTwoSacks.Character
     public sealed class CharacterFactory : IPlayerFactory
     {
         private DiContainer _container = null!;
-        private Player _playerPrefab = null!;
+        private PlayerBehaviour _playerBehaviourPrefab = null!;
 
         [Inject]
         private void Construct(DiContainer container, StaticDataProvider staticDataProvider)
         {
             _container = container;
-            _playerPrefab = staticDataProvider.GetConfig<PrefabsConfig>().GetPrefab<Player>();
+            _playerBehaviourPrefab = staticDataProvider.GetConfig<PrefabsConfig>().GetPrefab<PlayerBehaviour>();
         }
 
-        public Player CreatePlayer()
-            => _container.InstantiatePrefabForComponent<Player>(_playerPrefab);
+        public PlayerBehaviour CreatePlayer()
+            => _container.InstantiatePrefabForComponent<PlayerBehaviour>(_playerBehaviourPrefab);
     }
 }

@@ -10,7 +10,7 @@ namespace HamletTwoSacks.Character
     {
         private IPlayerSpawner? _playerSpawner;
 
-        public Player? Player { get; private set; }
+        public PlayerBehaviour? Player { get; private set; }
 
         public void SpawnPlayer()
             => Player = _playerSpawner!.SpawnPlayer();

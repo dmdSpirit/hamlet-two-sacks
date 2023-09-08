@@ -31,6 +31,7 @@ namespace HamletTwoSacks.Infrastructure
 
         private void BindCharacters()
         {
+            Container.Bind<Player>().AsSingle().NonLazy();
             Container.BindInterfacesTo<CharacterFactory>().AsSingle();
             Container.Bind<CharactersManager>().AsSingle();
         }
