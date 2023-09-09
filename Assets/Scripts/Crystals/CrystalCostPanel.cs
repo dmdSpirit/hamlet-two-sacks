@@ -1,6 +1,7 @@
 ﻿#nullable enable
 
 using System;
+using System.Linq;
 using UniRx;
 using UnityEngine;
 
@@ -12,6 +13,9 @@ namespace HamletTwoSacks.Crystals
         private int _payed;
 
         [SerializeField]
+        private GameObject _panel = null!;
+
+        [SerializeField]
         private CrystalSlot[] _slots = null!;
 
         public IObservable<CrystalCostPanel> OnPricePayed => _onPricePayed;
@@ -21,6 +25,7 @@ namespace HamletTwoSacks.Crystals
         {
             foreach (CrystalSlot crystalSlot in _slots)
                 crystalSlot.IsFilled.Subscribe(OnSlotsUpdate);
+            _panel.SetActive(false);
         }
 
         public void SetCost(int cost)
@@ -31,14 +36,17 @@ namespace HamletTwoSacks.Crystals
         }
 
         public void ShowPanel()
-            => gameObject.SetActive(true);
+            => _panel.SetActive(true);
 
         public void HidePanel()
         {
             foreach (CrystalSlot crystalSlot in _slots)
                 crystalSlot.DestroyCrystal();
-            gameObject.SetActive(false);
+            _panel.SetActive(false);
         }
+
+        public CrystalSlot? GetEmptyCrystalSlot()
+            => _slots.FirstOrDefault(slot => slot.gameObject.activeInHierarchy && !slot.IsFilled.Value);
 
         private void OnSlotsUpdate(bool _)
         {
@@ -56,6 +64,5 @@ namespace HamletTwoSacks.Crystals
 
             _onPricePayed.OnNext(this);
         }
-
     }
 }

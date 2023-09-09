@@ -12,7 +12,7 @@ namespace HamletTwoSacks.Crystals
     public sealed class CrystalSlot : MonoBehaviour
     {
         private CommandsFactory _commandsFactory = null!;
-        private CrystalFactory _crystalFactory = null!;
+        private ICrystalFactory _crystalFactory = null!;
 
         private readonly ReactiveProperty<bool> _isFilled = new();
 
@@ -29,7 +29,7 @@ namespace HamletTwoSacks.Crystals
         public IReadOnlyReactiveProperty<bool> IsFilled => _isFilled;
 
         [Inject]
-        private void Construct(CommandsFactory commandsFactory, CrystalFactory crystalFactory)
+        private void Construct(CommandsFactory commandsFactory, ICrystalFactory crystalFactory)
         {
             _crystalFactory = crystalFactory;
             _commandsFactory = commandsFactory;

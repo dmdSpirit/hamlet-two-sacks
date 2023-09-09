@@ -32,6 +32,7 @@ Transform:
   m_Children:
   - {fileID: 2032977666618862741}
   - {fileID: 1209480352388926046}
+  - {fileID: 2911648656908951376}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &6191559706004501203
@@ -247,3 +248,92 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &7541023228966144572
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4860959177694613401}
+    m_Modifications:
+    - target: {fileID: 1200797143172958092, guid: 279754151bf939c44874a8b372be2a06, type: 3}
+      propertyPath: m_Name
+      value: crystal cost panel
+      objectReference: {fileID: 0}
+    - target: {fileID: 4670049928854246764, guid: 279754151bf939c44874a8b372be2a06, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4670049928854246764, guid: 279754151bf939c44874a8b372be2a06, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4670049928854246764, guid: 279754151bf939c44874a8b372be2a06, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4670049928854246764, guid: 279754151bf939c44874a8b372be2a06, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4670049928854246764, guid: 279754151bf939c44874a8b372be2a06, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4670049928854246764, guid: 279754151bf939c44874a8b372be2a06, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4670049928854246764, guid: 279754151bf939c44874a8b372be2a06, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8964834796464163393, guid: 279754151bf939c44874a8b372be2a06, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1200797143172958092, guid: 279754151bf939c44874a8b372be2a06, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5666630658255437949}
+  m_SourcePrefab: {fileID: 100100000, guid: 279754151bf939c44874a8b372be2a06, type: 3}
+--- !u!4 &2911648656908951376 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4670049928854246764, guid: 279754151bf939c44874a8b372be2a06, type: 3}
+  m_PrefabInstance: {fileID: 7541023228966144572}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8650585919174200752 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1200797143172958092, guid: 279754151bf939c44874a8b372be2a06, type: 3}
+  m_PrefabInstance: {fileID: 7541023228966144572}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &5666630658255437949
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8650585919174200752}
+  m_BodyType: 2
+  m_Simulated: 0
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
