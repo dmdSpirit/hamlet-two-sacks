@@ -522,7 +522,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60472011d5e0474dad7ae30cdf69c149, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _safeBorder: 1
   _background: {fileID: 849263030}
   _levelBounds: {fileID: 740907232}
   _virtualCamera: {fileID: 1437661806}
@@ -592,8 +591,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1302899952}
-  - component: {fileID: 1302899951}
-  - component: {fileID: 1302899953}
   m_Layer: 0
   m_Name: crystals
   m_TagString: Untagged
@@ -601,18 +598,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1302899951
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1302899950}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22ede2237a5b42c9b5f5d4bb2d8f047c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1302899952
 Transform:
   m_ObjectHideFlags: 0
@@ -628,24 +613,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1302899953
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1302899950}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0166d8ff8d905b048b2448179e1f5d11, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _components:
-  - {fileID: 1302899951}
-  _identifier: 
-  _useSceneContext: 1
-  _context: {fileID: 0}
-  _bindType: 0
 --- !u!1 &1422358935
 GameObject:
   m_ObjectHideFlags: 0
@@ -1064,8 +1031,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1901200591}
-  - component: {fileID: 1901200590}
-  - component: {fileID: 1901200589}
   m_Layer: 0
   m_Name: units
   m_TagString: Untagged
@@ -1073,36 +1038,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1901200589
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1901200588}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0166d8ff8d905b048b2448179e1f5d11, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _components:
-  - {fileID: 1901200590}
-  _identifier: 
-  _useSceneContext: 0
-  _context: {fileID: 0}
-  _bindType: 0
---- !u!114 &1901200590
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1901200588}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6225f411484c4f5a9c1b969a5e090b65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1901200591
 Transform:
   m_ObjectHideFlags: 0
@@ -1129,6 +1064,7 @@ GameObject:
   - component: {fileID: 1923081493}
   - component: {fileID: 1923081492}
   - component: {fileID: 1923081495}
+  - component: {fileID: 1923081496}
   m_Layer: 0
   m_Name: scene context
   m_TagString: Untagged
@@ -1198,6 +1134,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerSpawner: {fileID: 454453608}
   _vcTest: {fileID: 1437661805}
+  _levelTransforms: {fileID: 1923081496}
+--- !u!114 &1923081496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1923081489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e830d1ef7bf4338a94dee4cf72c62b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _units: {fileID: 1901200591}
+  _crystals: {fileID: 1302899952}
 --- !u!1 &2050878759
 GameObject:
   m_ObjectHideFlags: 0
