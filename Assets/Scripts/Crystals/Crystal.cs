@@ -17,7 +17,7 @@ namespace HamletTwoSacks.Crystals
 
         public void TurnPhysicsOff()
         {
-            _rigidbody.simulated = true;
+            _rigidbody.simulated = false;
             _collider.enabled = false;
         }
     }
