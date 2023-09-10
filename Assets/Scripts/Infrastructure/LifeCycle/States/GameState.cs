@@ -1,6 +1,7 @@
 ﻿#nullable enable
 
 using dmdspirit.Core;
+using dmdspirit.Core.UI;
 using HamletTwoSacks.Character;
 using HamletTwoSacks.UI;
 using JetBrains.Annotations;
@@ -14,10 +15,12 @@ namespace HamletTwoSacks.Infrastructure.LifeCycle.States
         private readonly LevelManager _levelManager;
         private readonly LoadingScreenShower _loadingScreenShower;
         private readonly TimeController _timeController;
+        private readonly UIManager _uiManager;
 
         public GameState(CharactersManager charactersManager, LevelManager levelManager,
-            LoadingScreenShower loadingScreenShower, TimeController timeController)
+            LoadingScreenShower loadingScreenShower, TimeController timeController, UIManager uiManager)
         {
+            _uiManager = uiManager;
             _timeController = timeController;
 
             _loadingScreenShower = loadingScreenShower;
@@ -33,10 +36,12 @@ namespace HamletTwoSacks.Infrastructure.LifeCycle.States
 
             _timeController.StartTime();
             _loadingScreenShower.HideLoadingScreen();
+            _uiManager.GetScreen<UIHud>().Show();
         }
 
         public async void Exit()
         {
+            _uiManager.GetScreen<UIHud>().Hide();
             _loadingScreenShower.ShowLoadingScreen();
             await _levelManager.UnloadCurrentLevel();
 

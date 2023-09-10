@@ -18,9 +18,15 @@ namespace HamletTwoSacks.UI
             _menuButton.BindScreen(this);
         }
 
-        protected override void OnShow() { }
+        protected override void OnShow()
+        {
+            UIManager.GetScreen<ResourcesPanel>().Show();
+        }
 
-        protected override void OnHide() { }
+        protected override void OnHide()
+        {
+            UIManager.GetScreen<ResourcesPanel>().Hide();
+        }
 
         private void Menu(Unit _)
             => UIManager.GetScreen<PauseMenuScreen>().Show();
