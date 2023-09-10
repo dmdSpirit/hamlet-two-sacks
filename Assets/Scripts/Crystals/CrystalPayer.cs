@@ -68,6 +68,7 @@ namespace HamletTwoSacks.Crystals
 
             if (_actionReceiver != null)
                 _actionButtonReader.UnsubscribeFromAction(_actionReceiver);
+            _costPanel = null;
         }
 
         private Crystal? GetCrystal()

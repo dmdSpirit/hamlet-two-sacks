@@ -41,7 +41,7 @@ namespace HamletTwoSacks.Crystals
         public void HidePanel()
         {
             foreach (CrystalSlot crystalSlot in _slots)
-                crystalSlot.DestroyCrystal();
+                crystalSlot.DropCrystal();
             _panel.SetActive(false);
         }
 
@@ -63,6 +63,9 @@ namespace HamletTwoSacks.Crystals
                 return;
 
             _onPricePayed.OnNext(this);
+            foreach (CrystalSlot crystalSlot in _slots)
+                crystalSlot.DestroyCrystal();
+            _panel.SetActive(false);
         }
     }
 }

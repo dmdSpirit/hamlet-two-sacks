@@ -42,7 +42,8 @@ namespace HamletTwoSacks.Character
         public void UnsubscribeFromAction(ActionReceiver actionReceiver)
         {
             _actionReceivers.Remove(actionReceiver);
-            UpdatePrompt();
+            if (_promptPanel != null)
+                UpdatePrompt();
         }
 
         private void OnFixedUpdate(float time)
@@ -54,11 +55,12 @@ namespace HamletTwoSacks.Character
 
         private void UpdatePrompt()
         {
-            if (_actionReceivers.Count < 0)
+            if (_actionReceivers.Count <= 0)
             {
                 _promptPanel.SetActive(false);
                 return;
             }
+
             _promptPanel.SetActive(true);
             _promptText.text = _actionReceivers[0].CallToAction;
         }

@@ -34,7 +34,10 @@ namespace HamletTwoSacks.Character
             => _charactersManager.RegisterPlayerSpawner(this);
 
         private void OnDestroy()
-            => _charactersManager.UnregisterPlayerSpawner(this);
+        {
+            if (_charactersManager != null!)
+                _charactersManager.UnregisterPlayerSpawner(this);
+        }
 
         public PlayerBehaviour SpawnPlayer()
         {
