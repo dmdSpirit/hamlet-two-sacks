@@ -177,7 +177,7 @@ MonoBehaviour:
   _bagTransform: {fileID: 3898557578854231961}
   _collectionSpeed: 0.3
   _completionRadius: 0.1
-  _triggerDetector: {fileID: 0}
+  _triggerDetector: {fileID: 5427590583513696241}
 --- !u!1 &7767038812959296486
 GameObject:
   m_ObjectHideFlags: 0
@@ -381,7 +381,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 1}

@@ -23,7 +23,6 @@ namespace HamletTwoSacks.Infrastructure
             BindCharacters();
             BindLifeCycle();
             BindCamera();
-            BindCrystals();
             BindCommands();
 
             Container.Bind<StaticDataProvider>().AsSingle().NonLazy();
@@ -32,13 +31,7 @@ namespace HamletTwoSacks.Infrastructure
         private void BindCharacters()
         {
             Container.Bind<Player>().AsSingle().NonLazy();
-            Container.BindInterfacesTo<CharacterFactory>().AsSingle();
             Container.Bind<CharactersManager>().AsSingle();
-        }
-
-        private void BindCrystals()
-        {
-            Container.BindInterfacesTo<CrystalFactory>().AsSingle();
         }
 
         private void BindLifeCycle()

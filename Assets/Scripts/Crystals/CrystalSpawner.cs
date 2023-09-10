@@ -1,6 +1,7 @@
 ﻿#nullable enable
 
 using dmdspirit.Core.Attributes;
+using HamletTwoSacks.Level;
 using UnityEngine;
 using Zenject;
 
@@ -9,18 +10,15 @@ namespace HamletTwoSacks.Crystals
     public sealed class CrystalSpawner : MonoBehaviour
     {
         private ICrystalFactory _crystalFactory = null!;
-
-        // private CrystalsTransform _crystalsTransform = null!;
+        private LevelTransforms _levelTransforms = null!;
 
         [SerializeField, Button(nameof(SpawnCrystal))]
         private bool _spawnCrystal;
 
         [Inject]
-
-        // private void Construct(ICrystalFactory crystalFactory, CrystalsTransform crystalsTransform)
-        private void Construct(ICrystalFactory crystalFactory)
+        private void Construct(ICrystalFactory crystalFactory, LevelTransforms levelTransforms)
         {
-            // _crystalsTransform = crystalsTransform;
+            _levelTransforms = levelTransforms;
             _crystalFactory = crystalFactory;
         }
 
@@ -28,7 +26,7 @@ namespace HamletTwoSacks.Crystals
         {
             Crystal crystal = _crystalFactory.SpawnCrystal();
 
-            // crystal.transform.SetParent(_crystalsTransform.transform);
+            crystal.transform.SetParent(_levelTransforms.Crystals);
             crystal.transform.position = transform.position;
             return crystal;
         }

@@ -1,6 +1,7 @@
 ﻿#nullable enable
 
 using HamletTwoSacks.Character;
+using HamletTwoSacks.Crystals;
 using HamletTwoSacks.Level;
 using UnityEngine;
 using Zenject;
@@ -23,6 +24,7 @@ namespace HamletTwoSacks.Infrastructure
             BindCharacters();
             BindCamera();
             BindLevel();
+            BindFactories();
         }
 
         private void BindCamera()
@@ -38,6 +40,12 @@ namespace HamletTwoSacks.Infrastructure
         private void BindLevel()
         {
             Container.Bind<LevelTransforms>().FromInstance(_levelTransforms);
+        }
+
+        private void BindFactories()
+        {
+            Container.BindInterfacesTo<CharacterFactory>().AsSingle();
+            Container.BindInterfacesTo<CrystalFactory>().AsSingle();
         }
     }
 }

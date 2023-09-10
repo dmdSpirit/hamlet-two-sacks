@@ -2,6 +2,7 @@
 
 using HamletTwoSacks.Infrastructure.StaticData;
 using JetBrains.Annotations;
+using UnityEngine;
 using Zenject;
 
 namespace HamletTwoSacks.Character
@@ -20,6 +21,10 @@ namespace HamletTwoSacks.Character
         }
 
         public PlayerBehaviour CreatePlayer()
-            => _container.InstantiatePrefabForComponent<PlayerBehaviour>(_playerBehaviourPrefab);
+        {
+            GameObject? player = _container.InstantiatePrefab(_playerBehaviourPrefab);
+            var playerBehaviour = player.GetComponent<PlayerBehaviour>();
+            return playerBehaviour;
+        }
     }
 }
