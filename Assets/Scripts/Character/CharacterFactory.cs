@@ -1,22 +1,30 @@
 ﻿#nullable enable
 
+using HamletTwoSacks.Infrastructure.StaticData;
+using JetBrains.Annotations;
 using UnityEngine;
 using Zenject;
 
 namespace HamletTwoSacks.Character
 {
-    public sealed class CharacterFactory : MonoBehaviour, IPlayerFactory
+    [UsedImplicitly]
+    public sealed class CharacterFactory : IPlayerFactory
     {
         private DiContainer _container = null!;
-
-        [SerializeField]
-        private Player _playerPrefab = null!;
+        private PlayerBehaviour _playerBehaviourPrefab = null!;
 
         [Inject]
-        private void Construct(DiContainer container)
-            => _container = container;
+        private void Construct(DiContainer container, StaticDataProvider staticDataProvider)
+        {
+            _container = container;
+            _playerBehaviourPrefab = staticDataProvider.GetConfig<PrefabsConfig>().GetPrefab<PlayerBehaviour>();
+        }
 
-        public Player CreatePlayer()
-            => _container.InstantiatePrefabForComponent<Player>(_playerPrefab);
+        public PlayerBehaviour CreatePlayer()
+        {
+            GameObject? player = _container.InstantiatePrefab(_playerBehaviourPrefab);
+            var playerBehaviour = player.GetComponent<PlayerBehaviour>();
+            return playerBehaviour;
+        }
     }
 }

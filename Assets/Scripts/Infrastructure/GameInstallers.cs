@@ -2,8 +2,11 @@
 
 using dmdspirit.Core;
 using HamletTwoSacks.Character;
+using HamletTwoSacks.Commands;
+using HamletTwoSacks.Crystals;
 using HamletTwoSacks.Infrastructure.LifeCycle;
 using HamletTwoSacks.Infrastructure.LifeCycle.States;
+using HamletTwoSacks.Infrastructure.StaticData;
 using HamletTwoSacks.UI;
 using UnityEngine;
 using Zenject;
@@ -13,24 +16,21 @@ namespace HamletTwoSacks.Infrastructure
     public sealed class GameInstallers : MonoInstaller
     {
         [SerializeField]
-        private CharacterFactory _characterFactory = null!;
-
-        [SerializeField]
         private CameraController _cameraController = null!;
-
-        // [SerializeField]
-        // private CameraTargetFollow _cameraTargetFollow = null!;
 
         public override void InstallBindings()
         {
             BindCharacters();
             BindLifeCycle();
             BindCamera();
+            BindCommands();
+
+            Container.Bind<StaticDataProvider>().AsSingle().NonLazy();
         }
 
         private void BindCharacters()
         {
-            Container.Bind<IPlayerFactory>().FromInstance(_characterFactory);
+            Container.Bind<Player>().AsSingle().NonLazy();
             Container.Bind<CharactersManager>().AsSingle();
         }
 
@@ -52,7 +52,13 @@ namespace HamletTwoSacks.Infrastructure
         private void BindCamera()
         {
             Container.Bind<CameraController>().FromInstance(_cameraController);
-            // Container.Bind<CameraTargetFollow>().FromInstance(_cameraTargetFollow);
+        }
+
+        private void BindCommands()
+        {
+            Container.Bind<CommandsFactory>().AsSingle();
+
+            Container.Bind<FlyObjectToCommand>().AsTransient();
         }
     }
 }

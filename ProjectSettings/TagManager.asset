@@ -14,8 +14,8 @@ TagManager:
   - character
   - item
   - ground
-  - 
-  - 
+  - crystal collector
+  - building
   - 
   - 
   - 
@@ -53,9 +53,9 @@ TagManager:
   - name: character
     uniqueID: 1279540487
     locked: 0
-  - name: items
-    uniqueID: 2085878375
-    locked: 0
   - name: ui
     uniqueID: 3966177161
+    locked: 0
+  - name: items
+    uniqueID: 2085878375
     locked: 0

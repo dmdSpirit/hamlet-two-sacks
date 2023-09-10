@@ -1,18 +1,25 @@
 ﻿#nullable enable
 
-using UnityEngine;
-using Zenject;
+using JetBrains.Annotations;
+using UniRx;
 
 namespace HamletTwoSacks.Character
 {
-    [RequireComponent(typeof(PlayerMovement))]
-    public sealed class Player : MonoBehaviour, IInitializable
+    [UsedImplicitly]
+    public sealed class Player
     {
-        private PlayerMovement _playerMovement = null!;
+        private readonly ReactiveProperty<int> _crystals = new();
 
-        public void Initialize()
+        public IReadOnlyReactiveProperty<int> Crystals => _crystals;
+
+        public void AddCrystal()
+            => _crystals.Value++;
+
+        public void SpendCrystal()
         {
-            _playerMovement = GetComponent<PlayerMovement>();
+            if (_crystals.Value <= 0)
+                return;
+            _crystals.Value--;
         }
     }
 }

@@ -15,10 +15,7 @@ namespace HamletTwoSacks.Infrastructure
         private float _minX;
         private float _maxX;
         private float _horizontalCameraSize;
-        private CinemachineBrain _brain;
-
-        [SerializeField]
-        private float _safeBorder = 1f;
+        private CinemachineBrain _brain = null!;
 
         [SerializeField]
         private SpriteRenderer _background = null!;
@@ -49,7 +46,7 @@ namespace HamletTwoSacks.Infrastructure
         {
             Vector3 cameraPos = _brain.CurrentCameraState.FinalPosition;
             float p = (cameraPos.x - _minX) / (_maxX - _minX);
-            var position = _background.transform.position;
+            Vector3 position = _background.transform.position;
             position.x = (_background.transform.localScale.x - 1 - 2 * _horizontalCameraSize) * (2 * p - 1) / 2f
                          - cameraPos.x;
             position.x *= -1f;
