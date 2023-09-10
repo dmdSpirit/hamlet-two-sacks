@@ -13,7 +13,10 @@ namespace HamletTwoSacks.Crystals
         private Collider2D _collider = null!;
 
         public void TurnPhysicsOn()
-            => _rigidbody.simulated = true;
+        {
+            _rigidbody.simulated = true;
+            _collider.enabled = true;
+        }
 
         public void TurnPhysicsOff()
         {

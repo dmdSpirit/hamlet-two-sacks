@@ -175,7 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bagTransform: {fileID: 3898557578854231961}
-  _collectionSpeed: 2
+  _collectionSpeed: 5
   _completionRadius: 0.1
   _triggerDetector: {fileID: 5427590583513696241}
 --- !u!1 &7767038812959296486

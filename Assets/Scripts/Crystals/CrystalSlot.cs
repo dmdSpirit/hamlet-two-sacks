@@ -27,6 +27,7 @@ namespace HamletTwoSacks.Crystals
         private float _completionRadius = .1f;
 
         public IReadOnlyReactiveProperty<bool> IsFilled => _isFilled;
+        public bool IsCrystalFlying => _activeCommand != null;
 
         [Inject]
         private void Construct(CommandsFactory commandsFactory, ICrystalFactory crystalFactory)
@@ -40,10 +41,13 @@ namespace HamletTwoSacks.Crystals
 
         public void SetCrystalToSlot(Crystal crystal)
         {
+            Assert.IsNull(_activeCommand);
             crystal.TurnPhysicsOff();
-            FlyObjectToCommand flyCrystal =
+            _activeCommand =
                 _commandsFactory.GetFlyObjectToCommand(crystal.transform, transform, _flySpeed, _completionRadius);
-            _sub = flyCrystal.OnCompleted.Subscribe(OnCrystalArrive);
+            _sub = _activeCommand.OnCompleted.Subscribe(OnCrystalArrive);
+            _crystal = crystal;
+            _activeCommand.Start();
         }
 
         public void DropCrystal()

@@ -46,26 +46,21 @@ namespace HamletTwoSacks.Crystals
         }
 
         public CrystalSlot? GetEmptyCrystalSlot()
-            => _slots.FirstOrDefault(slot => slot.gameObject.activeInHierarchy && !slot.IsFilled.Value);
+            => _slots.FirstOrDefault(slot => slot.gameObject.activeInHierarchy && !slot.IsFilled.Value
+                                             && !slot.IsCrystalFlying);
 
         private void OnSlotsUpdate(bool _)
         {
-            _payed = 0;
-            foreach (CrystalSlot crystalSlot in _slots)
-            {
-                if (!crystalSlot.gameObject.activeInHierarchy)
-                    continue;
-                if (crystalSlot.IsFilled.Value)
-                    _payed++;
-            }
+            _payed = _slots.Count(slot => slot.gameObject.activeInHierarchy && slot.IsFilled.Value);
 
             if (_payed != Cost)
                 return;
 
-            _onPricePayed.OnNext(this);
             foreach (CrystalSlot crystalSlot in _slots)
                 crystalSlot.DestroyCrystal();
             _panel.SetActive(false);
+            
+            _onPricePayed.OnNext(this);
         }
     }
 }

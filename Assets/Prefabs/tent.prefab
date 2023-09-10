@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4860959177694613401}
+  - component: {fileID: 7621789914299669121}
   - component: {fileID: 6191559706004501203}
   - component: {fileID: 4299725298871450254}
   m_Layer: 0
@@ -36,6 +37,20 @@ Transform:
   - {fileID: 2911648656908951376}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7621789914299669121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3526156019777292305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80f6906f95334f06b3bf1509db684350, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _crystalCostPanel: {fileID: 8992007283684060621}
+  _price: 5
 --- !u!61 &6191559706004501203
 BoxCollider2D:
   m_ObjectHideFlags: 0
