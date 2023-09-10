@@ -1,6 +1,8 @@
 ﻿#nullable enable
 
 using HamletTwoSacks.Character;
+using HamletTwoSacks.Physics;
+using UniRx;
 using UnityEngine;
 using Zenject;
 
@@ -17,6 +19,9 @@ namespace HamletTwoSacks.Crystals
         [SerializeField]
         private CrystalSpawner _crystalSpawner = null!;
 
+        [SerializeField]
+        private TriggerDetector _triggerDetector = null!;
+
         // TODO (Stas): Move to localization system.
         // - Stas 09 September 2023
         [SerializeField]
@@ -29,12 +34,21 @@ namespace HamletTwoSacks.Crystals
             _player = player;
         }
 
-        private void OnCollisionEnter2D(Collision2D target)
+        private void Awake()
+        {
+            _triggerDetector.OnTriggerEnter.Subscribe(TriggerEnter);
+            _triggerDetector.OnTriggerExit.Subscribe(TriggerExit);
+        }
+
+        private void TriggerEnter(Collider2D target)
         {
             if (_costPanel != null)
                 return;
 
-            _costPanel = target.gameObject.GetComponent<CrystalCostPanel>();
+            var systems = target.gameObject.GetComponent<SystemReferences>();
+            if (systems == null)
+                return;
+            _costPanel = systems.GetSystem<CrystalCostPanel>();
             if (_costPanel == null)
                 return;
 
@@ -45,7 +59,7 @@ namespace HamletTwoSacks.Crystals
             _actionButtonReader.SubscribeToAction(_actionReceiver);
         }
 
-        private void OnCollisionExit2D(Collision2D target)
+        private void TriggerExit(Collider2D target)
         {
             if (_costPanel == null)
                 return;

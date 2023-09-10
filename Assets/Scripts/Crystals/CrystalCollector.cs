@@ -1,8 +1,10 @@
 ﻿#nullable enable
 
+using System;
 using System.Collections.Generic;
 using HamletTwoSacks.Character;
 using HamletTwoSacks.Commands;
+using HamletTwoSacks.Physics;
 using UniRx;
 using UnityEngine;
 using Zenject;
@@ -27,6 +29,9 @@ namespace HamletTwoSacks.Crystals
         [SerializeField]
         private float _completionRadius;
 
+        [SerializeField]
+        private TriggerDetector _triggerDetector = null!;
+
         [Inject]
         private void Construct(CommandsFactory commandsFactory, Player player, ICrystalFactory crystalFactory)
         {
@@ -35,7 +40,10 @@ namespace HamletTwoSacks.Crystals
             _commandsFactory = commandsFactory;
         }
 
-        private void OnTriggerEnter2D(Collider2D target)
+        private void Awake()
+            => _triggerDetector.OnTriggerEnter.Subscribe(TriggerEnter);
+
+        private void TriggerEnter(Collider2D target)
         {
             var crystal = target.gameObject.GetComponent<Crystal>();
             if (crystal == null)
