@@ -58,10 +58,12 @@ namespace HamletTwoSacks.Crystals
             {
                 _activeCommand.Interrupt();
                 _sub!.Dispose();
+                _activeCommand = null;
             }
 
             _crystal.TurnPhysicsOn();
             _crystal = null!;
+            _isFilled.Value = false;
         }
 
         public void DestroyCrystal()
@@ -69,6 +71,14 @@ namespace HamletTwoSacks.Crystals
             if (_crystal == null)
                 return;
             _crystalFactory.DestroyCrystal(_crystal);
+            if (_activeCommand != null)
+            {
+                _activeCommand.Interrupt();
+                _sub!.Dispose();
+                _activeCommand = null;
+            }
+
+            _isFilled.Value = false;
         }
 
         private void OnCrystalArrive(ICommand command)

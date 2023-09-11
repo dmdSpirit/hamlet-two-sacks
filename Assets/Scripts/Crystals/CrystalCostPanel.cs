@@ -38,7 +38,11 @@ namespace HamletTwoSacks.Crystals
         }
 
         public void ShowPanel()
-            => _panel.SetActive(true);
+        {
+            if (!IsEnabled)
+                return;
+            _panel.SetActive(true);
+        }
 
         public void HidePanel()
         {
@@ -69,7 +73,6 @@ namespace HamletTwoSacks.Crystals
 
             foreach (CrystalSlot crystalSlot in _slots)
                 crystalSlot.DestroyCrystal();
-            _panel.SetActive(false);
 
             _onPricePayed.OnNext(this);
         }
