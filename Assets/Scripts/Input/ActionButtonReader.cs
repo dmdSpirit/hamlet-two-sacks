@@ -3,39 +3,57 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using dmdspirit.Core.CommonInterfaces;
 using HamletTwoSacks.Infrastructure;
+using HamletTwoSacks.Infrastructure.StaticData;
+using JetBrains.Annotations;
 using UniRx;
-using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.InputSystem;
 using Zenject;
 
-namespace HamletTwoSacks.Character
+namespace HamletTwoSacks.Input
 {
-    public sealed class Action
-    
-    public sealed class ActionButtonReader : MonoBehaviour
+    [UsedImplicitly]
+    public sealed class ActionButtonReader : IActivatableReactive
     {
+        private TimeController _timeController = null!;
+
         private readonly ReactiveProperty<bool> _isActionPressed = new();
         private readonly Subject<string?> _onReceiverChanged = new();
-
         private readonly List<string> _receivers = new();
+        private readonly ReactiveProperty<bool> _isActive = new();
 
-        [SerializeField]
-        private InputAction _actionButton = null!;
+        private InputAction _action = null!;
+        private IDisposable? _sub;
 
         public IReadOnlyReactiveProperty<bool> IsActionPressed => _isActionPressed;
         public IObservable<string?> OnReceiverChanged => _onReceiverChanged;
+        public IReadOnlyReactiveProperty<bool> IsActive => _isActive;
 
         [Inject]
-        private void Construct(TimeController timeController)
-            => timeController.FixedUpdate.Subscribe(OnFixedUpdate);
+        private void Construct(TimeController timeController, StaticDataProvider staticDataProvider)
+        {
+            _timeController = timeController;
+            _action = staticDataProvider.GetConfig<InputConfig>().Action;
+            _action.Disable();
+        }
+        
+        public void Activate()
+        {
+            if (_isActive.Value)
+                return;
+            _sub = _timeController.Update.Subscribe(OnUpdate);
+            _action.Enable();
+            _isActive.Value = true;
+        }
 
-        private void OnEnable()
-            => _actionButton.Enable();
-
-        private void OnDisable()
-            => _actionButton.Disable();
+        public void Deactivate()
+        {
+            _sub?.Dispose();
+            _action.Disable();
+            _isActive.Value = false;
+        }
 
         public void SubscribeToAction(string receiver)
         {
@@ -50,11 +68,11 @@ namespace HamletTwoSacks.Character
             _onReceiverChanged.OnNext(_receivers.FirstOrDefault());
         }
 
-        private void OnFixedUpdate(float time)
+        private void OnUpdate(float time)
         {
-            if (_actionButton.IsPressed()
-                && _actionReceivers.Count > 0)
-                _actionReceivers[0].Callback.Invoke();
+            if (_action.IsPressed() == _isActionPressed.Value)
+                return;
+            _isActionPressed.Value = _action.IsPressed();
         }
     }
 }

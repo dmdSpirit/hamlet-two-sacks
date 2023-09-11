@@ -7,6 +7,7 @@ using HamletTwoSacks.Crystals;
 using HamletTwoSacks.Infrastructure.LifeCycle;
 using HamletTwoSacks.Infrastructure.LifeCycle.States;
 using HamletTwoSacks.Infrastructure.StaticData;
+using HamletTwoSacks.Input;
 using HamletTwoSacks.UI;
 using UnityEngine;
 using Zenject;
@@ -24,6 +25,7 @@ namespace HamletTwoSacks.Infrastructure
             BindLifeCycle();
             BindCamera();
             BindCommands();
+            BindInput();
 
             Container.Bind<StaticDataProvider>().AsSingle().NonLazy();
         }
@@ -59,6 +61,11 @@ namespace HamletTwoSacks.Infrastructure
             Container.Bind<CommandsFactory>().AsSingle();
 
             Container.Bind<FlyObjectToCommand>().AsTransient();
+        }
+
+        private void BindInput()
+        {
+            Container.Bind<ActionButtonReader>().AsSingle().NonLazy();
         }
     }
 }

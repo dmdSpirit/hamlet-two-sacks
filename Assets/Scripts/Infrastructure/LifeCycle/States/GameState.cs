@@ -4,6 +4,7 @@ using dmdspirit.Core;
 using dmdspirit.Core.CommonInterfaces;
 using dmdspirit.Core.UI;
 using HamletTwoSacks.Character;
+using HamletTwoSacks.Input;
 using HamletTwoSacks.UI;
 using JetBrains.Annotations;
 
@@ -17,10 +18,12 @@ namespace HamletTwoSacks.Infrastructure.LifeCycle.States
         private readonly LoadingScreenShower _loadingScreenShower;
         private readonly TimeController _timeController;
         private readonly UIManager _uiManager;
+        private readonly ActionButtonReader _actionButtonReader;
 
         public GameState(CharactersManager charactersManager, LevelManager levelManager,
-            LoadingScreenShower loadingScreenShower, TimeController timeController, UIManager uiManager)
+            LoadingScreenShower loadingScreenShower, TimeController timeController, UIManager uiManager, ActionButtonReader actionButtonReader)
         {
+            _actionButtonReader = actionButtonReader;
             _uiManager = uiManager;
             _timeController = timeController;
 
@@ -31,6 +34,7 @@ namespace HamletTwoSacks.Infrastructure.LifeCycle.States
 
         public async void Enter(StateMachine stateMachine, object? arg)
         {
+            _loadingScreenShower.ShowLoadingScreen();
             var sceneIndex = (int)arg!;
             await _levelManager.LoadLevel(sceneIndex);
             _charactersManager.SpawnPlayer();
@@ -38,6 +42,7 @@ namespace HamletTwoSacks.Infrastructure.LifeCycle.States
             _timeController.StartTime();
             _loadingScreenShower.HideLoadingScreen();
             _uiManager.GetScreen<UIHud>().Show();
+            _actionButtonReader.Activate();
         }
 
         public async void Exit()
@@ -46,6 +51,7 @@ namespace HamletTwoSacks.Infrastructure.LifeCycle.States
             _loadingScreenShower.ShowLoadingScreen();
             await _levelManager.UnloadCurrentLevel();
 
+            _actionButtonReader.Activate();
             _timeController.StopTime();
         }
     }
