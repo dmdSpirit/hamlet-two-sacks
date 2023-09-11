@@ -10,7 +10,9 @@ namespace HamletTwoSacks.Crystals
     public sealed class CrystalCostPanel : MonoBehaviour
     {
         private readonly Subject<CrystalCostPanel> _onPricePayed = new();
+
         private int _payed;
+        private int _cost;
 
         [SerializeField]
         private GameObject _panel = null!;
@@ -19,7 +21,7 @@ namespace HamletTwoSacks.Crystals
         private CrystalSlot[] _slots = null!;
 
         public IObservable<CrystalCostPanel> OnPricePayed => _onPricePayed;
-        public int Cost { get; private set; }
+        public bool IsEnabled { get; private set; }
 
         private void Awake()
         {
@@ -30,7 +32,7 @@ namespace HamletTwoSacks.Crystals
 
         public void SetCost(int cost)
         {
-            Cost = cost;
+            _cost = cost;
             for (var i = 0; i < _slots.Length; i++)
                 _slots[i].gameObject.SetActive(i < cost);
         }
@@ -49,17 +51,26 @@ namespace HamletTwoSacks.Crystals
             => _slots.FirstOrDefault(slot => slot.gameObject.activeInHierarchy && !slot.IsFilled.Value
                                              && !slot.IsCrystalFlying);
 
+        public void Enable()
+            => IsEnabled = true;
+
+        public void Disable()
+        {
+            HidePanel();
+            IsEnabled = false;
+        }
+
         private void OnSlotsUpdate(bool _)
         {
             _payed = _slots.Count(slot => slot.gameObject.activeInHierarchy && slot.IsFilled.Value);
 
-            if (_payed != Cost)
+            if (_payed != _cost)
                 return;
 
             foreach (CrystalSlot crystalSlot in _slots)
                 crystalSlot.DestroyCrystal();
             _panel.SetActive(false);
-            
+
             _onPricePayed.OnNext(this);
         }
     }

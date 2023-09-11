@@ -49,7 +49,8 @@ namespace HamletTwoSacks.Crystals
             if (systems == null)
                 return;
             _costPanel = systems.GetSystem<CrystalCostPanel>();
-            if (_costPanel == null)
+            if (_costPanel == null
+                || !_costPanel.IsEnabled)
                 return;
 
             _costPanel.ShowPanel();
@@ -61,7 +62,8 @@ namespace HamletTwoSacks.Crystals
 
         private void TriggerExit(Collider2D target)
         {
-            if (_costPanel == null)
+            if (_costPanel == null
+                || !_costPanel.IsEnabled)
                 return;
 
             _costPanel.HidePanel();
