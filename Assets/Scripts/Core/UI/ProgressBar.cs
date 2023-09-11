@@ -3,7 +3,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace HamletTwoSacks.Buildings
+namespace dmdspirit.Core.UI
 {
     public sealed class ProgressBar : MonoBehaviour
     {
