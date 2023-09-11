@@ -9,7 +9,7 @@ namespace dmdspirit.Core.UI
     public sealed class UpdatableProgressBar : MonoBehaviour
     {
         private IDisposable? _sub;
-        
+
         [SerializeField]
         private Image _progress = null!;
 
@@ -19,7 +19,7 @@ namespace dmdspirit.Core.UI
             _sub?.Dispose();
             _sub = progress.Subscribe(OnUpdate);
         }
-        
+
         public void StopShowing()
         {
             _sub?.Dispose();
@@ -27,6 +27,6 @@ namespace dmdspirit.Core.UI
         }
 
         private void OnUpdate(float progress)
-            => _progress.fillAmount = Mathf.Clamp(progress, 0, 1);
+            => _progress.fillAmount = progress;
     }
 }

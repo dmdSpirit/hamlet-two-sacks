@@ -225,7 +225,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _crystalSpawner: {fileID: 6036404540741024094}
   _triggerDetector: {fileID: 5427590583513696241}
-  _callToAction: Press E
+  _crystalSpawnCooldown: 0.1
 --- !u!1 &8623884253572156721
 GameObject:
   m_ObjectHideFlags: 0

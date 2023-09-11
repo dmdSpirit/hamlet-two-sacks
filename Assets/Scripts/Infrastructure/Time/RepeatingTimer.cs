@@ -1,6 +1,7 @@
 ﻿#nullable enable
 using System;
 using UniRx;
+using UnityEngine;
 
 namespace HamletTwoSacks.Infrastructure.Time
 {
@@ -51,9 +52,14 @@ namespace HamletTwoSacks.Infrastructure.Time
         {
             _timePassed += time;
             if (_timePassed < _cooldown)
+            {
+                _progress.Value = _cooldown == 0 ? 0 : Mathf.Clamp(_timePassed / _cooldown, 0, 1);
                 return;
+            }
+
             _onFire.OnNext(this);
             _timePassed -= _cooldown;
+            _progress.Value = _cooldown == 0 ? 0 : Mathf.Clamp(_timePassed / _cooldown, 0, 1);
         }
     }
 }

@@ -2,7 +2,6 @@
 
 using dmdspirit.Core.UI;
 using HamletTwoSacks.Crystals;
-using HamletTwoSacks.Infrastructure;
 using HamletTwoSacks.Infrastructure.StaticData;
 using HamletTwoSacks.Infrastructure.Time;
 using UniRx;

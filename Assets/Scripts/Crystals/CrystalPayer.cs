@@ -3,11 +3,11 @@
 using System;
 using HamletTwoSacks.Character;
 using HamletTwoSacks.Infrastructure;
+using HamletTwoSacks.Infrastructure.Time;
 using HamletTwoSacks.Input;
 using HamletTwoSacks.Physics;
 using UniRx;
 using UnityEngine;
-using UnityEngine.Assertions;
 using Zenject;
 
 namespace HamletTwoSacks.Crystals
@@ -16,13 +16,12 @@ namespace HamletTwoSacks.Crystals
     {
         private Player _player = null!;
         private ActionButtonReader _actionButtonReader = null!;
-        private TimeController _timeController = null!;
 
-        private readonly CompositeDisposable _sub = new();
-
+        private IDisposable? _sub;
+        private IDisposable? _timerSub;
         private string _stringID = null!;
         private CrystalCostPanel? _costPanel;
-        private IDisposable? _timeSub;
+        private RepeatingTimer _timer = null!;
 
         [SerializeField]
         private CrystalSpawner _crystalSpawner = null!;
@@ -30,19 +29,24 @@ namespace HamletTwoSacks.Crystals
         [SerializeField]
         private TriggerDetector _triggerDetector = null!;
 
+        [SerializeField]
+        private float _crystalSpawnCooldown = 0.1f;
+
         [Inject]
         private void Construct(Player player, ActionButtonReader actionButtonReader, TimeController timeController)
         {
-            _timeController = timeController;
             _actionButtonReader = actionButtonReader;
             _player = player;
             _stringID = this.ToStringID();
+            _timer = new RepeatingTimer(timeController);
         }
 
         private void Awake()
         {
             _triggerDetector.OnTriggerEnter.Subscribe(TriggerEnter);
             _triggerDetector.OnTriggerExit.Subscribe(TriggerExit);
+            _timer.OnFire.Subscribe(OnSpendCrystal);
+            _timer.SetCooldown(_crystalSpawnCooldown);
         }
 
         private void TriggerEnter(Collider2D target)
@@ -57,29 +61,10 @@ namespace HamletTwoSacks.Crystals
             if (_costPanel == null
                 || !_costPanel.IsEnabled)
                 return;
-            _sub.Clear();
-            _timeSub?.Dispose();
+            _sub?.Dispose();
             _costPanel.ShowPanel();
-            _actionButtonReader.IsActive.Subscribe(UpdateButtonReading).AddTo(_sub);
-            _actionButtonReader.IsActionPressed.Subscribe(ButtonStateUpdate).AddTo(_sub);
             _actionButtonReader.SubscribeToAction(_stringID);
-        }
-
-        private void UpdateButtonReading(bool isReadingActive)
-        {
-            _timeSub?.Dispose();
-            if (isReadingActive == false)
-                return;
-            _timeSub = _timeController.Update.Subscribe(OnUpdate);
-        }
-
-        private void ButtonStateUpdate(bool isButtonPressed) { }
-
-        private void OnUpdate(float time)
-        {
-            Assert.IsNotNull(_costPanel);
-            if (_actionButtonReader.IsActionPressed.Value)
-                OnSpendCrystal(_costPanel!);
+            _sub = _actionButtonReader.OnStateChanged.Subscribe(UpdateButtonReading);
         }
 
         private void TriggerExit(Collider2D target)
@@ -94,10 +79,27 @@ namespace HamletTwoSacks.Crystals
                 return;
 
             _costPanel.HidePanel();
-            _sub.Clear();
+            _sub?.Dispose();
             _actionButtonReader.UnsubscribeFromAction(_stringID);
             _costPanel = null;
-            _timeSub?.Dispose();
+            _timer.Stop();
+        }
+
+        private void UpdateButtonReading(Unit _)
+        {
+            bool isPressed = _actionButtonReader.IsActive.Value && _actionButtonReader.IsActionPressed.Value
+                             && string.Equals(_actionButtonReader.CurrentReceiver, _stringID);
+            if (isPressed && !_timer.IsRunning)
+            {
+                _timer.Start();
+            }
+            else if (!isPressed
+                     && _timer.IsRunning)
+            {
+                _timer.Stop();
+                if (_costPanel != null)
+                    _costPanel.DropCrystals();
+            }
         }
 
         private Crystal? GetCrystal()
@@ -109,7 +111,7 @@ namespace HamletTwoSacks.Crystals
             return crystal;
         }
 
-        private void OnSpendCrystal(CrystalCostPanel costPanel)
+        private void OnSpendCrystal(RepeatingTimer _)
         {
             CrystalSlot? slot = _costPanel!.GetEmptyCrystalSlot();
             if (slot == null)
