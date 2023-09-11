@@ -1,7 +1,10 @@
 ﻿#nullable enable
 
+using dmdspirit.Core.UI;
 using HamletTwoSacks.Crystals;
+using HamletTwoSacks.Infrastructure;
 using HamletTwoSacks.Infrastructure.StaticData;
+using HamletTwoSacks.Infrastructure.Time;
 using UniRx;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -16,12 +19,16 @@ namespace HamletTwoSacks.Buildings
         private MineTierInfo? _nextTier;
         private int _currentTier;
         private bool _isBuilt;
+        private RepeatingTimer _timer = null!;
 
         [SerializeField]
         private CrystalCostPanel _crystalCostPanel = null!;
 
         [SerializeField]
-        private TimedCrystalSpawner _timedCrystalSpawner = null!;
+        private UpdatableProgressBar _progressBar = null!;
+
+        [SerializeField]
+        private CrystalSpawner _crystalSpawner = null!;
 
         [SerializeField]
         private GameObject _notBuiltImage = null!;
@@ -30,14 +37,25 @@ namespace HamletTwoSacks.Buildings
         private GameObject _builtImage = null!;
 
         [Inject]
-        private void Construct(StaticDataProvider staticDataProvider)
-            => _mineBuildingConfig = staticDataProvider.GetConfig<MineBuildingConfig>();
+        private void Construct(StaticDataProvider staticDataProvider, TimeController timeController)
+        {
+            _mineBuildingConfig = staticDataProvider.GetConfig<MineBuildingConfig>();
+            _timer = new RepeatingTimer(timeController);
+        }
 
         private void Start()
         {
             _crystalCostPanel.OnPricePayed.Subscribe(OnUpgraded);
+            _timer.OnFire.Subscribe(OnCrystalSpawn);
+            _progressBar.StopShowing();
             ConfigureNextTier();
             UpdateImage();
+        }
+
+        private void OnDestroy()
+        {
+            _timer.Stop();
+            _progressBar.StopShowing();
         }
 
         private void OnUpgraded(CrystalCostPanel _)
@@ -45,10 +63,18 @@ namespace HamletTwoSacks.Buildings
             Assert.IsNotNull(_nextTier);
             _currentTier++;
             _isBuilt = true;
-            _timedCrystalSpawner.SetCooldown(_nextTier!.ProductionCooldown);
-            _timedCrystalSpawner.Activate();
+            StartSpawnTimer(_nextTier!.ProductionCooldown);
             ConfigureNextTier();
             UpdateImage();
+        }
+
+        private void StartSpawnTimer(float cooldown)
+        {
+            _timer.SetCooldown(cooldown);
+            if (_timer.IsRunning)
+                return;
+            _progressBar.StartShowing(_timer.Progress);
+            _timer.Start();
         }
 
         private void ConfigureNextTier()
@@ -73,5 +99,8 @@ namespace HamletTwoSacks.Buildings
             _notBuiltImage.SetActive(!_isBuilt);
             _builtImage.SetActive(_isBuilt);
         }
+
+        private void OnCrystalSpawn(RepeatingTimer _)
+            => _crystalSpawner.SpawnCrystal();
     }
 }
