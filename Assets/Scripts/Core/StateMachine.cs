@@ -1,6 +1,7 @@
 #nullable enable
 using System;
 using System.Collections.Generic;
+using dmdspirit.Core.CommonInterfaces;
 using UniRx;
 using UnityEngine;
 

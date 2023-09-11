@@ -12,7 +12,7 @@ namespace HamletTwoSacks.Infrastructure.StaticData
     {
         private readonly List<ScriptableObject> _configs = new();
 
-        private const string CONFIG_LIST_PATH = "config_list";
+        public const string CONFIG_LIST_PATH = "config_list";
 
         public StaticDataProvider()
         {
@@ -25,7 +25,7 @@ namespace HamletTwoSacks.Infrastructure.StaticData
 
             _configs.AddRange(configList.Configs);
         }
-
+        
         public T GetConfig<T>() where T : ScriptableObject
         {
             ScriptableObject? config = _configs.FirstOrDefault(c => c is T);

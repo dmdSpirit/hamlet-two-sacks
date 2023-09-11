@@ -1,6 +1,7 @@
 #nullable enable
 
 using dmdspirit.Core;
+using dmdspirit.Core.CommonInterfaces;
 using JetBrains.Annotations;
 
 namespace HamletTwoSacks.Infrastructure.LifeCycle.States

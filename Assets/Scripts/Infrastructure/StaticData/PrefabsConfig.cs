@@ -6,7 +6,7 @@ using UnityEngine;
 namespace HamletTwoSacks.Infrastructure.StaticData
 {
     [CreateAssetMenu(menuName = "Config/Prefabs Config", fileName = "prefabs_config", order = 0)]
-    public sealed class PrefabsConfig : ScriptableObject
+    public sealed class PrefabsConfig : GameConfig
     {
         [SerializeField]
         private MonoBehaviour[] _prefabs = null!;
