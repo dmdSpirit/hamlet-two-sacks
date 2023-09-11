@@ -44,4 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d84a209f69a4fbb82693d64c6e5f7db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _useSpread: 1
+  _spread: 0.5
   _spawnCrystal: 0

@@ -19,6 +19,9 @@ namespace HamletTwoSacks.Buildings
             _crystalCostPanel.SetCost(_price);
         }
 
+        private void Start()
+            => _crystalCostPanel.Enable();
+
         private void OnPricePayed(CrystalCostPanel _)
         {
             Debug.Log($"Price for {name} was payed");

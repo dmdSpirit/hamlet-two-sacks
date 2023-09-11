@@ -12,11 +12,18 @@ namespace HamletTwoSacks.Infrastructure.StaticData
     {
         private readonly List<ScriptableObject> _configs = new();
 
-        private const string PREFABS_CONFIG_PATH = "Common/prefabs_config";
+        private const string CONFIG_LIST_PATH = "config_list";
 
         public StaticDataProvider()
         {
-            _configs.Add(LoadScriptable<PrefabsConfig>(PREFABS_CONFIG_PATH));
+            var configList = Resources.Load<ConfigList>(CONFIG_LIST_PATH);
+            if (configList == null)
+            {
+                Debug.LogError($"Could not load {typeof(ConfigList)} at path {CONFIG_LIST_PATH}.");
+                return;
+            }
+
+            _configs.AddRange(configList.Configs);
         }
 
         public T GetConfig<T>() where T : ScriptableObject
@@ -27,15 +34,6 @@ namespace HamletTwoSacks.Infrastructure.StaticData
 
             Debug.LogError($"Could not find config of type {typeof(T).Name}");
             return null!;
-        }
-
-        private T LoadScriptable<T>(string path) where T : ScriptableObject
-        {
-            var result = Resources.Load<T>(path);
-            if (result == null)
-                Debug.LogError($"Could not load {typeof(T)} at path {path}.");
-
-            return result!;
         }
     }
 }
