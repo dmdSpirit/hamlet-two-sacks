@@ -46,9 +46,14 @@ namespace HamletTwoSacks.Crystals
 
         public void HidePanel()
         {
+            DropCrystals();
+            _panel.SetActive(false);
+        }
+
+        public void DropCrystals()
+        {
             foreach (CrystalSlot crystalSlot in _slots)
                 crystalSlot.DropCrystal();
-            _panel.SetActive(false);
         }
 
         public CrystalSlot? GetEmptyCrystalSlot()

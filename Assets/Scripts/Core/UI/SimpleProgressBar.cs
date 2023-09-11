@@ -1,11 +1,12 @@
 ﻿#nullable enable
 
+using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace dmdspirit.Core.UI
 {
-    public sealed class ProgressBar : MonoBehaviour
+    public sealed class SimpleProgressBar : MonoBehaviour
     {
         [SerializeField]
         private Image _progress = null!;

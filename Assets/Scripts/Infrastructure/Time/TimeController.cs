@@ -2,10 +2,9 @@
 using System;
 using JetBrains.Annotations;
 using UniRx;
-using UnityEngine;
 using Zenject;
 
-namespace HamletTwoSacks.Infrastructure
+namespace HamletTwoSacks.Infrastructure.Time
 {
     [UsedImplicitly]
     public sealed class TimeController : ITickable, IFixedTickable, ILateTickable
@@ -20,8 +19,8 @@ namespace HamletTwoSacks.Infrastructure
         public IObservable<float> FixedUpdate => _fixedUpdate;
         public IObservable<float> LateUpdate => _lateUpdate;
 
-        public float DeltaTime => Time.deltaTime;
-        public float FixedDeltaTime => Time.fixedDeltaTime;
+        public float DeltaTime => UnityEngine.Time.deltaTime;
+        public float FixedDeltaTime => UnityEngine.Time.fixedDeltaTime;
 
         public void StartTime()
             => _isTimeRunning.Value = true;

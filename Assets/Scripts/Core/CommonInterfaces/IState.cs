@@ -1,5 +1,5 @@
 #nullable enable
-namespace dmdspirit.Core
+namespace dmdspirit.Core.CommonInterfaces
 {
     public interface IState
     {
