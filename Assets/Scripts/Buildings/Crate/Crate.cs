@@ -23,6 +23,7 @@ namespace HamletTwoSacks.Buildings.Crate
         protected override void OnStart()
         {
             _collectorSub = _crystalCollector.OnCrystalCollected.Subscribe(OnCrystalCollected);
+            _crystalCollector.SetCollectionCheck(CanCollectCrystal);
             if (CurrentTier.IsActive)
                 _crystalCollector.Activate();
             else
@@ -44,5 +45,8 @@ namespace HamletTwoSacks.Buildings.Crate
             if (_crystals.Value >= CurrentTier.Capacity)
                 _crystalCollector.Deactivate();
         }
+
+        private bool CanCollectCrystal()
+            => _crystals.Value + _crystalCollector.ActiveCommands < CurrentTier.Capacity;
     }
 }

@@ -450,6 +450,10 @@ PrefabInstance:
       propertyPath: _triggerDetector
       value: 
       objectReference: {fileID: 5427590583513696241}
+    - target: {fileID: 4355154663887676724, guid: 442aaec100a1f1b429343d52b72c3551, type: 3}
+      propertyPath: _isActiveFromStart
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

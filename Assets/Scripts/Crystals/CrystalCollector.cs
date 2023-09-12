@@ -20,6 +20,8 @@ namespace HamletTwoSacks.Crystals
         private readonly List<ICommand> _activeCommands = new();
         private readonly CompositeDisposable _subs = new();
 
+        private Func<bool> _canCollect=null!;
+
         [SerializeField]
         private bool _isActiveFromStart;
 
@@ -37,12 +39,14 @@ namespace HamletTwoSacks.Crystals
 
         public IObservable<Unit> OnCrystalCollected => _onCrystalCollected;
         public bool IsActive { get; private set; }
+        public int ActiveCommands => _activeCommands.Count;
 
         [Inject]
         private void Construct(CommandsFactory commandsFactory, ICrystalFactory crystalFactory)
         {
             _crystalFactory = crystalFactory;
             _commandsFactory = commandsFactory;
+            _canCollect = CanCollect;
         }
 
         private void Awake()
@@ -58,6 +62,9 @@ namespace HamletTwoSacks.Crystals
 
         private void OnDestroy()
             => StopCommands();
+
+        public void SetCollectionCheck(Func<bool> canCollect)
+            => _canCollect = canCollect;
 
         public void Activate()
         {
@@ -76,7 +83,7 @@ namespace HamletTwoSacks.Crystals
 
         private void TriggerEnter(Collider2D target)
         {
-            if (!IsActive)
+            if (!IsActive || !_canCollect.Invoke())
                 return;
             var crystal = target.gameObject.GetComponent<Crystal>();
             if (crystal == null)
@@ -105,5 +112,8 @@ namespace HamletTwoSacks.Crystals
             _activeCommands.Clear();
             _subs.Clear();
         }
+
+        private bool CanCollect()
+            => true;
     }
 }
