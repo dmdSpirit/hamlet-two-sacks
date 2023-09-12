@@ -56,8 +56,6 @@ namespace HamletTwoSacks.Crystals
         {
             if(_isActiveFromStart)
                 Activate();
-            else
-                _triggerDetector.Deactivate();
         }
 
         private void OnDestroy()
@@ -70,13 +68,11 @@ namespace HamletTwoSacks.Crystals
         {
             if (IsActive)
                 return;
-            _triggerDetector.Activate();
             IsActive = true;
         }
 
         public void Deactivate()
         {
-            _triggerDetector.Deactivate();
             StopCommands();
             IsActive = false;
         }
