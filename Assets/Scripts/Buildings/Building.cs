@@ -1,0 +1,94 @@
+﻿#nullable enable
+
+using System;
+using HamletTwoSacks.Buildings.Configs;
+using HamletTwoSacks.Crystals;
+using HamletTwoSacks.Infrastructure.StaticData;
+using UniRx;
+using UnityEngine;
+using UnityEngine.Assertions;
+using Zenject;
+
+namespace HamletTwoSacks.Buildings
+{
+    public abstract class Building : MonoBehaviour
+    {
+        private IDisposable _sub = null!;
+        private int _currentTierIndex;
+        private BuildingTier? _nextTier;
+
+        [SerializeField]
+        private SpriteRenderer _buildingImage = null!;
+
+        protected BuildingTier CurrentTier { get; private set; } = null!;
+        protected BuildingConfig Config = null!;
+
+        [SerializeField]
+        private CrystalCostPanel _costPanel = null!;
+
+        [Inject]
+        protected abstract void GetConfig(StaticDataProvider staticDataProvider);
+
+        protected void Start()
+        {
+            _sub = _costPanel.OnPricePayed.Subscribe(_ => Upgraded());
+            ConfigureStartingTier();
+            UpdateImage();
+            ConfigureNextTier();
+            OnStart();
+        }
+
+        protected void OnDestroy()
+        {
+            _sub.Dispose();
+            OnDestroyed();
+        }
+
+        protected abstract void OnStart();
+        protected abstract void OnUpgraded();
+        protected virtual void OnDestroyed() { }
+
+        private void Upgraded()
+        {
+            Assert.IsNotNull(_nextTier);
+            _currentTierIndex++;
+            CurrentTier = _nextTier!;
+            ConfigureNextTier();
+            UpdateImage();
+            OnUpgraded();
+        }
+
+        private void ConfigureStartingTier()
+        {
+            if (Config.BuildingTiers == null)
+            {
+                Debug.LogError($"Could not configure building {name} cause there are no tier infos in config");
+                return;
+            }
+
+            CurrentTier = Config.BuildingTiers[0];
+        }
+
+        private void ConfigureNextTier()
+        {
+            if (Config.BuildingTiers == null
+                || _currentTierIndex + 1 >= Config.BuildingTiers.Count)
+            {
+                _nextTier = null;
+                _costPanel.Disable();
+                return;
+            }
+
+            _nextTier = Config.BuildingTiers[_currentTierIndex + 1];
+            _costPanel.Enable();
+            _costPanel.SetCost(_nextTier.Cost);
+        }
+
+        private void UpdateImage()
+        {
+            _buildingImage.sprite = CurrentTier.Image;
+            _buildingImage.transform.localScale = new Vector3(CurrentTier.ImageSize.x, CurrentTier.ImageSize.y, 1);
+            _buildingImage.transform.localPosition = CurrentTier.ImageOffset;
+        }
+    }
+}

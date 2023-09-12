@@ -11,5 +11,6 @@ namespace HamletTwoSacks.Buildings.Configs
         public bool IsActive;
         public Sprite Image = null!;
         public Vector2 ImageSize;
+        public Vector2 ImageOffset;
     }
 }

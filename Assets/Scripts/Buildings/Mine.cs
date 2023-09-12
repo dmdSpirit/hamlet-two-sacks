@@ -7,22 +7,14 @@ using HamletTwoSacks.Infrastructure.StaticData;
 using HamletTwoSacks.Infrastructure.Time;
 using UniRx;
 using UnityEngine;
-using UnityEngine.Assertions;
 using Zenject;
 
 namespace HamletTwoSacks.Buildings
 {
-    public sealed class Mine : MonoBehaviour
+    public sealed class Mine : Building
     {
-        private MineBuildingConfig _mineBuildingConfig = null!;
-
-        private MineTier? _nextTier;
-        private int _currentTier;
-        private bool _isBuilt;
         private RepeatingTimer _timer = null!;
-
-        [SerializeField]
-        private CrystalCostPanel _crystalCostPanel = null!;
+        private MineTier CurrentMineTier => (MineTier)CurrentTier;
 
         [SerializeField]
         private UpdatableProgressBar _progressBar = null!;
@@ -30,74 +22,42 @@ namespace HamletTwoSacks.Buildings
         [SerializeField]
         private CrystalSpawner _crystalSpawner = null!;
 
-        [SerializeField]
-        private GameObject _notBuiltImage = null!;
-
-        [SerializeField]
-        private GameObject _builtImage = null!;
-
         [Inject]
-        private void Construct(StaticDataProvider staticDataProvider, TimeController timeController)
-        {
-            _mineBuildingConfig = staticDataProvider.GetConfig<MineBuildingConfig>();
-            _timer = new RepeatingTimer(timeController);
-        }
+        private void Construct(TimeController timeController)
+            => _timer = new RepeatingTimer(timeController);
 
-        private void Start()
+        protected override void GetConfig(StaticDataProvider staticDataProvider)
+            => Config = staticDataProvider.GetConfig<MineBuildingConfig>();
+
+        protected override void OnStart()
         {
-            _crystalCostPanel.OnPricePayed.Subscribe(OnUpgraded);
             _timer.OnFire.Subscribe(OnCrystalSpawn);
-            _progressBar.StopShowing();
-            ConfigureNextTier();
-            UpdateImage();
+            UpdateTimer();
         }
 
-        private void OnDestroy()
+        protected override void OnUpgraded()
+            => UpdateTimer();
+
+        protected override void OnDestroyed()
         {
             _timer.Stop();
             _progressBar.StopShowing();
         }
 
-        private void OnUpgraded(CrystalCostPanel _)
+        private void UpdateTimer()
         {
-            Assert.IsNotNull(_nextTier);
-            _currentTier++;
-            _isBuilt = true;
-            StartSpawnTimer(_nextTier!.ProductionCooldown);
-            ConfigureNextTier();
-            UpdateImage();
-        }
-
-        private void StartSpawnTimer(float cooldown)
-        {
-            _timer.SetCooldown(cooldown);
-            if (_timer.IsRunning)
-                return;
-            _progressBar.StartShowing(_timer.Progress);
-            _timer.Start();
-        }
-
-        private void ConfigureNextTier()
-        {
-            if (!_isBuilt)
-                _currentTier = -1;
-            if (_mineBuildingConfig.TierInfos == null
-                || _currentTier + 1 >= _mineBuildingConfig.TierInfos.Count)
+            if (!CurrentMineTier.IsActive)
             {
-                _nextTier = null;
-                _crystalCostPanel.Disable();
+                _timer.Stop();
+                _progressBar.StopShowing();
                 return;
             }
 
-            _nextTier = _mineBuildingConfig.TierInfos[_currentTier + 1];
-            _crystalCostPanel.Enable();
-            _crystalCostPanel.SetCost(_nextTier.Cost);
-        }
-
-        private void UpdateImage()
-        {
-            _notBuiltImage.SetActive(!_isBuilt);
-            _builtImage.SetActive(_isBuilt);
+            _timer.SetCooldown(CurrentMineTier.ProductionCooldown);
+            if (_timer.IsRunning)
+                return;
+            _timer.Start();
+            _progressBar.StartShowing(_timer.Progress);
         }
 
         private void OnCrystalSpawn(RepeatingTimer _)
