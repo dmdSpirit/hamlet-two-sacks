@@ -18,7 +18,7 @@ namespace HamletTwoSacks.Buildings.Mine
         private IDisposable _interactionSub = null!;
 
         [SerializeField]
-        private UpdatableProgressBar _progressBar = null!;
+        private TimerProgressBar _progressBar = null!;
 
         [SerializeField]
         private CrystalSpawner _crystalSpawner = null!;
@@ -35,21 +35,25 @@ namespace HamletTwoSacks.Buildings.Mine
             _timer.OnFire.Subscribe(OnCrystalSpawn);
             _timer.SetGoal(Config.CrystalProductionTime);
             _timer.Start();
+            _progressBar.SetTimer(_timer);
             UpdateTimer();
-            _interactionSub = _buildingContinuesInteraction.IsButtonPressed.Subscribe(UpdateInteraction);
+            _interactionSub = _buildingContinuesInteraction.IsButtonPressed.Subscribe(UpdatePlayerInteraction);
+            UpdateInteractionState();
         }
 
         protected override void OnUpgraded()
-            => UpdateTimer();
+        {
+            UpdateTimer();
+            UpdateInteractionState();
+        }
 
         protected override void OnDestroyed()
         {
             _timer.Stop();
-            _progressBar.StopShowing();
             _interactionSub.Dispose();
         }
 
-        private void UpdateInteraction(bool isPressed)
+        private void UpdatePlayerInteraction(bool isPressed)
         {
             if (isPressed)
                 _timer.SetWorker(nameof(Player), Config.PlayerWork);
@@ -59,10 +63,6 @@ namespace HamletTwoSacks.Buildings.Mine
 
         private void UpdateTimer()
         {
-            if (!_progressBar.gameObject.activeInHierarchy
-                && _timer.HadAnyProgress)
-                _progressBar.StartShowing(_timer.Progress);
-
             if (!CurrentTier.IsActive)
             {
                 _timer.SetWorker(nameof(Mine), 0f);
@@ -70,6 +70,16 @@ namespace HamletTwoSacks.Buildings.Mine
             }
 
             _timer.SetWorker(nameof(Mine), CurrentTier.Work);
+        }
+
+        private void UpdateInteractionState()
+        {
+            if (CurrentTier.IsActive == _buildingContinuesInteraction.IsActive)
+                return;
+            if (CurrentTier.IsActive)
+                _buildingContinuesInteraction.Activate();
+            else
+                _buildingContinuesInteraction.Deactivate();
         }
 
         private void OnCrystalSpawn(ProgressTimer _)
