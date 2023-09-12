@@ -9,8 +9,12 @@ namespace HamletTwoSacks.Input
     public sealed class InputConfig : GameConfig
     {
         [SerializeField]
-        private InputAction _action = null!;
+        private InputAction _interactAction = null!;
+        
+        [SerializeField]
+        private InputAction _payAction = null!;
 
-        public InputAction Action => _action;
+        public InputAction InteractAction => _interactAction;
+        public InputAction PayAction => _payAction;
     }
 }

@@ -25,6 +25,7 @@ namespace HamletTwoSacks.Infrastructure.StaticData
             var description = $"Added {config.GetType().Name} to {nameof(ConfigList)}";
             Undo.RecordObject(this, description);
             _configs.Add(config);
+            EditorUtility.SetDirty(this);
             Debug.Log(description);
         }
 
@@ -39,6 +40,7 @@ namespace HamletTwoSacks.Infrastructure.StaticData
             var description = $"Removed {config.GetType().Name} from {nameof(ConfigList)}";
             Undo.RecordObject(this, description);
             _configs.Remove(config);
+            EditorUtility.SetDirty(this);
             Debug.Log(description);
         }
 #endif

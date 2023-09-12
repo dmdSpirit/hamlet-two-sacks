@@ -19,12 +19,12 @@ namespace HamletTwoSacks.Infrastructure.LifeCycle.States
         private readonly LoadingScreenShower _loadingScreenShower;
         private readonly TimeController _timeController;
         private readonly UIManager _uiManager;
-        private readonly ActionButtonReader _actionButtonReader;
+        private readonly IActionButtonsReader _actionButtonsReader;
 
         public GameState(CharactersManager charactersManager, LevelManager levelManager,
-            LoadingScreenShower loadingScreenShower, TimeController timeController, UIManager uiManager, ActionButtonReader actionButtonReader)
+            LoadingScreenShower loadingScreenShower, TimeController timeController, UIManager uiManager, IActionButtonsReader actionButtonsReader)
         {
-            _actionButtonReader = actionButtonReader;
+            _actionButtonsReader = actionButtonsReader;
             _uiManager = uiManager;
             _timeController = timeController;
 
@@ -43,7 +43,7 @@ namespace HamletTwoSacks.Infrastructure.LifeCycle.States
             _timeController.StartTime();
             _loadingScreenShower.HideLoadingScreen();
             _uiManager.GetScreen<UIHud>().Show();
-            _actionButtonReader.Activate();
+            _actionButtonsReader.Activate();
         }
 
         public async void Exit()
@@ -52,7 +52,7 @@ namespace HamletTwoSacks.Infrastructure.LifeCycle.States
             _loadingScreenShower.ShowLoadingScreen();
             await _levelManager.UnloadCurrentLevel();
 
-            _actionButtonReader.Activate();
+            _actionButtonsReader.Activate();
             _timeController.StopTime();
         }
     }

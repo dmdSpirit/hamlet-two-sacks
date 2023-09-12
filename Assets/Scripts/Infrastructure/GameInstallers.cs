@@ -66,7 +66,7 @@ namespace HamletTwoSacks.Infrastructure
 
         private void BindInput()
         {
-            Container.Bind<ActionButtonReader>().AsSingle().NonLazy();
+            Container.BindInterfacesTo<ActionButtonsReader>().AsSingle().NonLazy();
         }
     }
 }

@@ -14,8 +14,10 @@ namespace HamletTwoSacks.Crystals
 {
     public sealed class CrystalPayer : MonoBehaviour
     {
+        private const InputActionType ACTION_TYPE = InputActionType.Pay;
+
         private Player _player = null!;
-        private ActionButtonReader _actionButtonReader = null!;
+        private IActionButtonsReader _actionButtonsReader = null!;
 
         private IDisposable? _sub;
         private IDisposable? _timerSub;
@@ -33,9 +35,9 @@ namespace HamletTwoSacks.Crystals
         private float _crystalSpawnCooldown = 0.1f;
 
         [Inject]
-        private void Construct(Player player, ActionButtonReader actionButtonReader, TimeController timeController)
+        private void Construct(Player player, IActionButtonsReader actionButtonsReader, TimeController timeController)
         {
-            _actionButtonReader = actionButtonReader;
+            _actionButtonsReader = actionButtonsReader;
             _player = player;
             _stringID = this.ToStringID();
             _timer = new RepeatingTimer(timeController);
@@ -63,8 +65,9 @@ namespace HamletTwoSacks.Crystals
                 return;
             _sub?.Dispose();
             _costPanel.ShowPanel();
-            _actionButtonReader.SubscribeToAction(_stringID);
-            _sub = _actionButtonReader.OnStateChanged.Subscribe(UpdateButtonReading);
+            _actionButtonsReader.SubscribeToAction(_stringID, ACTION_TYPE);
+            _sub = _actionButtonsReader.OnStateChanged.Where(type => type == ACTION_TYPE)
+                .Subscribe(UpdateButtonReading);
         }
 
         private void TriggerExit(Collider2D target)
@@ -80,15 +83,15 @@ namespace HamletTwoSacks.Crystals
 
             _costPanel.HidePanel();
             _sub?.Dispose();
-            _actionButtonReader.UnsubscribeFromAction(_stringID);
+            _actionButtonsReader.UnsubscribeFromAction(_stringID, ACTION_TYPE);
             _costPanel = null;
             _timer.Stop();
         }
 
-        private void UpdateButtonReading(Unit _)
+        private void UpdateButtonReading(InputActionType _)
         {
-            bool isPressed = _actionButtonReader.IsActive.Value && _actionButtonReader.IsActionPressed.Value
-                             && string.Equals(_actionButtonReader.CurrentReceiver, _stringID);
+            bool isPressed = _actionButtonsReader.IsActive.Value && _actionButtonsReader.IsPressed(ACTION_TYPE)
+                             && string.Equals(_actionButtonsReader.CurrentReceiver(ACTION_TYPE), _stringID);
             if (isPressed && !_timer.IsRunning)
             {
                 _timer.Start();

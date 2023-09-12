@@ -18,6 +18,9 @@ namespace HamletTwoSacks.Crystals
         private GameObject _panel = null!;
 
         [SerializeField]
+        private GameObject _tooltipPanel = null!;
+
+        [SerializeField]
         private CrystalSlot[] _slots = null!;
 
         public IObservable<CrystalCostPanel> OnPricePayed => _onPricePayed;
@@ -28,6 +31,7 @@ namespace HamletTwoSacks.Crystals
             foreach (CrystalSlot crystalSlot in _slots)
                 crystalSlot.IsFilled.Subscribe(OnSlotsUpdate);
             _panel.SetActive(false);
+            _tooltipPanel.SetActive(false);
         }
 
         public void SetCost(int cost)
@@ -42,12 +46,14 @@ namespace HamletTwoSacks.Crystals
             if (!IsEnabled)
                 return;
             _panel.SetActive(true);
+            _tooltipPanel.SetActive(true);
         }
 
         public void HidePanel()
         {
             DropCrystals();
             _panel.SetActive(false);
+            _tooltipPanel.SetActive(false);
         }
 
         public void DropCrystals()
