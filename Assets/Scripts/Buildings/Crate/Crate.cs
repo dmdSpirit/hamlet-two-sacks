@@ -18,7 +18,7 @@ namespace HamletTwoSacks.Buildings.Crate
         private CrystalCollector _crystalCollector = null!;
 
         [SerializeField]
-        private BuildingInteraction _buildingInteraction = null!;
+        private BuildingTimedInteraction _buildingTimedInteraction = null!;
 
         [SerializeField]
         private CrystalSpawner _crystalSpawner = null!;
@@ -30,7 +30,7 @@ namespace HamletTwoSacks.Buildings.Crate
         {
             _collectorSub = _crystalCollector.OnCrystalCollected.Subscribe(OnCrystalCollected);
             _crystalCollector.SetCollectionCheck(CanCollectCrystal);
-            _buildingInteraction.OnActionFire.Subscribe(DropCrystal);
+            _buildingTimedInteraction.OnActionFire.Subscribe(DropCrystal);
             _crystals.Subscribe(_ => UpdateInteraction());
         }
 
@@ -80,16 +80,16 @@ namespace HamletTwoSacks.Buildings.Crate
         {
             if (_crystals.Value <= 0)
             {
-                _buildingInteraction.Deactivate();
+                _buildingTimedInteraction.Deactivate();
                 return;
             }
 
-            if (CurrentTier.IsActive == _buildingInteraction.IsActive)
+            if (CurrentTier.IsActive == _buildingTimedInteraction.IsActive)
                 return;
             if (CurrentTier.IsActive)
-                _buildingInteraction.Activate();
+                _buildingTimedInteraction.Activate();
             else
-                _buildingInteraction.Deactivate();
+                _buildingTimedInteraction.Deactivate();
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿#nullable enable
 
-using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 

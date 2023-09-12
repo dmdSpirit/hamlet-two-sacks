@@ -14,8 +14,6 @@ namespace HamletTwoSacks.Buildings
     public abstract class Building<TConfig, TTier> : MonoBehaviour
         where TConfig : BuildingConfig<TTier> where TTier : BuildingTier
     {
-        private TConfig _config = null!;
-
         private readonly Subject<Building<TConfig, TTier>> _onBuildingUpgraded = new();
 
         private IDisposable _sub = null!;
@@ -29,13 +27,14 @@ namespace HamletTwoSacks.Buildings
         private CrystalCostPanel _costPanel = null!;
 
         protected TTier CurrentTier { get; private set; } = null!;
+        protected TConfig Config { get; private set; } = null!;
 
         public IObservable<Building<TConfig, TTier>> OnBuildingUpgraded => _onBuildingUpgraded;
         public bool IsActive => CurrentTier?.IsActive ?? false;
 
         [Inject]
         private void GetConfig(StaticDataProvider staticDataProvider)
-            => _config = staticDataProvider.GetConfig<TConfig>();
+            => Config = staticDataProvider.GetConfig<TConfig>();
 
         protected void Start()
         {
@@ -70,26 +69,26 @@ namespace HamletTwoSacks.Buildings
 
         private void ConfigureStartingTier()
         {
-            if (_config.BuildingTiers == null)
+            if (Config.BuildingTiers == null)
             {
                 Debug.LogError($"Could not configure building {name} cause there are no tier infos in config");
                 return;
             }
 
-            CurrentTier = _config.BuildingTiers[0];
+            CurrentTier = Config.BuildingTiers[0];
         }
 
         private void ConfigureNextTier()
         {
-            if (_config.BuildingTiers == null
-                || _currentTierIndex + 1 >= _config.BuildingTiers.Count)
+            if (Config.BuildingTiers == null
+                || _currentTierIndex + 1 >= Config.BuildingTiers.Count)
             {
                 _nextTier = null;
                 _costPanel.Disable();
                 return;
             }
 
-            _nextTier = _config.BuildingTiers[_currentTierIndex + 1];
+            _nextTier = Config.BuildingTiers[_currentTierIndex + 1];
             _costPanel.Enable();
             _costPanel.SetCost(_nextTier.Cost);
         }

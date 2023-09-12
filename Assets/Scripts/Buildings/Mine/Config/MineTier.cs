@@ -9,6 +9,6 @@ namespace HamletTwoSacks.Buildings.Mine.Config
     public class MineTier : BuildingTier
     {
         [ShowIf(nameof(IsActive), true)]
-        public int ProductionCooldown;
+        public int Work;
     }
 }

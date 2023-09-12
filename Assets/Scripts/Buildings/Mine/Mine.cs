@@ -1,7 +1,9 @@
 ﻿#nullable enable
 
+using System;
 using dmdspirit.Core.UI;
 using HamletTwoSacks.Buildings.Mine.Config;
+using HamletTwoSacks.Character;
 using HamletTwoSacks.Crystals;
 using HamletTwoSacks.Infrastructure.Time;
 using UniRx;
@@ -12,7 +14,8 @@ namespace HamletTwoSacks.Buildings.Mine
 {
     public sealed class Mine : Building<MineBuildingConfig, MineTier>
     {
-        private RepeatingTimer _timer = null!;
+        private ProgressTimer _timer = null!;
+        private IDisposable _interactionSub = null!;
 
         [SerializeField]
         private UpdatableProgressBar _progressBar = null!;
@@ -20,14 +23,20 @@ namespace HamletTwoSacks.Buildings.Mine
         [SerializeField]
         private CrystalSpawner _crystalSpawner = null!;
 
+        [SerializeField]
+        private BuildingContinuesInteraction _buildingContinuesInteraction = null!;
+
         [Inject]
         private void Construct(TimeController timeController)
-            => _timer = new RepeatingTimer(timeController);
+            => _timer = new ProgressTimer(timeController);
 
         protected override void OnStart()
         {
             _timer.OnFire.Subscribe(OnCrystalSpawn);
+            _timer.SetGoal(Config.CrystalProductionTime);
+            _timer.Start();
             UpdateTimer();
+            _interactionSub = _buildingContinuesInteraction.IsButtonPressed.Subscribe(UpdateInteraction);
         }
 
         protected override void OnUpgraded()
@@ -37,25 +46,33 @@ namespace HamletTwoSacks.Buildings.Mine
         {
             _timer.Stop();
             _progressBar.StopShowing();
+            _interactionSub.Dispose();
+        }
+
+        private void UpdateInteraction(bool isPressed)
+        {
+            if (isPressed)
+                _timer.SetWorker(nameof(Player), Config.PlayerWork);
+            else
+                _timer.SetWorker(nameof(Player), 0);
         }
 
         private void UpdateTimer()
         {
+            if (!_progressBar.gameObject.activeInHierarchy
+                && _timer.HadAnyProgress)
+                _progressBar.StartShowing(_timer.Progress);
+
             if (!CurrentTier.IsActive)
             {
-                _timer.Stop();
-                _progressBar.StopShowing();
+                _timer.SetWorker(nameof(Mine), 0f);
                 return;
             }
 
-            _timer.SetCooldown(CurrentTier.ProductionCooldown);
-            if (_timer.IsRunning)
-                return;
-            _timer.Start();
-            _progressBar.StartShowing(_timer.Progress);
+            _timer.SetWorker(nameof(Mine), CurrentTier.Work);
         }
 
-        private void OnCrystalSpawn(RepeatingTimer _)
+        private void OnCrystalSpawn(ProgressTimer _)
             => _crystalSpawner.SpawnCrystal();
     }
 }

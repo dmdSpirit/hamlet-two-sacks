@@ -1,9 +1,9 @@
 ﻿#nullable enable
+
 using System;
 using dmdspirit.Core.CommonInterfaces;
 using HamletTwoSacks.Character;
 using HamletTwoSacks.Infrastructure;
-using HamletTwoSacks.Infrastructure.Time;
 using HamletTwoSacks.Input;
 using HamletTwoSacks.Physics;
 using UniRx;
@@ -12,47 +12,40 @@ using Zenject;
 
 namespace HamletTwoSacks.Crystals
 {
-    public sealed class BuildingInteraction : MonoBehaviour, IActivatable
+    public sealed class BuildingContinuesInteraction : MonoBehaviour, IActivatable
     {
         private const InputActionType ACTION_TYPE = InputActionType.Interact;
 
         private IActionButtonsReader _actionButtonsReader = null!;
 
-        private readonly Subject<Unit> _onActionFire = new();
+        private readonly ReactiveProperty<bool> _isButtonPressed = new();
 
         private IDisposable? _sub;
         private IDisposable? _timerSub;
         private string _stringID = null!;
         private CrystalCostPanel? _costPanel;
-        private RepeatingTimer _timer = null!;
         private bool _playerIsInside;
 
         [SerializeField]
         private TriggerDetector _triggerDetector = null!;
 
         [SerializeField]
-        private float _interactionCooldown = 0.1f;
-
-        [SerializeField]
         private GameObject _tooltipPanel = null!;
 
         public bool IsActive { get; private set; }
-        public IObservable<Unit> OnActionFire => _onActionFire;
+        public IReadOnlyReactiveProperty<bool> IsButtonPressed => _isButtonPressed;
 
         [Inject]
-        private void Construct(IActionButtonsReader actionButtonsReader, TimeController timeController)
+        private void Construct(IActionButtonsReader actionButtonsReader)
         {
             _actionButtonsReader = actionButtonsReader;
             _stringID = this.ToStringID();
-            _timer = new RepeatingTimer(timeController);
         }
 
         private void Awake()
         {
             _triggerDetector.OnTriggerEnter.Subscribe(TriggerEnter);
             _triggerDetector.OnTriggerExit.Subscribe(TriggerExit);
-            _timer.OnFire.Subscribe(ActionFire);
-            _timer.SetCooldown(_interactionCooldown);
             _tooltipPanel.SetActive(false);
         }
 
@@ -96,22 +89,19 @@ namespace HamletTwoSacks.Crystals
         {
             bool isPressed = _actionButtonsReader.IsActive.Value && _actionButtonsReader.IsPressed(ACTION_TYPE)
                              && string.Equals(_actionButtonsReader.CurrentReceiver(ACTION_TYPE), _stringID);
-            if (isPressed && !_timer.IsRunning)
-                _timer.Start();
+            if (isPressed && !_isButtonPressed.Value)
+                _isButtonPressed.Value = true;
             else if (!isPressed
-                     && _timer.IsRunning)
-                _timer.Stop();
+                     && _isButtonPressed.Value)
+                _isButtonPressed.Value = false;
         }
-
-        private void ActionFire(RepeatingTimer _)
-            => _onActionFire.OnNext(Unit.Default);
 
         private void StopInteraction()
         {
             _tooltipPanel.SetActive(false);
             _sub?.Dispose();
             _actionButtonsReader.UnsubscribeFromAction(_stringID, ACTION_TYPE);
-            _timer.Stop();
+            _isButtonPressed.Value = false;
         }
 
         private void SubscribeOnInteraction()

@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace HamletTwoSacks.Infrastructure.Time
 {
-    public sealed class RepeatingTimer
+    public class RepeatingTimer
     {
         private readonly TimeController _timeController;
 
@@ -49,6 +49,12 @@ namespace HamletTwoSacks.Infrastructure.Time
 
         private void OnUpdate(float time)
         {
+            if (_cooldown == 0)
+            {
+                _onFire.OnNext(this);
+                return;
+            }
+
             _timePassed += time;
             if (_timePassed < _cooldown)
             {
