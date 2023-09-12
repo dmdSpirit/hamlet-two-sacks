@@ -1,4 +1,5 @@
 ﻿#nullable enable
+
 using System;
 using UniRx;
 using UnityEngine;
@@ -23,8 +24,6 @@ namespace HamletTwoSacks.Infrastructure.Time
         public RepeatingTimer(TimeController timeController)
             => _timeController = timeController;
 
-        // HACK (Stas): This can be reused in TimedCrystalSpawner
-        // - Stas 11 September 2023
         public void Start()
         {
             _timePassed = 0;

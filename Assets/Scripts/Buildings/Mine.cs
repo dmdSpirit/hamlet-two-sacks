@@ -1,6 +1,7 @@
 ﻿#nullable enable
 
 using dmdspirit.Core.UI;
+using HamletTwoSacks.Buildings.Configs;
 using HamletTwoSacks.Crystals;
 using HamletTwoSacks.Infrastructure.StaticData;
 using HamletTwoSacks.Infrastructure.Time;
@@ -15,7 +16,7 @@ namespace HamletTwoSacks.Buildings
     {
         private MineBuildingConfig _mineBuildingConfig = null!;
 
-        private MineTierInfo? _nextTier;
+        private MineTier? _nextTier;
         private int _currentTier;
         private bool _isBuilt;
         private RepeatingTimer _timer = null!;
