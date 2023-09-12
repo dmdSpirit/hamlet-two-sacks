@@ -13,12 +13,10 @@ namespace HamletTwoSacks.Buildings
 
         protected override void OnStart()
         {
-            throw new NotImplementedException();
         }
 
         protected override void OnUpgraded()
         {
-            throw new NotImplementedException();
         }
     }
 }

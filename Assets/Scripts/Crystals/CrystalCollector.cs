@@ -2,7 +2,6 @@
 
 using System;
 using System.Collections.Generic;
-using HamletTwoSacks.Character;
 using HamletTwoSacks.Commands;
 using HamletTwoSacks.Physics;
 using UniRx;
@@ -14,9 +13,9 @@ namespace HamletTwoSacks.Crystals
     public sealed class CrystalCollector : MonoBehaviour
     {
         private CommandsFactory _commandsFactory = null!;
-        private Player _player = null!;
         private ICrystalFactory _crystalFactory = null!;
 
+        private readonly Subject<Unit> _onCrystalCollected = new();
         private readonly List<ICommand> _activeCommands = new();
         private readonly CompositeDisposable _subs = new();
 
@@ -32,11 +31,12 @@ namespace HamletTwoSacks.Crystals
         [SerializeField]
         private TriggerDetector _triggerDetector = null!;
 
+        public IObservable<Unit> OnCrystalCollected => _onCrystalCollected;
+
         [Inject]
-        private void Construct(CommandsFactory commandsFactory, Player player, ICrystalFactory crystalFactory)
+        private void Construct(CommandsFactory commandsFactory, ICrystalFactory crystalFactory)
         {
             _crystalFactory = crystalFactory;
-            _player = player;
             _commandsFactory = commandsFactory;
         }
 
@@ -68,9 +68,9 @@ namespace HamletTwoSacks.Crystals
         private void OnFlyEnded(ICommand command)
         {
             var crystal = ((FlyObjectToCommand)command).Target.GetComponent<Crystal>();
-            _player.AddCrystal();
             _crystalFactory.DestroyCrystal(crystal);
             _activeCommands.Remove(command);
+            _onCrystalCollected.OnNext(Unit.Default);
         }
     }
 }
