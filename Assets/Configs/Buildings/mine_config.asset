@@ -21,22 +21,24 @@ MonoBehaviour:
     Image: {fileID: 21300000, guid: 44160b7d9b855c841b0a8cb1fe425395, type: 3}
     ImageSize: {x: 1, y: 1}
     ImageOffset: {x: 0, y: 0.5}
-    ProductionCooldown: 0
+    Work: 0
   - Cost: 2
     IsActive: 1
     Image: {fileID: 21300000, guid: 98a9648ea171e30488728d181ff91098, type: 3}
     ImageSize: {x: 6, y: 6}
     ImageOffset: {x: 0, y: 2}
-    ProductionCooldown: 3
+    Work: 0
   - Cost: 3
     IsActive: 1
     Image: {fileID: 21300000, guid: 98a9648ea171e30488728d181ff91098, type: 3}
     ImageSize: {x: 6, y: 6}
     ImageOffset: {x: 0, y: 2}
-    ProductionCooldown: 3
+    Work: 1
   - Cost: 4
     IsActive: 1
     Image: {fileID: 21300000, guid: 98a9648ea171e30488728d181ff91098, type: 3}
     ImageSize: {x: 6, y: 6}
     ImageOffset: {x: 0, y: 2}
-    ProductionCooldown: 2
+    Work: 2
+  _crystalProductionTime: 5
+  _playerWork: 1

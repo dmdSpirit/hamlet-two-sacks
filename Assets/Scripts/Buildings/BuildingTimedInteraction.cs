@@ -1,18 +1,21 @@
 ﻿#nullable enable
+
 using System;
 using dmdspirit.Core.CommonInterfaces;
-using HamletTwoSacks.Character;
+using HamletTwoSacks.Characters.PlayerControl;
+using HamletTwoSacks.Crystals;
+using HamletTwoSacks.Crystals.UI;
 using HamletTwoSacks.Infrastructure;
-using HamletTwoSacks.Infrastructure.Time;
 using HamletTwoSacks.Input;
 using HamletTwoSacks.Physics;
+using HamletTwoSacks.Time;
 using UniRx;
 using UnityEngine;
 using Zenject;
 
-namespace HamletTwoSacks.Crystals
+namespace HamletTwoSacks.Buildings
 {
-    public sealed class BuildingInteraction : MonoBehaviour, IActivatable
+    public sealed class BuildingTimedInteraction : MonoBehaviour, IActivatable
     {
         private const InputActionType ACTION_TYPE = InputActionType.Interact;
 
@@ -43,7 +46,7 @@ namespace HamletTwoSacks.Crystals
         private void Construct(IActionButtonsReader actionButtonsReader, TimeController timeController)
         {
             _actionButtonsReader = actionButtonsReader;
-            _stringID = this.ToStringID();
+            _stringID = this.ToStringID(true);
             _timer = new RepeatingTimer(timeController);
         }
 

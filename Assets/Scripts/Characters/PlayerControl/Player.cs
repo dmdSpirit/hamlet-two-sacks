@@ -3,7 +3,7 @@
 using JetBrains.Annotations;
 using UniRx;
 
-namespace HamletTwoSacks.Character
+namespace HamletTwoSacks.Characters.PlayerControl
 {
     [UsedImplicitly]
     public sealed class Player

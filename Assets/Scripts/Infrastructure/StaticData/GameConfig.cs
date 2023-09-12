@@ -1,6 +1,5 @@
 ﻿#nullable enable
 
-using System;
 using System.Linq;
 using dmdspirit.Core.Attributes;
 using UnityEngine;
@@ -9,7 +8,6 @@ namespace HamletTwoSacks.Infrastructure.StaticData
 {
     public abstract class GameConfig : ScriptableObject
     {
-        
 #if UNITY_EDITOR
         private ConfigList? _configList;
 
@@ -24,7 +22,7 @@ namespace HamletTwoSacks.Infrastructure.StaticData
 
         private void Awake()
         {
-            if(_configList==null)
+            if (_configList == null)
                 FetchConfigList();
             _isAdded = _configList!.Configs.Contains(this);
         }
@@ -41,7 +39,7 @@ namespace HamletTwoSacks.Infrastructure.StaticData
         {
             if (_configList == null)
                 FetchConfigList();
-            
+
             _configList!.RemoveConfig(this);
             _isAdded = _configList!.Configs.Contains(this);
         }
@@ -53,6 +51,5 @@ namespace HamletTwoSacks.Infrastructure.StaticData
                 Debug.LogError($"Could not load {typeof(ConfigList)} at path {StaticDataProvider.CONFIG_LIST_PATH}.");
         }
 #endif
-
     }
 }

@@ -1,6 +1,6 @@
 ﻿#nullable enable
 
-using HamletTwoSacks.Character;
+using HamletTwoSacks.Characters.PlayerControl;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Zenject;

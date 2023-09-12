@@ -485,7 +485,7 @@ MonoBehaviour:
   _buildingImage: {fileID: 2000923685585027929}
   _costPanel: {fileID: 4899258041680914657}
   _crystalCollector: {fileID: 6907922999694155674}
-  _buildingInteraction: {fileID: 6769334400935157203}
+  _buildingTimedInteraction: {fileID: 6769334400935157203}
   _crystalSpawner: {fileID: 4045846442629878129}
 --- !u!61 &7019826987130707412
 BoxCollider2D:

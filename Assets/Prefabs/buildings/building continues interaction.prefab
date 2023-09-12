@@ -128,9 +128,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7797538276868691822}
-  - component: {fileID: 8128323130326022914}
+  - component: {fileID: 6683851967806052793}
   m_Layer: 0
-  m_Name: building interaction
+  m_Name: building continues interaction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -152,7 +152,7 @@ Transform:
   - {fileID: 2177101542278499552}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8128323130326022914
+--- !u!114 &6683851967806052793
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -161,11 +161,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 753166022274056765}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e43990d86a448f2b07bd437688b5783, type: 3}
+  m_Script: {fileID: 11500000, guid: 9316c30efe424df18e042783ecde184b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _triggerDetector: {fileID: 0}
-  _interactionCooldown: 0.1
   _tooltipPanel: {fileID: 477169193063075933}
 --- !u!1 &1311652425808673215
 GameObject:
@@ -179,7 +178,7 @@ GameObject:
   - component: {fileID: 6991186865954810857}
   - component: {fileID: 4780925909505333361}
   m_Layer: 5
-  m_Name: value panel (1)
+  m_Name: tooltip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -264,7 +263,7 @@ GameObject:
   - component: {fileID: 6867281584235446537}
   - component: {fileID: 7238982573770415145}
   m_Layer: 5
-  m_Name: value
+  m_Name: text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

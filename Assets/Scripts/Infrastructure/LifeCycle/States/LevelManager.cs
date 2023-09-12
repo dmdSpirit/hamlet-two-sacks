@@ -1,4 +1,5 @@
 ﻿#nullable enable
+
 using Cysharp.Threading.Tasks;
 using JetBrains.Annotations;
 using UnityEngine.SceneManagement;

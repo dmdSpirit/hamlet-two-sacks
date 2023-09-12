@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9101381248669570263}
-  - component: {fileID: 2339918952875011069}
+  - component: {fileID: 1444879179260435902}
   - component: {fileID: 6762995140114775679}
   - component: {fileID: 8931418242499969558}
   m_Layer: 5
@@ -37,10 +37,10 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 2.67}
+  m_AnchoredPosition: {x: 0, y: 2.669983}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2339918952875011069
+--- !u!114 &1444879179260435902
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -49,10 +49,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1404957249286443937}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a80f57bd3fa49aca61dd35171d5ca09, type: 3}
+  m_Script: {fileID: 11500000, guid: 3f1183bacd894853a27c348885110b76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _progress: {fileID: 3865884669223744543}
+  _hideWithoutProgress: 1
 --- !u!223 &6762995140114775679
 Canvas:
   m_ObjectHideFlags: 0
@@ -98,7 +99,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!1 &2699496082583549070
 GameObject:
   m_ObjectHideFlags: 0

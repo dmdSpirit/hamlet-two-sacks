@@ -5,7 +5,7 @@ using System.Linq;
 using UniRx;
 using UnityEngine;
 
-namespace HamletTwoSacks.Crystals
+namespace HamletTwoSacks.Crystals.UI
 {
     public sealed class CrystalCostPanel : MonoBehaviour
     {

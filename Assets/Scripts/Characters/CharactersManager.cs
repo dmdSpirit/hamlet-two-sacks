@@ -1,9 +1,10 @@
 ﻿#nullable enable
 
+using HamletTwoSacks.Characters.PlayerControl;
 using JetBrains.Annotations;
 using UnityEngine;
 
-namespace HamletTwoSacks.Character
+namespace HamletTwoSacks.Characters
 {
     [UsedImplicitly]
     public sealed class CharactersManager

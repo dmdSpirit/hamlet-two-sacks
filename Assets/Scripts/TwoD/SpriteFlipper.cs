@@ -1,12 +1,12 @@
 ﻿#nullable enable
+
 using System;
 using UnityEngine;
 
-namespace HamletTwoSacks.Character
+namespace HamletTwoSacks.TwoD
 {
     public sealed class SpriteFlipper : MonoBehaviour
     {
-        
         private const float TOLERANCE = 0.01f;
 
         [SerializeField]

@@ -1,4 +1,5 @@
 ﻿#nullable enable
+
 using System.Collections.Generic;
 using HamletTwoSacks.Infrastructure.StaticData;
 using UnityEngine;

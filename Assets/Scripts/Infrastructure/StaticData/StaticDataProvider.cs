@@ -25,7 +25,7 @@ namespace HamletTwoSacks.Infrastructure.StaticData
 
             _configs.AddRange(configList.Configs);
         }
-        
+
         public T GetConfig<T>() where T : ScriptableObject
         {
             ScriptableObject? config = _configs.FirstOrDefault(c => c is T);

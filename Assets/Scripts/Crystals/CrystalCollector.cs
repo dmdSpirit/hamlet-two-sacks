@@ -20,7 +20,7 @@ namespace HamletTwoSacks.Crystals
         private readonly List<ICommand> _activeCommands = new();
         private readonly CompositeDisposable _subs = new();
 
-        private Func<bool> _canCollect=null!;
+        private Func<bool> _canCollect = null!;
 
         [SerializeField]
         private bool _isActiveFromStart;
@@ -54,7 +54,7 @@ namespace HamletTwoSacks.Crystals
 
         private void Start()
         {
-            if(_isActiveFromStart)
+            if (_isActiveFromStart)
                 Activate();
         }
 
@@ -79,7 +79,8 @@ namespace HamletTwoSacks.Crystals
 
         private void TriggerEnter(Collider2D target)
         {
-            if (!IsActive || !_canCollect.Invoke())
+            if (!IsActive
+                || !_canCollect.Invoke())
                 return;
             var crystal = target.gameObject.GetComponent<Crystal>();
             if (crystal == null)

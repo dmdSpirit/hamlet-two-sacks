@@ -1,11 +1,12 @@
 ﻿#nullable enable
 
+using HamletTwoSacks.Characters.PlayerControl;
 using HamletTwoSacks.Infrastructure.StaticData;
 using JetBrains.Annotations;
 using UnityEngine;
 using Zenject;
 
-namespace HamletTwoSacks.Character
+namespace HamletTwoSacks.Characters
 {
     [UsedImplicitly]
     public sealed class CharacterFactory : IPlayerFactory

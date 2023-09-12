@@ -1,4 +1,5 @@
 ﻿#nullable enable
+
 using dmdspirit.Core.UI;
 using UnityEngine;
 

@@ -1,7 +1,8 @@
 ﻿#nullable enable
+
 using System;
 using dmdspirit.Core.UI;
-using HamletTwoSacks.Character;
+using HamletTwoSacks.Characters.PlayerControl;
 using TMPro;
 using UniRx;
 using UnityEngine;

@@ -6,7 +6,7 @@ using UniRx;
 using UnityEngine;
 using Zenject;
 
-namespace HamletTwoSacks.Character
+namespace HamletTwoSacks.Characters.PlayerControl
 {
     [RequireComponent(typeof(PlayerMovement))]
     public sealed class PlayerBehaviour : MonoBehaviour
