@@ -1,8 +1,9 @@
 ﻿#nullable enable
 using System;
 using dmdspirit.Core.Attributes;
+using HamletTwoSacks.Buildings.Config;
 
-namespace HamletTwoSacks.Buildings.Configs
+namespace HamletTwoSacks.Buildings.Crate.Config
 {
     [Serializable]
     public class CrateTier : BuildingTier

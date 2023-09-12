@@ -1,14 +1,14 @@
 ﻿#nullable enable
 
 using dmdspirit.Core.UI;
-using HamletTwoSacks.Buildings.Configs;
+using HamletTwoSacks.Buildings.Mine.Config;
 using HamletTwoSacks.Crystals;
 using HamletTwoSacks.Infrastructure.Time;
 using UniRx;
 using UnityEngine;
 using Zenject;
 
-namespace HamletTwoSacks.Buildings
+namespace HamletTwoSacks.Buildings.Mine
 {
     public sealed class Mine : Building<MineBuildingConfig, MineTier>
     {

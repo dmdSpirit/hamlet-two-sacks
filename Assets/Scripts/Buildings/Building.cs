@@ -1,7 +1,7 @@
 ﻿#nullable enable
 
 using System;
-using HamletTwoSacks.Buildings.Configs;
+using HamletTwoSacks.Buildings.Config;
 using HamletTwoSacks.Crystals;
 using HamletTwoSacks.Infrastructure.StaticData;
 using UniRx;
@@ -15,9 +15,9 @@ namespace HamletTwoSacks.Buildings
         where TConfig : BuildingConfig<TTier> where TTier : BuildingTier
     {
         private TConfig _config = null!;
-        
+
         private readonly Subject<Building<TConfig, TTier>> _onBuildingUpgraded = new();
-        
+
         private IDisposable _sub = null!;
         private int _currentTierIndex;
         private TTier? _nextTier;
@@ -27,10 +27,11 @@ namespace HamletTwoSacks.Buildings
 
         [SerializeField]
         private CrystalCostPanel _costPanel = null!;
-        
+
         protected TTier CurrentTier { get; private set; } = null!;
 
         public IObservable<Building<TConfig, TTier>> OnBuildingUpgraded => _onBuildingUpgraded;
+        public bool IsActive => CurrentTier?.IsActive ?? false;
 
         [Inject]
         private void GetConfig(StaticDataProvider staticDataProvider)

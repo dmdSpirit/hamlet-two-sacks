@@ -18,7 +18,7 @@ MonoBehaviour:
   _tiers:
   - Cost: 0
     IsActive: 1
-    Image: {fileID: 0}
+    Image: {fileID: 21300000, guid: 065c329fb04935946b0bc3a069b1f12f, type: 3}
     ImageSize: {x: 1.5, y: 1.2}
     ImageOffset: {x: 0, y: 0.5}
     Capacity: 10

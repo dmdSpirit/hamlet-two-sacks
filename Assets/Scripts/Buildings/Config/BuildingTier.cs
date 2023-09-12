@@ -2,7 +2,7 @@
 using System;
 using UnityEngine;
 
-namespace HamletTwoSacks.Buildings.Configs
+namespace HamletTwoSacks.Buildings.Config
 {
     [Serializable]
     public class BuildingTier

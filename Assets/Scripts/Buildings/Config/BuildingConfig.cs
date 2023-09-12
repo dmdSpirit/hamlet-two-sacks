@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using HamletTwoSacks.Infrastructure.StaticData;
 using UnityEngine;
 
-namespace HamletTwoSacks.Buildings.Configs
+namespace HamletTwoSacks.Buildings.Config
 {
     public abstract class BuildingConfig<T> : GameConfig where T : BuildingTier
     {
