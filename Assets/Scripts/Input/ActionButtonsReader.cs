@@ -3,7 +3,7 @@
 using System;
 using System.Collections.Generic;
 using HamletTwoSacks.Infrastructure.StaticData;
-using HamletTwoSacks.Infrastructure.Time;
+using HamletTwoSacks.Time;
 using JetBrains.Annotations;
 using UniRx;
 using Zenject;

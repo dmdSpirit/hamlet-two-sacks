@@ -1,5 +1,6 @@
 ﻿#nullable enable
 using HamletTwoSacks.Crystals;
+using HamletTwoSacks.Crystals.UI;
 using UniRx;
 using UnityEngine;
 

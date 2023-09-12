@@ -3,9 +3,9 @@
 using dmdspirit.Core;
 using dmdspirit.Core.CommonInterfaces;
 using dmdspirit.Core.UI;
-using HamletTwoSacks.Character;
-using HamletTwoSacks.Infrastructure.Time;
+using HamletTwoSacks.Characters;
 using HamletTwoSacks.Input;
+using HamletTwoSacks.Time;
 using HamletTwoSacks.UI;
 using JetBrains.Annotations;
 
@@ -22,7 +22,8 @@ namespace HamletTwoSacks.Infrastructure.LifeCycle.States
         private readonly IActionButtonsReader _actionButtonsReader;
 
         public GameState(CharactersManager charactersManager, LevelManager levelManager,
-            LoadingScreenShower loadingScreenShower, TimeController timeController, UIManager uiManager, IActionButtonsReader actionButtonsReader)
+            LoadingScreenShower loadingScreenShower, TimeController timeController, UIManager uiManager,
+            IActionButtonsReader actionButtonsReader)
         {
             _actionButtonsReader = actionButtonsReader;
             _uiManager = uiManager;

@@ -1,8 +1,7 @@
 ﻿#nullable enable
 
 using System;
-using HamletTwoSacks.Infrastructure;
-using HamletTwoSacks.Infrastructure.Time;
+using HamletTwoSacks.Time;
 using JetBrains.Annotations;
 using UniRx;
 using UnityEngine;
@@ -40,7 +39,7 @@ namespace HamletTwoSacks.Commands
 
         public void Interrupt()
             => _sub?.Dispose();
-        
+
         private void OnUpdate(float time)
         {
             float distance = Vector3.Distance(Target.position, _destination.position);

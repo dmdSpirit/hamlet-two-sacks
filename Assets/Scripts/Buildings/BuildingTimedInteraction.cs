@@ -1,16 +1,19 @@
 ﻿#nullable enable
+
 using System;
 using dmdspirit.Core.CommonInterfaces;
-using HamletTwoSacks.Character;
+using HamletTwoSacks.Characters.PlayerControl;
+using HamletTwoSacks.Crystals;
+using HamletTwoSacks.Crystals.UI;
 using HamletTwoSacks.Infrastructure;
-using HamletTwoSacks.Infrastructure.Time;
 using HamletTwoSacks.Input;
 using HamletTwoSacks.Physics;
+using HamletTwoSacks.Time;
 using UniRx;
 using UnityEngine;
 using Zenject;
 
-namespace HamletTwoSacks.Crystals
+namespace HamletTwoSacks.Buildings
 {
     public sealed class BuildingTimedInteraction : MonoBehaviour, IActivatable
     {

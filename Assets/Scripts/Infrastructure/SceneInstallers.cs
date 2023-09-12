@@ -1,6 +1,7 @@
 ﻿#nullable enable
 
-using HamletTwoSacks.Character;
+using HamletTwoSacks.Characters;
+using HamletTwoSacks.Characters.PlayerControl;
 using HamletTwoSacks.Crystals;
 using HamletTwoSacks.Level;
 using UnityEngine;
@@ -18,7 +19,7 @@ namespace HamletTwoSacks.Infrastructure
 
         [SerializeField]
         private LevelTransforms _levelTransforms = null!;
-        
+
         public override void InstallBindings()
         {
             BindCharacters();

@@ -1,7 +1,6 @@
 ﻿#nullable enable
 
 using HamletTwoSacks.Infrastructure.StaticData;
-using HamletTwoSacks.Level;
 using JetBrains.Annotations;
 using UnityEngine;
 using Zenject;

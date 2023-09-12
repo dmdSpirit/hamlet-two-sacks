@@ -5,7 +5,7 @@ using HamletTwoSacks.Level;
 using UnityEngine;
 using Zenject;
 
-namespace HamletTwoSacks.Character
+namespace HamletTwoSacks.Characters.PlayerControl
 {
     public sealed class PlayerSpawner : MonoBehaviour, IPlayerSpawner
     {

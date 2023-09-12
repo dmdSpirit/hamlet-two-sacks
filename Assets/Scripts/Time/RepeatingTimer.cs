@@ -4,7 +4,7 @@ using System;
 using UniRx;
 using UnityEngine;
 
-namespace HamletTwoSacks.Infrastructure.Time
+namespace HamletTwoSacks.Time
 {
     public class RepeatingTimer
     {

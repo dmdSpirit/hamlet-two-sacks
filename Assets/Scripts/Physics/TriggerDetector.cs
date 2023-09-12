@@ -14,7 +14,7 @@ namespace HamletTwoSacks.Physics
 
         [SerializeField]
         private Collider2D _collider = null!;
-        
+
         public bool IsActive { get; private set; }
 
         public IObservable<Collider2D> OnTriggerEnter => _onTriggerEnter;

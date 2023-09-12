@@ -1,14 +1,14 @@
 #nullable enable
 
 using dmdspirit.Core;
-using HamletTwoSacks.Character;
+using HamletTwoSacks.Characters;
+using HamletTwoSacks.Characters.PlayerControl;
 using HamletTwoSacks.Commands;
-using HamletTwoSacks.Crystals;
 using HamletTwoSacks.Infrastructure.LifeCycle;
 using HamletTwoSacks.Infrastructure.LifeCycle.States;
 using HamletTwoSacks.Infrastructure.StaticData;
-using HamletTwoSacks.Infrastructure.Time;
 using HamletTwoSacks.Input;
+using HamletTwoSacks.Time;
 using HamletTwoSacks.UI;
 using UnityEngine;
 using Zenject;

@@ -1,8 +1,9 @@
 ﻿#nullable enable
+
 using System.Linq;
 using UnityEngine;
 
-namespace HamletTwoSacks.Crystals
+namespace HamletTwoSacks.Infrastructure
 {
     public sealed class SystemReferences : MonoBehaviour
     {

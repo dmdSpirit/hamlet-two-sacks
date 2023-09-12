@@ -1,4 +1,5 @@
 ﻿#nullable enable
+
 using System;
 using dmdspirit.Core.Attributes;
 using HamletTwoSacks.Buildings.Config;

@@ -1,4 +1,5 @@
 ﻿#nullable enable
+
 using UnityEngine;
 
 namespace HamletTwoSacks.Infrastructure

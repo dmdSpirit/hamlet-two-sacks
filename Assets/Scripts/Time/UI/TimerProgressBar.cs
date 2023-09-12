@@ -5,7 +5,7 @@ using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace HamletTwoSacks.Buildings.Mine
+namespace HamletTwoSacks.Time.UI
 {
     public sealed class TimerProgressBar : MonoBehaviour
     {

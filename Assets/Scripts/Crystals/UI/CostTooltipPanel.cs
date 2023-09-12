@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Zenject;
 
-namespace HamletTwoSacks.Crystals
+namespace HamletTwoSacks.Crystals.UI
 {
     public sealed class CostTooltipPanel : MonoBehaviour
     {

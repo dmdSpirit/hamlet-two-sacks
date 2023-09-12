@@ -2,7 +2,9 @@
 
 using System;
 using dmdspirit.Core.CommonInterfaces;
-using HamletTwoSacks.Character;
+using HamletTwoSacks.Characters.PlayerControl;
+using HamletTwoSacks.Crystals;
+using HamletTwoSacks.Crystals.UI;
 using HamletTwoSacks.Infrastructure;
 using HamletTwoSacks.Input;
 using HamletTwoSacks.Physics;
@@ -10,7 +12,7 @@ using UniRx;
 using UnityEngine;
 using Zenject;
 
-namespace HamletTwoSacks.Crystals
+namespace HamletTwoSacks.Buildings
 {
     public sealed class BuildingContinuesInteraction : MonoBehaviour, IActivatable
     {

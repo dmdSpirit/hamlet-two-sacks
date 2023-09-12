@@ -1,12 +1,12 @@
 ﻿#nullable enable
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using HamletTwoSacks.Infrastructure.Time;
 using UniRx;
 using UnityEngine;
 
-namespace HamletTwoSacks.Buildings.Mine
+namespace HamletTwoSacks.Time
 {
     public class ProgressTimer
     {

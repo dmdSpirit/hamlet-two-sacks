@@ -1,10 +1,11 @@
 ﻿#nullable enable
+
 using System;
 using JetBrains.Annotations;
 using UniRx;
 using Zenject;
 
-namespace HamletTwoSacks.Infrastructure.Time
+namespace HamletTwoSacks.Time
 {
     [UsedImplicitly]
     public sealed class TimeController : ITickable, IFixedTickable, ILateTickable

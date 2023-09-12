@@ -1,11 +1,11 @@
 ﻿#nullable enable
 
 using System;
-using dmdspirit.Core.UI;
 using HamletTwoSacks.Buildings.Mine.Config;
-using HamletTwoSacks.Character;
+using HamletTwoSacks.Characters.PlayerControl;
 using HamletTwoSacks.Crystals;
-using HamletTwoSacks.Infrastructure.Time;
+using HamletTwoSacks.Time;
+using HamletTwoSacks.Time.UI;
 using UniRx;
 using UnityEngine;
 using Zenject;

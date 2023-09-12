@@ -1,13 +1,13 @@
 ﻿#nullable enable
 
-using HamletTwoSacks.Infrastructure;
-using HamletTwoSacks.Infrastructure.Time;
+using HamletTwoSacks.Time;
+using HamletTwoSacks.TwoD;
 using UniRx;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Zenject;
 
-namespace HamletTwoSacks.Character
+namespace HamletTwoSacks.Characters.PlayerControl
 {
     public sealed class PlayerMovement : MonoBehaviour
     {

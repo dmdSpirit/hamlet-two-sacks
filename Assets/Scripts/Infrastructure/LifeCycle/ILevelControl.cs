@@ -1,4 +1,5 @@
 ﻿#nullable enable
+
 namespace HamletTwoSacks.Infrastructure.LifeCycle
 {
     public interface ILevelControl

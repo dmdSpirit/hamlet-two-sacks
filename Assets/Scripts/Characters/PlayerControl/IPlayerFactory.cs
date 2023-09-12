@@ -1,6 +1,6 @@
 ﻿#nullable enable
 
-namespace HamletTwoSacks.Character
+namespace HamletTwoSacks.Characters.PlayerControl
 {
     public interface IPlayerFactory
     {
