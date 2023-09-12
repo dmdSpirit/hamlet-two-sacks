@@ -14,20 +14,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _addToList: 0
   _removeFromList: 0
-  _action:
-    m_Name: Action
+  _isAdded: 1
+  _interactAction:
+    m_Name: Interact
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 969cf172-3cee-4cae-bfde-32de7b3e5a76
+    m_Id: 2c5ad68a-1db3-462e-bee4-6760e5c2857c
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings:
     - m_Name: 
-      m_Id: 8860e56a-1ecd-4e7d-9fb8-684e3b615c8c
+      m_Id: 293cc6b7-c11d-4120-b667-4c71ac4c01a2
+      m_Path: <Keyboard>/f
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Interact
+      m_Flags: 0
+    m_Flags: 0
+  _payAction:
+    m_Name: Pay
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 092f0cce-6dfe-45d3-ac00-8e60938d45f2
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 92bf539c-4794-449e-ab3b-e0a28bd62c84
       m_Path: <Keyboard>/e
       m_Interactions: 
       m_Processors: 
       m_Groups: 
-      m_Action: Action
+      m_Action: Pay
       m_Flags: 0
     m_Flags: 0
