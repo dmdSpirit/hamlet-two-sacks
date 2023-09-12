@@ -3,7 +3,6 @@
 using dmdspirit.Core.UI;
 using HamletTwoSacks.Buildings.Configs;
 using HamletTwoSacks.Crystals;
-using HamletTwoSacks.Infrastructure.StaticData;
 using HamletTwoSacks.Infrastructure.Time;
 using UniRx;
 using UnityEngine;
@@ -11,10 +10,9 @@ using Zenject;
 
 namespace HamletTwoSacks.Buildings
 {
-    public sealed class Mine : Building
+    public sealed class Mine : Building<MineBuildingConfig, MineTier>
     {
         private RepeatingTimer _timer = null!;
-        private MineTier CurrentMineTier => (MineTier)CurrentTier;
 
         [SerializeField]
         private UpdatableProgressBar _progressBar = null!;
@@ -25,9 +23,6 @@ namespace HamletTwoSacks.Buildings
         [Inject]
         private void Construct(TimeController timeController)
             => _timer = new RepeatingTimer(timeController);
-
-        protected override void GetConfig(StaticDataProvider staticDataProvider)
-            => Config = staticDataProvider.GetConfig<MineBuildingConfig>();
 
         protected override void OnStart()
         {
@@ -46,14 +41,14 @@ namespace HamletTwoSacks.Buildings
 
         private void UpdateTimer()
         {
-            if (!CurrentMineTier.IsActive)
+            if (!CurrentTier.IsActive)
             {
                 _timer.Stop();
                 _progressBar.StopShowing();
                 return;
             }
 
-            _timer.SetCooldown(CurrentMineTier.ProductionCooldown);
+            _timer.SetCooldown(CurrentTier.ProductionCooldown);
             if (_timer.IsRunning)
                 return;
             _timer.Start();

@@ -11,23 +11,25 @@ using Zenject;
 
 namespace HamletTwoSacks.Buildings
 {
-    public abstract class Building : MonoBehaviour
+    public abstract class Building<TConfig, TTier> : MonoBehaviour
+        where TConfig : BuildingConfig<TTier> where TTier : BuildingTier
     {
         private IDisposable _sub = null!;
         private int _currentTierIndex;
-        private BuildingTier? _nextTier;
+        private TTier? _nextTier;
 
         [SerializeField]
         private SpriteRenderer _buildingImage = null!;
 
-        protected BuildingTier CurrentTier { get; private set; } = null!;
-        protected BuildingConfig Config = null!;
+        protected TTier CurrentTier { get; private set; } = null!;
+        protected TConfig Config = null!;
 
         [SerializeField]
         private CrystalCostPanel _costPanel = null!;
 
         [Inject]
-        protected abstract void GetConfig(StaticDataProvider staticDataProvider);
+        private void GetConfig(StaticDataProvider staticDataProvider)
+            => Config = staticDataProvider.GetConfig<TConfig>();
 
         protected void Start()
         {

@@ -1,11 +1,15 @@
 ﻿#nullable enable
 using System.Collections.Generic;
 using HamletTwoSacks.Infrastructure.StaticData;
+using UnityEngine;
 
 namespace HamletTwoSacks.Buildings.Configs
 {
-    public abstract class BuildingConfig : GameConfig
+    public abstract class BuildingConfig<T> : GameConfig where T : BuildingTier
     {
-        public abstract IReadOnlyList<BuildingTier>? BuildingTiers { get; }
+        [SerializeField]
+        private List<T>? _tiers;
+
+        public IReadOnlyList<T>? BuildingTiers => _tiers;
     }
 }
