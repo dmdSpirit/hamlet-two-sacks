@@ -41,7 +41,7 @@ namespace HamletTwoSacks.Buildings
         private void Construct(IActionButtonsReader actionButtonsReader)
         {
             _actionButtonsReader = actionButtonsReader;
-            _stringID = this.ToStringID();
+            _stringID = this.ToStringID(true);
         }
 
         private void Awake()

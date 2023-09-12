@@ -46,7 +46,7 @@ namespace HamletTwoSacks.Buildings
         private void Construct(IActionButtonsReader actionButtonsReader, TimeController timeController)
         {
             _actionButtonsReader = actionButtonsReader;
-            _stringID = this.ToStringID();
+            _stringID = this.ToStringID(true);
             _timer = new RepeatingTimer(timeController);
         }
 

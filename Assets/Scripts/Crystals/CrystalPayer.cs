@@ -40,7 +40,7 @@ namespace HamletTwoSacks.Crystals
         {
             _actionButtonsReader = actionButtonsReader;
             _player = player;
-            _stringID = this.ToStringID();
+            _stringID = this.ToStringID(true);
             _timer = new RepeatingTimer(timeController);
         }
 
