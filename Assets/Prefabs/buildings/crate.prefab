@@ -441,6 +441,7 @@ GameObject:
   - component: {fileID: 7095158715118553102}
   - component: {fileID: 7019826987130707412}
   - component: {fileID: 1911700539827857957}
+  - component: {fileID: 2150519444077678354}
   m_Layer: 10
   m_Name: crate
   m_TagString: Untagged
@@ -544,6 +545,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _collider: {fileID: 7019826987130707412}
+--- !u!114 &2150519444077678354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5069953830128498525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaafe9b4c0ce46a1bfdf07950ef2d935, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _systems:
+  - {fileID: 4899258041680914657}
 --- !u!1 &5918480448624408075
 GameObject:
   m_ObjectHideFlags: 0
