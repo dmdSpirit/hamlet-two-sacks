@@ -2,7 +2,6 @@
 
 using System;
 using HamletTwoSacks.Buildings.Config;
-using HamletTwoSacks.Crystals;
 using HamletTwoSacks.Crystals.UI;
 using HamletTwoSacks.Infrastructure.StaticData;
 using UniRx;
