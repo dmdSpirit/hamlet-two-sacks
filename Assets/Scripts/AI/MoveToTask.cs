@@ -1,5 +1,6 @@
 ﻿#nullable enable
 
+using HamletTwoSacks.TwoD;
 using UnityEngine;
 
 namespace HamletTwoSacks.AI
@@ -13,10 +14,13 @@ namespace HamletTwoSacks.AI
         private float _completionRadius;
 
         [SerializeField]
-        private Rigidbody2D _rigidbody2D;
+        private Rigidbody2D _rigidbody2D = null!;
 
         [SerializeField]
-        private Transform _target;
+        private Transform _target = null!;
+
+        [SerializeField]
+        private SpriteFlipper _spriteFlipper = null!;
 
         protected override void OnActivate() { }
 
@@ -38,6 +42,7 @@ namespace HamletTwoSacks.AI
             }
 
             float direction = Mathf.Sign(destination - currentPosition);
+            _spriteFlipper.FlipSprite(direction);
             _rigidbody2D.velocity = new Vector2(direction * _speed * time, 0);
         }
 
