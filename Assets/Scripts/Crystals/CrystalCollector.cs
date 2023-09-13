@@ -14,12 +14,12 @@ namespace HamletTwoSacks.Crystals
     public sealed class CrystalCollector : MonoBehaviour, IActivatable
     {
         private CommandsFactory _commandsFactory = null!;
-        private ICrystalFactory _crystalFactory = null!;
 
         private readonly Subject<Unit> _onCrystalCollected = new();
         private readonly List<ICommand> _activeCommands = new();
         private readonly CompositeDisposable _subs = new();
 
+        private CrystalsManager _crystalsManager = null!;
         private Func<bool> _canCollect = null!;
 
         [SerializeField]
@@ -42,9 +42,9 @@ namespace HamletTwoSacks.Crystals
         public int ActiveCommands => _activeCommands.Count;
 
         [Inject]
-        private void Construct(CommandsFactory commandsFactory, ICrystalFactory crystalFactory)
+        private void Construct(CommandsFactory commandsFactory, CrystalsManager crystalsManager)
         {
-            _crystalFactory = crystalFactory;
+            _crystalsManager = crystalsManager;
             _commandsFactory = commandsFactory;
             _canCollect = CanCollect;
         }
@@ -97,7 +97,7 @@ namespace HamletTwoSacks.Crystals
         private void OnFlyEnded(ICommand command)
         {
             var crystal = ((FlyObjectToCommand)command).Target.GetComponent<Crystal>();
-            _crystalFactory.DestroyCrystal(crystal);
+            _crystalsManager.DestroyCrystal(crystal);
             _activeCommands.Remove(command);
             _onCrystalCollected.OnNext(Unit.Default);
         }

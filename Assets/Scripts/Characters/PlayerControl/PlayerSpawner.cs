@@ -10,8 +10,8 @@ namespace HamletTwoSacks.Characters.PlayerControl
     public sealed class PlayerSpawner : MonoBehaviour, IPlayerSpawner
     {
         private CharactersManager _charactersManager = null!;
-        private IPlayerFactory _playerFactory = null!;
         private LevelTransforms _levelTransforms = null!;
+        private IPrefabFactory _prefabFactory = null!;
 
         // HACK (Stas): Temporary for testing.
         // - Stas 29 August 2023
@@ -21,12 +21,12 @@ namespace HamletTwoSacks.Characters.PlayerControl
         private Transform _spawnPosition = null!;
 
         [Inject]
-        private void Construct(CharactersManager charactersManager, IPlayerFactory playerFactory, VCTest vcTest,
-            LevelTransforms levelTransforms)
+        private void Construct(CharactersManager charactersManager, VCTest vcTest, LevelTransforms levelTransforms,
+            IPrefabFactory prefabFactory)
         {
+            _prefabFactory = prefabFactory;
             _levelTransforms = levelTransforms;
             _vcTest = vcTest;
-            _playerFactory = playerFactory;
             _charactersManager = charactersManager;
         }
 
@@ -41,7 +41,7 @@ namespace HamletTwoSacks.Characters.PlayerControl
 
         public PlayerBehaviour SpawnPlayer()
         {
-            PlayerBehaviour playerBehaviour = _playerFactory.CreatePlayer();
+            var playerBehaviour = _prefabFactory.CreateObject<PlayerBehaviour>();
             playerBehaviour.transform.SetParent(_levelTransforms.Units);
             playerBehaviour.transform.position = _spawnPosition.position;
             _vcTest.SetTarget(playerBehaviour.transform);

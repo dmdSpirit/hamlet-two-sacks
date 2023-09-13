@@ -9,8 +9,8 @@ namespace HamletTwoSacks.Crystals
 {
     public sealed class CrystalSpawner : MonoBehaviour
     {
-        private ICrystalFactory _crystalFactory = null!;
         private LevelTransforms _levelTransforms = null!;
+        private CrystalsManager _crystalsManager = null!;
 
         [SerializeField]
         private bool _useSpread = true;
@@ -22,15 +22,15 @@ namespace HamletTwoSacks.Crystals
         private bool _spawnCrystal;
 
         [Inject]
-        private void Construct(ICrystalFactory crystalFactory, LevelTransforms levelTransforms)
+        private void Construct(CrystalsManager crystalsManager, LevelTransforms levelTransforms)
         {
+            _crystalsManager = crystalsManager;
             _levelTransforms = levelTransforms;
-            _crystalFactory = crystalFactory;
         }
 
         public Crystal SpawnCrystal()
         {
-            Crystal crystal = _crystalFactory.SpawnCrystal();
+            Crystal crystal = _crystalsManager.CreateCrystal();
 
             crystal.transform.SetParent(_levelTransforms.Crystals);
             Vector3 position = transform.position;

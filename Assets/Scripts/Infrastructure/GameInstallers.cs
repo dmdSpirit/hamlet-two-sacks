@@ -4,6 +4,7 @@ using dmdspirit.Core;
 using HamletTwoSacks.Characters;
 using HamletTwoSacks.Characters.PlayerControl;
 using HamletTwoSacks.Commands;
+using HamletTwoSacks.Crystals;
 using HamletTwoSacks.Infrastructure.LifeCycle;
 using HamletTwoSacks.Infrastructure.LifeCycle.States;
 using HamletTwoSacks.Infrastructure.StaticData;
@@ -27,6 +28,7 @@ namespace HamletTwoSacks.Infrastructure
             BindCamera();
             BindCommands();
             BindInput();
+            BindManagers();
 
             Container.Bind<StaticDataProvider>().AsSingle().NonLazy();
         }
@@ -34,6 +36,11 @@ namespace HamletTwoSacks.Infrastructure
         private void BindCharacters()
         {
             Container.Bind<Player>().AsSingle().NonLazy();
+        }
+
+        private void BindManagers()
+        {
+            Container.Bind<CrystalsManager>().AsSingle();
             Container.Bind<CharactersManager>().AsSingle();
         }
 

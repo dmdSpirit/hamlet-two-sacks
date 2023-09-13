@@ -1,8 +1,6 @@
 ﻿#nullable enable
 
-using HamletTwoSacks.Characters;
 using HamletTwoSacks.Characters.PlayerControl;
-using HamletTwoSacks.Crystals;
 using HamletTwoSacks.Level;
 using UnityEngine;
 using Zenject;
@@ -25,7 +23,7 @@ namespace HamletTwoSacks.Infrastructure
             BindCharacters();
             BindCamera();
             BindLevel();
-            BindFactories();
+            BindFactory();
         }
 
         private void BindCamera()
@@ -43,10 +41,9 @@ namespace HamletTwoSacks.Infrastructure
             Container.Bind<LevelTransforms>().FromInstance(_levelTransforms);
         }
 
-        private void BindFactories()
-        {
-            Container.BindInterfacesTo<CharacterFactory>().AsSingle();
-            Container.BindInterfacesTo<CrystalFactory>().AsSingle();
-        }
+        // HACK (Stas): It seems that I should bind PrefabFactory in every scene context for it to get dependencies from said context also.
+        // - Stas 13 September 2023
+        private void BindFactory()
+            => Container.BindInterfacesTo<PrefabFactory>().AsSingle();
     }
 }
