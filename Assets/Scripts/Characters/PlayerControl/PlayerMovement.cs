@@ -12,7 +12,7 @@ namespace HamletTwoSacks.Characters.PlayerControl
 {
     public sealed class PlayerMovement : MonoBehaviour
     {
-        private IDisposable _timeSub;
+        private IDisposable _timeSub = null!;
 
         [SerializeField]
         private Rigidbody2D _rigidbody2D = null!;
