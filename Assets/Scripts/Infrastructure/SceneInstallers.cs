@@ -1,5 +1,6 @@
 ﻿#nullable enable
 
+using System;
 using HamletTwoSacks.Characters.PlayerControl;
 using HamletTwoSacks.Level;
 using UnityEngine;
@@ -41,9 +42,8 @@ namespace HamletTwoSacks.Infrastructure
             Container.Bind<LevelTransforms>().FromInstance(_levelTransforms);
         }
 
-        // HACK (Stas): It seems that I should bind PrefabFactory in every scene context for it to get dependencies from said context also.
-        // - Stas 13 September 2023
         private void BindFactory()
-            => Container.BindInterfacesTo<PrefabFactory>().AsSingle();
+            => Container.Bind(typeof(ScenePrefabFactory), typeof(IInitializable), typeof(IDisposable))
+                .To<ScenePrefabFactory>().AsSingle().NonLazy();
     }
 }

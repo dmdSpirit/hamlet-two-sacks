@@ -29,6 +29,7 @@ namespace HamletTwoSacks.Infrastructure
             BindCommands();
             BindInput();
             BindManagers();
+            BindFactory();
 
             Container.Bind<StaticDataProvider>().AsSingle().NonLazy();
         }
@@ -60,9 +61,10 @@ namespace HamletTwoSacks.Infrastructure
         }
 
         private void BindCamera()
-        {
-            Container.Bind<CameraController>().FromInstance(_cameraController);
-        }
+            => Container.Bind<CameraController>().FromInstance(_cameraController);
+
+        private void BindFactory()
+            => Container.BindInterfacesTo<GameFactory>().AsSingle();
 
         private void BindCommands()
         {
@@ -72,8 +74,6 @@ namespace HamletTwoSacks.Infrastructure
         }
 
         private void BindInput()
-        {
-            Container.BindInterfacesTo<ActionButtonsReader>().AsSingle().NonLazy();
-        }
+            => Container.BindInterfacesTo<ActionButtonsReader>().AsSingle().NonLazy();
     }
 }

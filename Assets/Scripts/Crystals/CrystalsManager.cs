@@ -14,6 +14,9 @@ namespace HamletTwoSacks.Crystals
 
         private readonly List<Crystal> _crystals = new();
 
+        public CrystalsManager(IPrefabFactory prefabFactory)
+            => _prefabFactory = prefabFactory;
+
         // HACK (Stas): Yeah... Got confused trying to create structure of scene-context factory and game-context managers. The problem is still with the fact that i don't know how to inject scene-context dicontainer into game-context factory for it to be able to resolve scene-level dependencies.
         // - Stas 13 September 2023
         public void RegisterPrefabFactory(IPrefabFactory prefabFactory)

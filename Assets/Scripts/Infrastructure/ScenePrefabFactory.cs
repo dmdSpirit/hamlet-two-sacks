@@ -1,7 +1,6 @@
 ﻿#nullable enable
 
 using System;
-using HamletTwoSacks.Crystals;
 using HamletTwoSacks.Infrastructure.StaticData;
 using JetBrains.Annotations;
 using UnityEngine;
@@ -10,16 +9,16 @@ using Zenject;
 namespace HamletTwoSacks.Infrastructure
 {
     [UsedImplicitly]
-    public sealed class PrefabFactory : IInitializable, IDisposable, IPrefabFactory
+    public sealed class ScenePrefabFactory : IPrefabFactory, IInitializable, IDisposable
     {
         private readonly DiContainer _container;
         private readonly PrefabsConfig _prefabsConfig;
-        private readonly CrystalsManager _crystalsManager;
+        private readonly IGameFactory _gameFactory;
 
-        public PrefabFactory(DiContainer container, StaticDataProvider staticDataProvider,
-            CrystalsManager crystalsManager)
+        public ScenePrefabFactory(DiContainer container, StaticDataProvider staticDataProvider,
+            IGameFactory gameFactory)
         {
-            _crystalsManager = crystalsManager;
+            _gameFactory = gameFactory;
             _container = container;
             _prefabsConfig = staticDataProvider.GetConfig<PrefabsConfig>();
         }
@@ -31,9 +30,9 @@ namespace HamletTwoSacks.Infrastructure
         }
 
         public void Initialize()
-            => _crystalsManager.RegisterPrefabFactory(this);
+            => _gameFactory.BindSceneFactory(this);
 
         public void Dispose()
-            => _crystalsManager.UnregisterPrefabFactory();
+            => _gameFactory.UnbindSceneFactory(this);
     }
 }
