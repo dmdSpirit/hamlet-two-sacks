@@ -50,7 +50,7 @@ namespace HamletTwoSacks.Buildings.Crate
         {
             if (_crystals.Value <= 0)
                 return;
-            _crystalSpawner.SpawnCrystal();
+            _crystalSpawner.Spawn();
             _crystals.Value--;
         }
 

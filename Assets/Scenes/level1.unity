@@ -232,7 +232,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4416249dc42e48e7a2fbdcb0c69ac995, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawnPosition: {fileID: 454453609}
+  _useSpread: 0
+  _spread: 0.5
+  _spawnObject: 0
 --- !u!4 &454453609
 Transform:
   m_ObjectHideFlags: 0
@@ -1291,7 +1293,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e2cf489a3124d2eadf263ee61b2b2dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerSpawner: {fileID: 454453608}
   _vcTest: {fileID: 1437661805}
   _levelTransforms: {fileID: 1923081496}
 --- !u!114 &1923081496

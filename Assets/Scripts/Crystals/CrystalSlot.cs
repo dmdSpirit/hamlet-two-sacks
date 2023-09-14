@@ -1,6 +1,7 @@
 ﻿#nullable enable
 
 using System;
+using HamletTwoSacks.Characters;
 using HamletTwoSacks.Commands;
 using UniRx;
 using UnityEngine;
@@ -12,7 +13,7 @@ namespace HamletTwoSacks.Crystals
     public sealed class CrystalSlot : MonoBehaviour
     {
         private CommandsFactory _commandsFactory = null!;
-        private CrystalsManager _crystalsManager = null!;
+        private EntityManager _entityManager = null!;
 
         private readonly ReactiveProperty<bool> _isFilled = new();
 
@@ -30,9 +31,9 @@ namespace HamletTwoSacks.Crystals
         public bool IsCrystalFlying => _activeCommand != null;
 
         [Inject]
-        private void Construct(CommandsFactory commandsFactory, CrystalsManager crystalsManager)
+        private void Construct(CommandsFactory commandsFactory, EntityManager entityManager)
         {
-            _crystalsManager = crystalsManager;
+            _entityManager = entityManager;
             _commandsFactory = commandsFactory;
         }
 
@@ -70,7 +71,7 @@ namespace HamletTwoSacks.Crystals
         {
             if (_crystal == null)
                 return;
-            _crystalsManager.DestroyCrystal(_crystal);
+            _entityManager.DestroyObject(_crystal);
             if (_activeCommand != null)
             {
                 _activeCommand.Interrupt();

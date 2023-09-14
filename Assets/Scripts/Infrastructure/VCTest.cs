@@ -1,7 +1,11 @@
 ﻿#nullable enable
 
+using System;
 using Cinemachine;
+using HamletTwoSacks.Characters.PlayerControl;
+using UniRx;
 using UnityEngine;
+using Zenject;
 
 namespace HamletTwoSacks.Infrastructure
 {
@@ -10,11 +14,16 @@ namespace HamletTwoSacks.Infrastructure
     public sealed class VCTest : MonoBehaviour
     {
         private Transform? _target;
+        private IDisposable _sub = null!;
 
         [SerializeField]
         private CinemachineVirtualCamera _virtualCamera = null!;
 
-        public void SetTarget(Transform target)
+        [Inject]
+        public void Construct(PlayerManager playerManager)
+            => _sub = playerManager.OnPlayerSpawned.Subscribe(player=>SetTarget(player.transform));
+
+        private void SetTarget(Transform target)
         {
             _target = target;
             _virtualCamera.Follow = _target;

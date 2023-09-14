@@ -110,7 +110,7 @@ namespace HamletTwoSacks.Crystals
         {
             if (_player.Crystals.Value <= 0)
                 return null;
-            Crystal crystal = _crystalSpawner.SpawnCrystal();
+            Crystal crystal = _crystalSpawner.Spawn();
             _player.SpendCrystal();
             return crystal;
         }

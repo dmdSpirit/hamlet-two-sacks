@@ -100,7 +100,7 @@ MonoBehaviour:
   _buildingImage: {fileID: 6423372528733930673}
   _costPanel: {fileID: 1619936941370361159}
   _progressBar: {fileID: 5785426020199774711}
-  _crystalSpawner: {fileID: 3692048860002181435}
+  _crystalSpawner: {fileID: 1650445701767508771}
   _buildingContinuesInteraction: {fileID: 4895546148338993819}
 --- !u!114 &4257482528412313871
 MonoBehaviour:
@@ -609,15 +609,15 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56a9071c4e8c8804fa1f19cc4ed4b543, type: 3}
---- !u!114 &3692048860002181435 stripped
+--- !u!114 &1650445701767508771 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5839357112616200749, guid: 56a9071c4e8c8804fa1f19cc4ed4b543, type: 3}
+  m_CorrespondingSourceObject: {fileID: 8418025006136522805, guid: 56a9071c4e8c8804fa1f19cc4ed4b543, type: 3}
   m_PrefabInstance: {fileID: 7076662150700419862}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d84a209f69a4fbb82693d64c6e5f7db, type: 3}
+  m_Script: {fileID: 11500000, guid: 2f7b64a3ef944af58c60a540f3617139, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &4495026696233596708 stripped

@@ -37,12 +37,12 @@ namespace HamletTwoSacks.Infrastructure
         private void BindCharacters()
         {
             Container.Bind<Player>().AsSingle().NonLazy();
+            Container.Bind<PlayerManager>().AsSingle();
         }
 
         private void BindManagers()
         {
-            Container.Bind<CrystalsManager>().AsSingle();
-            Container.Bind<CharactersManager>().AsSingle();
+            Container.Bind<EntityManager>().AsSingle();
         }
 
         private void BindLifeCycle()

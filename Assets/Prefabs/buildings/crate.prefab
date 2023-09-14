@@ -486,7 +486,7 @@ MonoBehaviour:
   _costPanel: {fileID: 4899258041680914657}
   _crystalCollector: {fileID: 6907922999694155674}
   _buildingTimedInteraction: {fileID: 6769334400935157203}
-  _crystalSpawner: {fileID: 4045846442629878129}
+  _crystalSpawner: {fileID: 2161444800703202153}
 --- !u!61 &7019826987130707412
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1046,19 +1046,19 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56a9071c4e8c8804fa1f19cc4ed4b543, type: 3}
---- !u!4 &3853106497102612334 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6653171581266033714, guid: 56a9071c4e8c8804fa1f19cc4ed4b543, type: 3}
-  m_PrefabInstance: {fileID: 7578480360797305692}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &4045846442629878129 stripped
+--- !u!114 &2161444800703202153 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5839357112616200749, guid: 56a9071c4e8c8804fa1f19cc4ed4b543, type: 3}
+  m_CorrespondingSourceObject: {fileID: 8418025006136522805, guid: 56a9071c4e8c8804fa1f19cc4ed4b543, type: 3}
   m_PrefabInstance: {fileID: 7578480360797305692}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d84a209f69a4fbb82693d64c6e5f7db, type: 3}
+  m_Script: {fileID: 11500000, guid: 2f7b64a3ef944af58c60a540f3617139, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &3853106497102612334 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6653171581266033714, guid: 56a9071c4e8c8804fa1f19cc4ed4b543, type: 3}
+  m_PrefabInstance: {fileID: 7578480360797305692}
+  m_PrefabAsset: {fileID: 0}
