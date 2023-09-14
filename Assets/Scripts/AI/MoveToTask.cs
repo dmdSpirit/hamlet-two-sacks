@@ -26,7 +26,10 @@ namespace HamletTwoSacks.AI
 
         protected override void OnDeactivate() { }
 
-        protected override void OnComplete() { }
+        protected override void OnComplete()
+        {
+            _rigidbody2D.velocity = new Vector2(0, 0);
+        }
 
         public override void OnFixedUpdate(float time)
         {

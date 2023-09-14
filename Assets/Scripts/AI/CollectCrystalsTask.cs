@@ -1,40 +1,55 @@
 ﻿#nullable enable
+
+using System;
 using HamletTwoSacks.Crystals;
+using UniRx;
 using UnityEngine;
 
 namespace HamletTwoSacks.AI
 {
     public sealed class CollectCrystalsTask : Task
     {
+        private IDisposable? _sub;
+
         [SerializeField]
         private CrystalCollector _crystalCollector = null!;
 
         [SerializeField]
         private CrystalContainer _crystalContainer = null!;
 
-        protected override void OnActivate()
+        public override bool CanBeStarted => _crystalContainer.IsFull;
+        public override bool CanBeSkipped => true;
+
+        private void Start()
         {
-            throw new System.NotImplementedException();
+            _crystalCollector.SetCollectionCheck(CanCollectCrystal);
+            _sub = _crystalCollector.OnCrystalCollected.Subscribe(OnCrystalCollected);
+            _crystalCollector.Deactivate();
         }
+
+        private void OnDestroy()
+            => _sub?.Dispose();
+
+        protected override void OnActivate()
+            => _crystalCollector.Activate();
 
         protected override void OnDeactivate()
-        {
-            throw new System.NotImplementedException();
-        }
+            => _crystalCollector.Deactivate();
 
-        protected override void OnComplete()
-        {
-            throw new System.NotImplementedException();
-        }
+        protected override void OnComplete() { }
 
-        public override void OnUpdate(float time)
-        {
-            throw new System.NotImplementedException();
-        }
+        public override void OnUpdate(float time) { }
 
-        public override void OnFixedUpdate(float time)
+        public override void OnFixedUpdate(float time) { }
+
+        private bool CanCollectCrystal()
+            => _crystalContainer.Crystals.Value + _crystalCollector.ActiveCommands < _crystalContainer.Capacity.Value;
+
+        private void OnCrystalCollected(Unit _)
         {
-            throw new System.NotImplementedException();
+            _crystalContainer.AddCrystal();
+            if (_crystalContainer.IsFull)
+                Complete();
         }
     }
 }

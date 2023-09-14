@@ -9,26 +9,32 @@ namespace HamletTwoSacks.AI
     public sealed class CrystalContainer : MonoBehaviour
     {
         private readonly ReactiveProperty<int> _crystals = new();
+        private readonly ReactiveProperty<int> _capacity = new();
 
-        private int _capacity;
-
+        public IReadOnlyReactiveProperty<int> Capacity => _capacity;
         public IReadOnlyReactiveProperty<int> Crystals => _crystals;
+        public bool IsFull => _crystals.Value == Capacity.Value;
 
         public void SetCapacity(int capacity)
         {
-            _capacity = capacity;
-            if (_crystals.Value <= capacity)
+            _capacity.Value = capacity;
+            if (_crystals.Value <= _capacity.Value)
                 return;
-            _crystals.Value = capacity;
+            _crystals.Value = _capacity.Value;
         }
 
         public void AddCrystal()
-            => _crystals.Value++;
-
-        public void GetCrystal()
         {
-            Assert.IsTrue(_crystals.Value > 0);
+            Assert.IsFalse(_crystals.Value + 1 > _capacity.Value);
+            _crystals.Value++;
+        }
+
+        public bool TryGetCrystal()
+        {
+            if (_crystals.Value == 0)
+                return false;
             _crystals.Value--;
+            return true;
         }
     }
 }

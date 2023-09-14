@@ -33,6 +33,9 @@ namespace HamletTwoSacks.Level
         private void Awake()
             => _originalY = _target.position.y;
 
+        private void OnDestroy()
+            => _sub.Dispose();
+
         private void OnFixedUpdate(float time)
         {
             Vector3 position = _target.position;

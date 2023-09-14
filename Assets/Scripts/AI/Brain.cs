@@ -1,6 +1,7 @@
 ﻿#nullable enable
 
 using System.Collections.Generic;
+using dmdspirit.Core.Attributes;
 using HamletTwoSacks.Time;
 using UniRx;
 using UnityEngine;
@@ -13,10 +14,11 @@ namespace HamletTwoSacks.AI
     {
         private readonly CompositeDisposable _subs = new();
 
-        private Task? _activeTask;
-
         [SerializeField]
         private List<Task> _tasks = null!;
+
+        [SerializeField, ReadOnly]
+        private Task? _activeTask;
 
         [Inject]
         private void Construct(TimeController timeController)
