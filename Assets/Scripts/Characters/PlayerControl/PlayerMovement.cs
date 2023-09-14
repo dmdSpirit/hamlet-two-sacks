@@ -1,5 +1,6 @@
 ﻿#nullable enable
 
+using System;
 using HamletTwoSacks.Time;
 using HamletTwoSacks.TwoD;
 using UniRx;
@@ -11,6 +12,8 @@ namespace HamletTwoSacks.Characters.PlayerControl
 {
     public sealed class PlayerMovement : MonoBehaviour
     {
+        private IDisposable _timeSub;
+
         [SerializeField]
         private Rigidbody2D _rigidbody2D = null!;
 
@@ -25,7 +28,7 @@ namespace HamletTwoSacks.Characters.PlayerControl
 
         [Inject]
         private void Construct(TimeController timeController)
-            => timeController.FixedUpdate.Subscribe(OnFixedUpdate);
+            => _timeSub = timeController.FixedUpdate.Subscribe(OnFixedUpdate);
 
         private void OnEnable()
             => _moveAction.Enable();
@@ -33,8 +36,13 @@ namespace HamletTwoSacks.Characters.PlayerControl
         private void OnDisable()
             => _moveAction.Disable();
 
+        private void OnDestroy()
+            => _timeSub.Dispose();
+
         private void OnFixedUpdate(float time)
         {
+            if (!_moveAction.enabled)
+                return;
             var value = _moveAction.ReadValue<float>();
             _rigidbody2D.velocity = new Vector2(value * _speed * time, _rigidbody2D.velocity.y);
             _spriteFlipper.FlipSprite(value);
