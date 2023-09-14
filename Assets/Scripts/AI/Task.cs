@@ -1,6 +1,7 @@
 ﻿#nullable enable
 
 using System;
+using HamletTwoSacks.Infrastructure;
 using UniRx;
 using UnityEngine;
 
@@ -35,10 +36,11 @@ namespace HamletTwoSacks.AI
             Deactivate();
         }
 
+        public abstract void Initialize(SystemReferences references);
+        public abstract void OnUpdate(float time);
+        public abstract void OnFixedUpdate(float time);
         protected abstract void OnActivate();
         protected abstract void OnDeactivate();
         protected abstract void OnComplete();
-        public abstract void OnUpdate(float time);
-        public abstract void OnFixedUpdate(float time);
     }
 }

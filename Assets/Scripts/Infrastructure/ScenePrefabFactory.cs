@@ -30,6 +30,9 @@ namespace HamletTwoSacks.Infrastructure
             return _container.InstantiatePrefabForComponent<T>(prefab);
         }
 
+        public T CreateCopyObject<T>(T prefab) where T : MonoBehaviour
+            => _container.InstantiatePrefabForComponent<T>(prefab);
+        
         public void Dispose()
             => _gameFactory.UnbindSceneFactory(this);
     }

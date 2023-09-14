@@ -2,6 +2,7 @@
 
 using System;
 using HamletTwoSacks.Crystals;
+using HamletTwoSacks.Infrastructure;
 using HamletTwoSacks.Time;
 using UniRx;
 using UnityEngine;
@@ -14,10 +15,7 @@ namespace HamletTwoSacks.AI
         private IDisposable? _sub;
         private RepeatingTimer _repeatingTimer = null!;
 
-        [SerializeField]
         private CrystalSpawner _crystalSpawner = null!;
-
-        [SerializeField]
         private CrystalContainer _crystalContainer = null!;
 
         [SerializeField]
@@ -34,6 +32,16 @@ namespace HamletTwoSacks.AI
             _sub = _repeatingTimer.OnFire.Subscribe(SpawnCrystal);
         }
 
+        public override void Initialize(SystemReferences references)
+        {
+            _crystalSpawner = references.GetSystemWithCheck<CrystalSpawner>();
+            _crystalContainer = references.GetSystemWithCheck<CrystalContainer>();
+        }
+
+        public override void OnUpdate(float time) { }
+
+        public override void OnFixedUpdate(float time) { }
+
         private void OnDestroy()
             => _sub?.Dispose();
 
@@ -45,10 +53,6 @@ namespace HamletTwoSacks.AI
 
         protected override void OnComplete()
             => _repeatingTimer.Stop();
-
-        public override void OnUpdate(float time) { }
-
-        public override void OnFixedUpdate(float time) { }
 
         private void SpawnCrystal(RepeatingTimer _)
         {

@@ -1,5 +1,6 @@
 ﻿#nullable enable
 
+using HamletTwoSacks.Infrastructure;
 using HamletTwoSacks.TwoD;
 using UnityEngine;
 
@@ -7,6 +8,9 @@ namespace HamletTwoSacks.AI
 {
     public sealed class FlyHorizontallyToTargetTask : Task
     {
+        private Rigidbody2D _rigidbody2D = null!;
+        private SpriteFlipper _spriteFlipper = null!;
+        
         [SerializeField]
         private float _speed;
 
@@ -14,21 +18,12 @@ namespace HamletTwoSacks.AI
         private float _completionRadius;
 
         [SerializeField]
-        private Rigidbody2D _rigidbody2D = null!;
-
-        [SerializeField]
         private Transform _target = null!;
 
-        [SerializeField]
-        private SpriteFlipper _spriteFlipper = null!;
-
-        protected override void OnActivate() { }
-
-        protected override void OnDeactivate() { }
-
-        protected override void OnComplete()
+        public override void Initialize(SystemReferences references)
         {
-            _rigidbody2D.velocity = new Vector2(0, 0);
+            _spriteFlipper = references.GetSystemWithCheck<SpriteFlipper>();
+            _rigidbody2D = references.GetSystemWithCheck<Rigidbody2D>();
         }
 
         public override void OnFixedUpdate(float time)
@@ -50,5 +45,14 @@ namespace HamletTwoSacks.AI
         }
 
         public override void OnUpdate(float time) { }
+
+        protected override void OnActivate() { }
+
+        protected override void OnDeactivate() { }
+
+        protected override void OnComplete()
+        {
+            _rigidbody2D.velocity = new Vector2(0, 0);
+        }
     }
 }

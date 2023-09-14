@@ -3,6 +3,7 @@
 using System.Collections.Generic;
 using dmdspirit.Core.Attributes;
 using dmdspirit.Core.CommonInterfaces;
+using HamletTwoSacks.Infrastructure;
 using HamletTwoSacks.Time;
 using UniRx;
 using UnityEngine;
@@ -43,6 +44,34 @@ namespace HamletTwoSacks.AI
             _tasksSubs.Dispose();
         }
 
+        public void Initialize(SystemReferences systemReferences)
+        {
+            foreach (Task task in _tasks)
+                task.Initialize(systemReferences);
+        } 
+
+        public void Activate()
+        {
+            if (IsActive)
+                return;
+            IsActive = true;
+            if (_activeTask == null)
+                _activeTask = _tasks[0];
+
+            _timeController.Update.Subscribe(OnUpdate).AddTo(_timeSubs);
+            _timeController.FixedUpdate.Subscribe(OnFixedUpdate).AddTo(_timeSubs);
+
+            _activeTask.Activate();
+        }
+
+        public void Deactivate()
+        {
+            IsActive = false;
+            _timeSubs.Clear();
+            if(_activeTask!=null)
+                _activeTask.Deactivate();
+        }
+
         private void OnTaskCompleted(Task completedTask)
         {
             Assert.IsTrue(completedTask == _activeTask);
@@ -71,28 +100,6 @@ namespace HamletTwoSacks.AI
         {
             _tasks.Clear();
             _tasks.AddRange(GetComponents<Task>());
-        }
-
-        public void Activate()
-        {
-            if (IsActive)
-                return;
-            IsActive = true;
-            if (_activeTask == null)
-                _activeTask = _tasks[0];
-
-            _timeController.Update.Subscribe(OnUpdate).AddTo(_timeSubs);
-            _timeController.FixedUpdate.Subscribe(OnFixedUpdate).AddTo(_timeSubs);
-
-            _activeTask.Activate();
-        }
-
-        public void Deactivate()
-        {
-            IsActive = false;
-            _timeSubs.Clear();
-            if(_activeTask!=null)
-                _activeTask.Deactivate();
         }
     }
 }

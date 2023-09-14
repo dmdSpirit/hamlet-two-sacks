@@ -2,6 +2,8 @@
 
 using dmdspirit.Core.CommonInterfaces;
 using HamletTwoSacks.AI;
+using HamletTwoSacks.Crystals;
+using HamletTwoSacks.Infrastructure;
 using UnityEngine;
 
 namespace HamletTwoSacks.Characters.Drones
@@ -17,10 +19,20 @@ namespace HamletTwoSacks.Characters.Drones
         [SerializeField]
         private Brain? _brain;
 
+        [SerializeField]
+        private SystemReferences _references = null!;
+
         public bool IsActive { get; private set; }
 
         private void Awake()
             => _crystalContainer.SetCapacity(_crystalCapacity);
+
+        public void InitializeBrain()
+        {
+            if (_brain == null)
+                return;
+            _brain.Initialize(_references);
+        }
 
         public void Activate()
         {

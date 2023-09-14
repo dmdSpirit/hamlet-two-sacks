@@ -29,5 +29,17 @@ namespace HamletTwoSacks.Infrastructure
 
             return _sceneFactory.CreateObject<T>();
         }
+        
+        public T CreateCopyObject<T>(T prefab) where T : MonoBehaviour
+        {
+            if (_sceneFactory == null)
+            {
+                Debug.LogError($"No binding for scene factory.");
+                return null!;
+            }
+
+            return _sceneFactory.CreateCopyObject(prefab);
+        }
+        
     }
 }

@@ -5,6 +5,7 @@ using HamletTwoSacks.AI;
 using HamletTwoSacks.Buildings.DroneStation.Config;
 using HamletTwoSacks.Characters.Drones;
 using HamletTwoSacks.Commands;
+using HamletTwoSacks.Infrastructure;
 using UniRx;
 using UnityEngine;
 using Zenject;
@@ -14,6 +15,7 @@ namespace HamletTwoSacks.Buildings.DroneStation
     public sealed class DroneStation : Building<DroneStationConfig, DroneStationTier>
     {
         private CommandsFactory _commandsFactory = null!;
+        private IPrefabFactory _prefabFactory = null!;
 
         private readonly List<Drone> _drones = new();
         private readonly List<ICommand> _activeCommands = new();
@@ -32,8 +34,11 @@ namespace HamletTwoSacks.Buildings.DroneStation
         private float _droneTransportSpeed = 1f;
 
         [Inject]
-        private void Construct(CommandsFactory commandsFactory)
-            => _commandsFactory = commandsFactory;
+        private void Construct(CommandsFactory commandsFactory, IPrefabFactory prefabFactory)
+        {
+            _prefabFactory = prefabFactory;
+            _commandsFactory = commandsFactory;
+        }
 
         protected override void OnStart()
         {
@@ -66,7 +71,8 @@ namespace HamletTwoSacks.Buildings.DroneStation
         private void SpawnDrone()
         {
             Drone drone = _droneSpawner.Spawn();
-            Brain brain = Instantiate(_brainTemplate, drone.transform);
+            Brain brain = _prefabFactory.CreateCopyObject(_brainTemplate);
+            brain.transform.SetParent(drone.transform);
             drone.SetBrain(brain);
             _drones.Add(drone);
             FlyObjectToCommand command =
@@ -80,6 +86,7 @@ namespace HamletTwoSacks.Buildings.DroneStation
         {
             _activeCommands.Remove(command);
             var drone = ((FlyObjectToCommand)command).Target.GetComponent<Drone>();
+            drone.InitializeBrain();
             drone.Activate();
         }
     }
