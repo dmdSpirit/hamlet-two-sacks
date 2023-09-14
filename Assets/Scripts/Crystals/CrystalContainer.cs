@@ -4,7 +4,7 @@ using UniRx;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace HamletTwoSacks.AI
+namespace HamletTwoSacks.Crystals
 {
     public sealed class CrystalContainer : MonoBehaviour
     {

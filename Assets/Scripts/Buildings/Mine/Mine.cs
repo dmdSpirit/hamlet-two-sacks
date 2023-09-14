@@ -12,7 +12,7 @@ using Zenject;
 
 namespace HamletTwoSacks.Buildings.Mine
 {
-    public sealed class Mine : Building<MineBuildingConfig, MineTier>
+    public sealed class Mine : Building<MineConfig, MineTier>
     {
         private ProgressTimer _timer = null!;
         private IDisposable _interactionSub = null!;

@@ -4,6 +4,7 @@ using HamletTwoSacks.Time;
 using UniRx;
 using UnityEngine;
 using Zenject;
+using Random = UnityEngine.Random;
 
 namespace HamletTwoSacks.Level
 {
@@ -13,6 +14,7 @@ namespace HamletTwoSacks.Level
 
         private IDisposable _sub = null!;
         private float _originalY;
+        private float _randomSeed;
 
         [SerializeField]
         private Transform _target = null!;
@@ -31,16 +33,20 @@ namespace HamletTwoSacks.Level
         }
 
         private void Awake()
-            => _originalY = _target.position.y;
+        {
+            _originalY = _target.localPosition.y;
+            _randomSeed = Random.Range(0, 2 * Mathf.PI);
+        }
 
         private void OnDestroy()
             => _sub.Dispose();
 
         private void OnFixedUpdate(float time)
         {
-            Vector3 position = _target.position;
-            position.y = Mathf.Sin(_speed * (float)_timeController.TimePassed * Mathf.PI) * _amplitude + _originalY;
-            _target.position = position;
+            Vector3 position = _target.localPosition;
+            position.y = Mathf.Sin(_speed * (float)_timeController.TimePassed * Mathf.PI + _randomSeed) * _amplitude
+                         + _originalY;
+            _target.localPosition = position;
         }
     }
 }

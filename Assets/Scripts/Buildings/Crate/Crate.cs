@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace HamletTwoSacks.Buildings.Crate
 {
-    public sealed class Crate : Building<CrateBuildingConfig, CrateTier>
+    public sealed class Crate : Building<CrateConfig, CrateTier>
     {
         private IDisposable _collectorSub = null!;
 

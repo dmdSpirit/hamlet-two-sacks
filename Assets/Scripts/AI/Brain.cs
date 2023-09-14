@@ -2,6 +2,8 @@
 
 using System.Collections.Generic;
 using dmdspirit.Core.Attributes;
+using dmdspirit.Core.CommonInterfaces;
+using HamletTwoSacks.Infrastructure;
 using HamletTwoSacks.Time;
 using UniRx;
 using UnityEngine;
@@ -10,9 +12,12 @@ using Zenject;
 
 namespace HamletTwoSacks.AI
 {
-    public sealed class Brain : MonoBehaviour
+    public sealed class Brain : MonoBehaviour, IActivatable
     {
-        private readonly CompositeDisposable _subs = new();
+        private TimeController _timeController = null!;
+
+        private readonly CompositeDisposable _tasksSubs = new();
+        private readonly CompositeDisposable _timeSubs = new();
 
         [SerializeField, ReadOnly]
         private Task? _activeTask;
@@ -23,23 +28,49 @@ namespace HamletTwoSacks.AI
         [SerializeField, Button(nameof(FindTasks))]
         private bool _findTasks;
 
+        public bool IsActive { get; private set; }
+
         [Inject]
         private void Construct(TimeController timeController)
         {
+            _timeController = timeController;
             foreach (Task task in _tasks)
-                task.Completed.Subscribe(OnTaskCompleted).AddTo(_subs);
-            timeController.Update.Subscribe(OnUpdate).AddTo(_subs);
-            timeController.FixedUpdate.Subscribe(OnFixedUpdate).AddTo(_subs);
-        }
-
-        private void Start()
-        {
-            _activeTask = _tasks[0];
-            _activeTask.Activate();
+                task.Completed.Subscribe(OnTaskCompleted).AddTo(_tasksSubs);
         }
 
         private void OnDestroy()
-            => _subs.Dispose();
+        {
+            _timeSubs.Dispose();
+            _tasksSubs.Dispose();
+        }
+
+        public void Initialize(SystemReferences systemReferences)
+        {
+            foreach (Task task in _tasks)
+                task.Initialize(systemReferences);
+        } 
+
+        public void Activate()
+        {
+            if (IsActive)
+                return;
+            IsActive = true;
+            if (_activeTask == null)
+                _activeTask = _tasks[0];
+
+            _timeController.Update.Subscribe(OnUpdate).AddTo(_timeSubs);
+            _timeController.FixedUpdate.Subscribe(OnFixedUpdate).AddTo(_timeSubs);
+
+            _activeTask.Activate();
+        }
+
+        public void Deactivate()
+        {
+            IsActive = false;
+            _timeSubs.Clear();
+            if(_activeTask!=null)
+                _activeTask.Deactivate();
+        }
 
         private void OnTaskCompleted(Task completedTask)
         {

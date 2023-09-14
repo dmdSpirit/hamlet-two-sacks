@@ -2,8 +2,8 @@
 
 using System;
 using HamletTwoSacks.Crystals;
+using HamletTwoSacks.Infrastructure;
 using UniRx;
-using UnityEngine;
 
 namespace HamletTwoSacks.AI
 {
@@ -11,25 +11,28 @@ namespace HamletTwoSacks.AI
     {
         private IDisposable? _sub;
 
-        [SerializeField]
         private CrystalCollector _crystalCollector = null!;
-
-        [SerializeField]
         private CrystalContainer _crystalContainer = null!;
 
         public override bool CanBeStarted => _crystalContainer.IsFull;
         public override bool CanBeSkipped => true;
 
-        private void Start()
+        private void OnDestroy()
+            => _sub?.Dispose();
+
+        public override void Initialize(SystemReferences references)
         {
+            _crystalCollector = references.GetSystemWithCheck<CrystalCollector>();
+            _crystalContainer = references.GetSystemWithCheck<CrystalContainer>();
             _crystalCollector.SetCollectionCheck(CanCollectCrystal);
             _sub = _crystalCollector.OnCrystalCollected.Subscribe(OnCrystalCollected);
             _crystalCollector.Deactivate();
         }
 
-        private void OnDestroy()
-            => _sub?.Dispose();
+        public override void OnUpdate(float time) { }
 
+        public override void OnFixedUpdate(float time) { }
+        
         protected override void OnActivate()
             => _crystalCollector.Activate();
 
@@ -37,10 +40,6 @@ namespace HamletTwoSacks.AI
             => _crystalCollector.Deactivate();
 
         protected override void OnComplete() { }
-
-        public override void OnUpdate(float time) { }
-
-        public override void OnFixedUpdate(float time) { }
 
         private bool CanCollectCrystal()
             => _crystalContainer.Crystals.Value + _crystalCollector.ActiveCommands < _crystalContainer.Capacity.Value;
