@@ -42,6 +42,12 @@ namespace HamletTwoSacks.Crystals
 
         public void SetCrystalToSlot(Crystal crystal)
         {
+            if (crystal.HasOwner)
+            {
+                Debug.LogError($"Somehow slot got crystal that already has an owner.");
+                return;
+            }
+            crystal.SetOwner(gameObject);
             Assert.IsNull(_activeCommand);
             crystal.TurnPhysicsOff();
             _activeCommand =
@@ -62,6 +68,7 @@ namespace HamletTwoSacks.Crystals
                 _activeCommand = null;
             }
 
+            _crystal.ReleaseOwnership(gameObject);
             _crystal.TurnPhysicsOn();
             _crystal = null!;
             _isFilled.Value = false;

@@ -2,7 +2,6 @@
 
 using System;
 using System.Collections.Generic;
-using dmdspirit.Core.CommonInterfaces;
 using HamletTwoSacks.Characters;
 using HamletTwoSacks.Commands;
 using HamletTwoSacks.Physics;
@@ -88,9 +87,10 @@ namespace HamletTwoSacks.Crystals
                 || !_canCollect.Invoke())
                 return;
             var crystal = target.gameObject.GetComponent<Crystal>();
-            if (crystal == null)
+            if (crystal == null || crystal.HasOwner)
                 return;
             crystal.TurnPhysicsOff();
+            crystal.SetOwner(gameObject);
             FlyObjectToCommand flyCommand =
                 _commandsFactory.GetFlyObjectToCommand(target.transform, _destinationTransform, _collectionSpeed,
                                                        _completionRadius);
