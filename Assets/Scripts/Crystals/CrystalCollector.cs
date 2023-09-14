@@ -12,7 +12,7 @@ using Zenject;
 
 namespace HamletTwoSacks.Crystals
 {
-    public sealed class CrystalCollector : MonoBehaviour, IActivatable
+    public sealed class CrystalCollector : MonoBehaviour
     {
         private CommandsFactory _commandsFactory = null!;
         private EntityManager _entityManager = null!;

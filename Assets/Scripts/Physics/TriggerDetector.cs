@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace HamletTwoSacks.Physics
 {
-    public sealed class TriggerDetector : MonoBehaviour, IActivatable
+    public sealed class TriggerDetector : MonoBehaviour
     {
         private readonly Subject<Collider2D> _onTriggerEnter = new();
         private readonly Subject<Collider2D> _onTriggerExit = new();

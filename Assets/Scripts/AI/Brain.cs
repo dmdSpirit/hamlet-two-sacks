@@ -12,7 +12,7 @@ using Zenject;
 
 namespace HamletTwoSacks.AI
 {
-    public sealed class Brain : MonoBehaviour, IActivatable
+    public sealed class Brain : MonoBehaviour
     {
         private TimeController _timeController = null!;
 
