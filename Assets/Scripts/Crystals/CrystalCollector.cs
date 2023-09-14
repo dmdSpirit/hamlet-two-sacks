@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using dmdspirit.Core.CommonInterfaces;
+using HamletTwoSacks.Characters;
 using HamletTwoSacks.Commands;
 using HamletTwoSacks.Physics;
 using UniRx;
@@ -14,7 +15,7 @@ namespace HamletTwoSacks.Crystals
     public sealed class CrystalCollector : MonoBehaviour, IActivatable
     {
         private CommandsFactory _commandsFactory = null!;
-        private ICrystalFactory _crystalFactory = null!;
+        private EntityManager _entityManager = null!;
 
         private readonly Subject<Unit> _onCrystalCollected = new();
         private readonly List<ICommand> _activeCommands = new();
@@ -42,9 +43,9 @@ namespace HamletTwoSacks.Crystals
         public int ActiveCommands => _activeCommands.Count;
 
         [Inject]
-        private void Construct(CommandsFactory commandsFactory, ICrystalFactory crystalFactory)
+        private void Construct(CommandsFactory commandsFactory, EntityManager entityManager)
         {
-            _crystalFactory = crystalFactory;
+            _entityManager = entityManager;
             _commandsFactory = commandsFactory;
             _canCollect = CanCollect;
         }
@@ -97,7 +98,7 @@ namespace HamletTwoSacks.Crystals
         private void OnFlyEnded(ICommand command)
         {
             var crystal = ((FlyObjectToCommand)command).Target.GetComponent<Crystal>();
-            _crystalFactory.DestroyCrystal(crystal);
+            _entityManager.DestroyObject(crystal);
             _activeCommands.Remove(command);
             _onCrystalCollected.OnNext(Unit.Default);
         }

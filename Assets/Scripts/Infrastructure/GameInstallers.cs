@@ -4,6 +4,7 @@ using dmdspirit.Core;
 using HamletTwoSacks.Characters;
 using HamletTwoSacks.Characters.PlayerControl;
 using HamletTwoSacks.Commands;
+using HamletTwoSacks.Crystals;
 using HamletTwoSacks.Infrastructure.LifeCycle;
 using HamletTwoSacks.Infrastructure.LifeCycle.States;
 using HamletTwoSacks.Infrastructure.StaticData;
@@ -27,6 +28,8 @@ namespace HamletTwoSacks.Infrastructure
             BindCamera();
             BindCommands();
             BindInput();
+            BindManagers();
+            BindFactory();
 
             Container.Bind<StaticDataProvider>().AsSingle().NonLazy();
         }
@@ -34,7 +37,12 @@ namespace HamletTwoSacks.Infrastructure
         private void BindCharacters()
         {
             Container.Bind<Player>().AsSingle().NonLazy();
-            Container.Bind<CharactersManager>().AsSingle();
+            Container.Bind<PlayerManager>().AsSingle();
+        }
+
+        private void BindManagers()
+        {
+            Container.Bind<EntityManager>().AsSingle();
         }
 
         private void BindLifeCycle()
@@ -53,9 +61,10 @@ namespace HamletTwoSacks.Infrastructure
         }
 
         private void BindCamera()
-        {
-            Container.Bind<CameraController>().FromInstance(_cameraController);
-        }
+            => Container.Bind<CameraController>().FromInstance(_cameraController);
+
+        private void BindFactory()
+            => Container.BindInterfacesTo<GameFactory>().AsSingle();
 
         private void BindCommands()
         {
@@ -65,8 +74,6 @@ namespace HamletTwoSacks.Infrastructure
         }
 
         private void BindInput()
-        {
-            Container.BindInterfacesTo<ActionButtonsReader>().AsSingle().NonLazy();
-        }
+            => Container.BindInterfacesTo<ActionButtonsReader>().AsSingle().NonLazy();
     }
 }

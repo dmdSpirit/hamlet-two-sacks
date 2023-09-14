@@ -83,6 +83,6 @@ namespace HamletTwoSacks.Buildings.Mine
         }
 
         private void OnCrystalSpawn(ProgressTimer _)
-            => _crystalSpawner.SpawnCrystal();
+            => _crystalSpawner.Spawn();
     }
 }

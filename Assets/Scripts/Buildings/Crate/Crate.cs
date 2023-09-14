@@ -1,6 +1,7 @@
 ﻿#nullable enable
 
 using System;
+using HamletTwoSacks.AI;
 using HamletTwoSacks.Buildings.Crate.Config;
 using HamletTwoSacks.Crystals;
 using UniRx;
@@ -10,9 +11,10 @@ namespace HamletTwoSacks.Buildings.Crate
 {
     public sealed class Crate : Building<CrateBuildingConfig, CrateTier>
     {
-        private readonly ReactiveProperty<int> _crystals = new();
-
         private IDisposable _collectorSub = null!;
+
+        [SerializeField]
+        private CrystalContainer _crystalContainer = null!;
 
         [SerializeField]
         private CrystalCollector _crystalCollector = null!;
@@ -23,15 +25,12 @@ namespace HamletTwoSacks.Buildings.Crate
         [SerializeField]
         private CrystalSpawner _crystalSpawner = null!;
 
-        public IReadOnlyReactiveProperty<int> Crystals => _crystals;
-        public int Capacity => CurrentTier.Capacity;
-
         protected override void OnStart()
         {
             _collectorSub = _crystalCollector.OnCrystalCollected.Subscribe(OnCrystalCollected);
             _crystalCollector.SetCollectionCheck(CanCollectCrystal);
             _buildingTimedInteraction.OnActionFire.Subscribe(DropCrystal);
-            _crystals.Subscribe(_ => UpdateInteraction());
+            _crystalContainer.SetCapacity(CurrentTier.Capacity);
         }
 
         protected override void OnUpgraded()
@@ -41,17 +40,15 @@ namespace HamletTwoSacks.Buildings.Crate
             => _collectorSub.Dispose();
 
         private void OnCrystalCollected(Unit _)
-            => _crystals.Value++;
+            => _crystalContainer.AddCrystal();
 
         private bool CanCollectCrystal()
-            => _crystals.Value + _crystalCollector.ActiveCommands < CurrentTier.Capacity;
+            => _crystalContainer.Crystals.Value + _crystalCollector.ActiveCommands < CurrentTier.Capacity;
 
         private void DropCrystal(Unit _)
         {
-            if (_crystals.Value <= 0)
-                return;
-            _crystalSpawner.SpawnCrystal();
-            _crystals.Value--;
+            if (_crystalContainer.TryGetCrystal())
+                _crystalSpawner.Spawn();
         }
 
         private void UpdateInteraction()
@@ -62,7 +59,7 @@ namespace HamletTwoSacks.Buildings.Crate
 
         private void UpdateCollectorState()
         {
-            if (_crystals.Value >= CurrentTier.Capacity)
+            if (_crystalContainer.IsFull)
             {
                 _crystalCollector.Deactivate();
                 return;
@@ -78,7 +75,7 @@ namespace HamletTwoSacks.Buildings.Crate
 
         private void UpdateInteractionState()
         {
-            if (_crystals.Value <= 0)
+            if (_crystalContainer.Crystals.Value <= 0)
             {
                 _buildingTimedInteraction.Deactivate();
                 return;
