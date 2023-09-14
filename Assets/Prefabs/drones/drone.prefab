@@ -78,7 +78,7 @@ Transform:
   m_GameObject: {fileID: 5284146513274760576}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.85, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _crystalContainer: {fileID: 7199820056992192868}
-  _crystalCapacity: 2
+  _crystalCapacity: 1
   _brain: {fileID: 6516639597115623582}
   _references: {fileID: 3713040416097839584}
 --- !u!50 &312659343748962147
@@ -177,7 +177,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -2.869299}
+  m_Offset: {x: 0, y: -2.0194678}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -188,7 +188,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.57542396}
+  m_Size: {x: 1.6555841, y: 2.2750866}
   m_EdgeRadius: 0
 --- !u!114 &2438292674837346216
 MonoBehaviour:
@@ -709,7 +709,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8151974143771586279, guid: d19425a7bda6f9d4a8dcdc3e30a5527e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 51.99
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8151974143771586279, guid: d19425a7bda6f9d4a8dcdc3e30a5527e, type: 3}
       propertyPath: m_AnchoredPosition.y
