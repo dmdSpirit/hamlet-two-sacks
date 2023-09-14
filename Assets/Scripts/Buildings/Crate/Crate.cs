@@ -31,6 +31,8 @@ namespace HamletTwoSacks.Buildings.Crate
             _crystalCollector.SetCollectionCheck(CanCollectCrystal);
             _buildingTimedInteraction.OnActionFire.Subscribe(DropCrystal);
             _crystalContainer.SetCapacity(CurrentTier.Capacity);
+            _crystalContainer.Crystals.Subscribe(_ => UpdateInteraction());
+            UpdateInteraction();
         }
 
         protected override void OnUpgraded()

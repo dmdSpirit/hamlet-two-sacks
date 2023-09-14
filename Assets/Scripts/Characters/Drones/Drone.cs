@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace HamletTwoSacks.Characters.Drones
 {
-    public sealed class Drone : MonoBehaviour, IActivatable
+    public sealed class Drone : MonoBehaviour
     {
         [SerializeField]
         private CrystalContainer _crystalContainer = null!;

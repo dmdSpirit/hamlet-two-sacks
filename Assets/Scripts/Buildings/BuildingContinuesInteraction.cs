@@ -14,7 +14,7 @@ using Zenject;
 
 namespace HamletTwoSacks.Buildings
 {
-    public sealed class BuildingContinuesInteraction : MonoBehaviour, IActivatable
+    public sealed class BuildingContinuesInteraction : MonoBehaviour
     {
         private const InputActionType ACTION_TYPE = InputActionType.Interact;
 
