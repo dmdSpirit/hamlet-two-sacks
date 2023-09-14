@@ -23,6 +23,9 @@ namespace HamletTwoSacks.Time
         public float DeltaTime => UnityEngine.Time.deltaTime;
         public float FixedDeltaTime => UnityEngine.Time.fixedDeltaTime;
 
+        public double TimePassed { get; private set; }
+        public double FixedTimePassed { get; private set; }
+
         public void StartTime()
             => _isTimeRunning.Value = true;
 
@@ -41,6 +44,7 @@ namespace HamletTwoSacks.Time
             if (!_isTimeRunning.Value)
                 return;
             _fixedUpdate.OnNext(FixedDeltaTime);
+            FixedTimePassed += FixedDeltaTime;
         }
 
         public void LateTick()
@@ -48,6 +52,7 @@ namespace HamletTwoSacks.Time
             if (!_isTimeRunning.Value)
                 return;
             _lateUpdate.OnNext(DeltaTime);
+            TimePassed += DeltaTime;
         }
     }
 }

@@ -15,6 +15,9 @@ namespace HamletTwoSacks.Infrastructure
         private EntityManager _manager = null!;
 
         [SerializeField]
+        private bool _spawnAtStart;
+
+        [SerializeField]
         private bool _useSpread = true;
 
         [SerializeField, ShowIf(nameof(_useSpread), true)]
@@ -29,6 +32,12 @@ namespace HamletTwoSacks.Infrastructure
             _manager = manager;
             _manager.RegisterSpawner(this);
             _levelTransforms = levelTransforms;
+        }
+
+        private void Start()
+        {
+            if (_spawnAtStart)
+                Spawn();
         }
 
         private void OnDestroy()

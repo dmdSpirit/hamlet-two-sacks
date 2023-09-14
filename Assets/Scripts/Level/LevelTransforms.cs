@@ -2,12 +2,15 @@
 
 using System;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 namespace HamletTwoSacks.Level
 {
     public sealed class LevelTransforms : MonoBehaviour
     {
+        // TODO (Stas): Decide what to do with this
+        // - Stas 14 September 2023
         private Dictionary<Type, Transform> _transforms = new();
 
         [SerializeField]

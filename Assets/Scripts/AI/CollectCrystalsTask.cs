@@ -4,10 +4,6 @@ using UnityEngine;
 
 namespace HamletTwoSacks.AI
 {
-    public sealed class DroneSpawner: MonoBehaviour { }
-
-    public sealed class Drone : MonoBehaviour { }
-
     public sealed class CollectCrystalsTask : Task
     {
         [SerializeField]
