@@ -1,5 +1,7 @@
 ﻿#nullable enable
 
+using System;
+using Cysharp.Threading.Tasks;
 using dmdspirit.Core;
 using dmdspirit.Core.CommonInterfaces;
 using dmdspirit.Core.UI;
@@ -21,9 +23,9 @@ namespace HamletTwoSacks.Infrastructure.LifeCycle.States
         private readonly IActionButtonsReader _actionButtonsReader;
         private readonly PlayerManager _playerManager;
 
-        public GameState(LevelManager levelManager,
-            LoadingScreenShower loadingScreenShower, TimeController timeController, UIManager uiManager,
-            IActionButtonsReader actionButtonsReader, PlayerManager playerManager)
+        public GameState(LevelManager levelManager, LoadingScreenShower loadingScreenShower,
+            TimeController timeController, UIManager uiManager, IActionButtonsReader actionButtonsReader,
+            PlayerManager playerManager)
         {
             _playerManager = playerManager;
             _actionButtonsReader = actionButtonsReader;
@@ -38,10 +40,13 @@ namespace HamletTwoSacks.Infrastructure.LifeCycle.States
         {
             _loadingScreenShower.ShowLoadingScreen();
             var sceneIndex = (int)arg!;
-            await _levelManager.LoadLevel(sceneIndex);
+
+            // HACK (Stas): showing loading screen for at least 2 seconds, to deal with screen flickering.
+            // - Stas 14 September 2023
+            await UniTask.WhenAll(LoadLevel(sceneIndex), UniTask.Delay(TimeSpan.FromSeconds(1)));
 
             _timeController.StartTime();
-            _playerManager.SpawnPlayer();
+
             _loadingScreenShower.HideLoadingScreen();
             _uiManager.GetScreen<UIHud>().Show();
             _actionButtonsReader.Activate();
@@ -51,10 +56,17 @@ namespace HamletTwoSacks.Infrastructure.LifeCycle.States
         {
             _loadingScreenShower.ShowLoadingScreen();
             _uiManager.GetScreen<UIHud>().Hide();
+            _playerManager.DestroyPlayer();
             await _levelManager.UnloadCurrentLevel();
 
             _actionButtonsReader.Activate();
             _timeController.StopTime();
+        }
+
+        private async UniTask LoadLevel(int sceneIndex)
+        {
+            await _levelManager.LoadLevel(sceneIndex);
+            _playerManager.SpawnPlayer();
         }
     }
 }

@@ -12,6 +12,9 @@ namespace HamletTwoSacks.Characters.PlayerControl
 
         public IReadOnlyReactiveProperty<int> Crystals => _crystals;
 
+        public void Reset()
+            => _crystals.Value = 0;
+
         public void AddCrystal()
             => _crystals.Value++;
 

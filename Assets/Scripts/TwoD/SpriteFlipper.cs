@@ -12,6 +12,9 @@ namespace HamletTwoSacks.TwoD
         [SerializeField]
         private SpriteRenderer _spriteRenderer = null!;
 
+        
+        // TODO (Stas): I think it would be much better to deal with rigidbody2D directly.
+        // - Stas 14 September 2023
         public void FlipSprite(float speed)
         {
             if (speed == 0)

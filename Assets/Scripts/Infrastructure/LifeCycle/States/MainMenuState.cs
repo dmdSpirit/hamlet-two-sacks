@@ -30,6 +30,9 @@ namespace HamletTwoSacks.Infrastructure.LifeCycle.States
         }
 
         public void Exit()
-            => _mainMenu.Hide();
+        {
+            _loadingScreenShower.ShowLoadingScreen();
+            _mainMenu.Hide();
+        }
     }
 }

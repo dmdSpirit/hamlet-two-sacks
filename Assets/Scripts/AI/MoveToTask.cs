@@ -52,6 +52,11 @@ namespace HamletTwoSacks.AI
 
         protected override void OnComplete()
         {
+            // FIXME (Stas): No point in setting velocity every frame.
+            // - Stas 14 September 2023
+            
+            // FIXME (Stas): Not sure if this would correctly work with game pause through TimeController.
+            // - Stas 14 September 2023
             _rigidbody2D.velocity = new Vector2(0, 0);
         }
     }
