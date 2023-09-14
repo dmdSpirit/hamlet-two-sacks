@@ -14,11 +14,14 @@ namespace HamletTwoSacks.AI
     {
         private readonly CompositeDisposable _subs = new();
 
+        [SerializeField, ReadOnly]
+        private Task? _activeTask;
+
         [SerializeField]
         private List<Task> _tasks = null!;
 
-        [SerializeField, ReadOnly]
-        private Task? _activeTask;
+        [SerializeField, Button(nameof(FindTasks))]
+        private bool _findTasks;
 
         [Inject]
         private void Construct(TimeController timeController)
@@ -60,6 +63,12 @@ namespace HamletTwoSacks.AI
         {
             if (_activeTask != null)
                 _activeTask.OnFixedUpdate(time);
+        }
+
+        private void FindTasks()
+        {
+            _tasks.Clear();
+            _tasks.AddRange(GetComponents<Task>());
         }
     }
 }
