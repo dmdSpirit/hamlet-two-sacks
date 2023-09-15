@@ -22,23 +22,41 @@ MonoBehaviour:
     ImageSize: {x: 1, y: 1}
     ImageOffset: {x: 0, y: 0.5}
     Work: 0
+    Drones: 0
   - Cost: 2
     IsActive: 1
     Image: {fileID: 21300000, guid: 98a9648ea171e30488728d181ff91098, type: 3}
     ImageSize: {x: 6, y: 6}
     ImageOffset: {x: 0, y: 2}
     Work: 0
+    Drones: 0
   - Cost: 3
     IsActive: 1
     Image: {fileID: 21300000, guid: 98a9648ea171e30488728d181ff91098, type: 3}
     ImageSize: {x: 6, y: 6}
     ImageOffset: {x: 0, y: 2}
     Work: 1
+    Drones: 1
   - Cost: 4
     IsActive: 1
     Image: {fileID: 21300000, guid: 98a9648ea171e30488728d181ff91098, type: 3}
     ImageSize: {x: 6, y: 6}
     ImageOffset: {x: 0, y: 2}
     Work: 2
-  _crystalProductionTime: 5
+    Drones: 2
+  - Cost: 5
+    IsActive: 1
+    Image: {fileID: 21300000, guid: 98a9648ea171e30488728d181ff91098, type: 3}
+    ImageSize: {x: 6, y: 6}
+    ImageOffset: {x: 0, y: 2}
+    Work: 3
+    Drones: 3
+  - Cost: 6
+    IsActive: 1
+    Image: {fileID: 21300000, guid: 98a9648ea171e30488728d181ff91098, type: 3}
+    ImageSize: {x: 6, y: 6}
+    ImageOffset: {x: 0, y: 2}
+    Work: 4
+    Drones: 4
+  _crystalProductionTime: 8
   _playerWork: 1

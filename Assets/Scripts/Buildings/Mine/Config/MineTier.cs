@@ -11,5 +11,8 @@ namespace HamletTwoSacks.Buildings.Mine.Config
     {
         [ShowIf(nameof(IsActive), true)]
         public int Work;
+
+        [ShowIf(nameof(IsActive), true)]
+        public int Drones;
     }
 }
