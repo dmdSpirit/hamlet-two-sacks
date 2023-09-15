@@ -26,6 +26,9 @@ namespace HamletTwoSacks.Buildings.Mine
         [SerializeField]
         private BuildingContinuesInteraction _buildingContinuesInteraction = null!;
 
+        [SerializeField]
+        private MiningDrones _miningDrones = null!;
+
         [Inject]
         private void Construct(TimeController timeController)
             => _timer = new ProgressTimer(timeController);
@@ -39,12 +42,14 @@ namespace HamletTwoSacks.Buildings.Mine
             UpdateTimer();
             _interactionSub = _buildingContinuesInteraction.IsButtonPressed.Subscribe(UpdatePlayerInteraction);
             UpdateInteractionState();
+            UpdateDrones();
         }
 
         protected override void OnUpgraded()
         {
             UpdateTimer();
             UpdateInteractionState();
+            UpdateDrones();
         }
 
         protected override void OnDestroyed()
@@ -84,5 +89,13 @@ namespace HamletTwoSacks.Buildings.Mine
 
         private void OnCrystalSpawn(ProgressTimer _)
             => _crystalSpawner.Spawn();
+
+        private void UpdateDrones()
+        {
+            if (CurrentTier.IsActive)
+                _miningDrones.ShowDrones(CurrentTier.Drones);
+            else
+                _miningDrones.HideAll();
+        }
     }
 }
