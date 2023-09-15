@@ -9,8 +9,8 @@ namespace HamletTwoSacks.AI
     public sealed class FlyHorizontallyToTargetTask : Task
     {
         private Rigidbody2D _rigidbody2D = null!;
-        private SpriteFlipper _spriteFlipper = null!;
-        
+        private VelocityRotator _velocityRotator = null!;
+
         [SerializeField]
         private float _speed;
 
@@ -22,7 +22,7 @@ namespace HamletTwoSacks.AI
 
         public override void Initialize(SystemReferences references)
         {
-            _spriteFlipper = references.GetSystemWithCheck<SpriteFlipper>();
+            _velocityRotator = references.GetSystemWithCheck<VelocityRotator>();
             _rigidbody2D = references.GetSystemWithCheck<Rigidbody2D>();
         }
 
@@ -40,8 +40,9 @@ namespace HamletTwoSacks.AI
             }
 
             float direction = Mathf.Sign(destination - currentPosition);
-            _spriteFlipper.FlipSprite(direction);
-            _rigidbody2D.velocity = new Vector2(direction * _speed * time, 0);
+            var velocity = new Vector2(direction * _speed * time, 0);
+            _rigidbody2D.velocity = velocity;
+            _velocityRotator.UpdateRotation(velocity.x);
         }
 
         public override void OnUpdate(float time) { }
@@ -54,10 +55,11 @@ namespace HamletTwoSacks.AI
         {
             // FIXME (Stas): No point in setting velocity every frame.
             // - Stas 14 September 2023
-            
+
             // FIXME (Stas): Not sure if this would correctly work with game pause through TimeController.
             // - Stas 14 September 2023
             _rigidbody2D.velocity = new Vector2(0, 0);
+            _velocityRotator.UpdateRotation(0);
         }
     }
 }
