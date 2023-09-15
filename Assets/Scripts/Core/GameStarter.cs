@@ -11,7 +11,11 @@ namespace dmdspirit.Core
 
         [Inject]
         private void Construct(IGameLifeCycle gameLifeCycle)
-            => _gameLifeCycle = gameLifeCycle;
+        {
+            Application.targetFrameRate = -1;
+            QualitySettings.vSyncCount = 0;
+            _gameLifeCycle = gameLifeCycle;
+        }
 
         private void Start()
             => _gameLifeCycle.Start();

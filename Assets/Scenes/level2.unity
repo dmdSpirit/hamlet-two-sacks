@@ -929,8 +929,8 @@ SpriteShapeRenderer:
   - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
   - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
   m_LocalAABB:
-    m_Center: {x: -40, y: -4.9716673, z: 0}
-    m_Extent: {x: 10.000007, y: 5.0283337, z: 0}
+    m_Center: {x: -40, y: -4.969506, z: 0}
+    m_Extent: {x: 10.000007, y: 5.030495, z: 0}
   m_SpriteSortPoint: 0
 --- !u!114 &1437661805 stripped
 MonoBehaviour:
@@ -1132,8 +1132,8 @@ SpriteShapeRenderer:
   - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
   - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
   m_LocalAABB:
-    m_Center: {x: -39.915752, y: 4.817146, z: 0}
-    m_Extent: {x: 10.440921, y: 5.3171797, z: 0}
+    m_Center: {x: -39.91671, y: 4.819303, z: 0}
+    m_Extent: {x: 10.444288, y: 5.3193374, z: 0}
   m_SpriteSortPoint: 0
 --- !u!61 &1460620540
 BoxCollider2D:
@@ -1465,8 +1465,8 @@ SpriteShapeRenderer:
   - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
   - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
   m_LocalAABB:
-    m_Center: {x: 0, y: -4.7408338, z: 0}
-    m_Extent: {x: 30.000002, y: 5.259167, z: 0}
+    m_Center: {x: 0, y: -4.7400002, z: 0}
+    m_Extent: {x: 30.000002, y: 5.2600007, z: 0}
   m_SpriteSortPoint: 0
 --- !u!61 &2050878763
 BoxCollider2D:
