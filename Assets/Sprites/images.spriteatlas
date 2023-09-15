@@ -1,0 +1,101 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: images
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 512
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 1
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_IgnorePlatformSupport: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    - serializedVersion: 3
+      m_BuildTarget: WebGL
+      m_MaxTextureSize: 512
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 29
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 1
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_IgnorePlatformSupport: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 3dd68e8757653384faca0058b5844f20, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+    packedSpriteRenderDataKeys:
+    - 3832e6c1f5822cc4f9d22f8c0230732a: 21300000
+    - 91020b74934d8094987d4098acaa9a56: 21300000
+    - 437e3ff7ba0113d4bb5bd725fc44f9f8: 21300000
+    - c50ce3997ddbb0e4d88ed86938eac482: 21300000
+    - 4664ea3c0c079bb45869b1c93948a935: 21300000
+    - 44160b7d9b855c841b0a8cb1fe425395: 21300000
+    - 98a9648ea171e30488728d181ff91098: 21300000
+    - 0c8dc34f9f4ba6b4cb26c512814f31b8: 21300000
+    - 065c329fb04935946b0bc3a069b1f12f: 21300000
+    - 3d8774cfe84c07a4881212b9dee1e442: 21300000
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 3832e6c1f5822cc4f9d22f8c0230732a, type: 3}
+  - {fileID: 21300000, guid: 91020b74934d8094987d4098acaa9a56, type: 3}
+  - {fileID: 21300000, guid: 437e3ff7ba0113d4bb5bd725fc44f9f8, type: 3}
+  - {fileID: 21300000, guid: c50ce3997ddbb0e4d88ed86938eac482, type: 3}
+  - {fileID: 21300000, guid: 4664ea3c0c079bb45869b1c93948a935, type: 3}
+  - {fileID: 21300000, guid: 44160b7d9b855c841b0a8cb1fe425395, type: 3}
+  - {fileID: 21300000, guid: 98a9648ea171e30488728d181ff91098, type: 3}
+  - {fileID: 21300000, guid: 0c8dc34f9f4ba6b4cb26c512814f31b8, type: 3}
+  - {fileID: 21300000, guid: 065c329fb04935946b0bc3a069b1f12f, type: 3}
+  - {fileID: 21300000, guid: 3d8774cfe84c07a4881212b9dee1e442, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - blob
+  - tent
+  - character
+  - drone
+  - shade
+  - sign
+  - mine_entrance
+  - energy_crystal
+  - crate
+  - drone station
+  m_RenderDataMap: {}
+  m_Tag: images
+  m_IsVariant: 0

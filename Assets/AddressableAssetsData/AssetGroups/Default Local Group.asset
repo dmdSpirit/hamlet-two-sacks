@@ -16,7 +16,22 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 7baf02a3f84d57f4c84b0880a8650a8b
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 45a61cb4ac7510f44848a3eb14d50a93
+    m_Address: Assets/Sprites/backgrounds.spriteatlas
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b1d22b36d0097bc48b53cc466170c19c
+    m_Address: Assets/Sprites/textures.spriteatlas
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a7130ee6ba7b6c64daaf2f3ddc0b4cd0
+    m_Address: Assets/Sprites/images.spriteatlas
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 839e8366ac2007d4cb951043c781e583, type: 2}
   m_SchemaSet:
