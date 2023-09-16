@@ -38,6 +38,8 @@ namespace HamletTwoSacks.Infrastructure.LifeCycle.States
 
         public async void Enter(StateMachine stateMachine, object? arg)
         {
+            // TODO (Stas): Refactor level loading into separate state.
+            // - Stas 16 September 2023
             _loadingScreenShower.ShowLoadingScreen();
             var sceneIndex = (int)arg!;
 

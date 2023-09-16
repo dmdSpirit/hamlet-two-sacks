@@ -11,9 +11,9 @@ namespace HamletTwoSacks.Infrastructure.LifeCycle.States
     {
         public void Enter(StateMachine stateMachine, object? arg)
         {
-            // HACK (Stas): Hardcoded scene index.
-            // - Stas 28 August 2023
-            stateMachine.TriggerTransition(stateMachine.GetState<GameState>(), 1);
+            // TODO (Stas): Initialize new game or load data.
+            // - Stas 16 September 2023
+            stateMachine.TriggerTransition();
         }
 
         public void Exit() { }

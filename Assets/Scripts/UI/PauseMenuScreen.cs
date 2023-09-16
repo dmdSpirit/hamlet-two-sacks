@@ -3,7 +3,7 @@
 using dmdspirit.Core;
 using dmdspirit.Core.UI;
 using dmdspirit.Core.UI.Buttons;
-using HamletTwoSacks.Infrastructure.LifeCycle;
+using HamletTwoSacks.GameMap;
 using UniRx;
 using UnityEngine;
 using Zenject;
@@ -21,13 +21,13 @@ namespace HamletTwoSacks.UI
         private ButtonWithStates _quit = null!;
 
         [SerializeField]
+        private ButtonWithStates _showMap = null!;
+
+        [SerializeField]
         private ButtonWithStates _closeButton = null!;
 
         [SerializeField]
         private ClickInvoker _closeInvoker = null!;
-
-        [SerializeField]
-        private LoadOtherLevelButton _loadOtherLevelButton = null!;
 
         [Inject]
         private void Construct(IGameLifeCycle gameLifeCycle)
@@ -45,8 +45,7 @@ namespace HamletTwoSacks.UI
             _quit.BindScreen(this);
             _closeButton.OnClick.Subscribe(Close);
             _closeButton.BindScreen(this);
-            _loadOtherLevelButton.OnClick.Subscribe(LoadOtherLevel);
-            _loadOtherLevelButton.BindScreen(this);
+            _showMap.OnClick.Subscribe(ShowMap);
 
             _closeInvoker.OnClick.Subscribe(Close);
         }
@@ -64,9 +63,9 @@ namespace HamletTwoSacks.UI
         private void Close(Unit _)
             => Hide();
 
-        private void LoadOtherLevel(Unit _)
+        private void ShowMap(Unit _)
         {
-            ((ILevelControl)_gameLifeCycle).LoadLevel(_loadOtherLevelButton.OtherLevelIndex);
+            UIManager.GetScreen<MapScreen>().Show();
             Hide();
         }
     }

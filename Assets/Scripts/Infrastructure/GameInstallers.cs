@@ -1,10 +1,8 @@
 #nullable enable
 
-using dmdspirit.Core;
 using HamletTwoSacks.Characters;
 using HamletTwoSacks.Characters.PlayerControl;
 using HamletTwoSacks.Commands;
-using HamletTwoSacks.Crystals;
 using HamletTwoSacks.Infrastructure.LifeCycle;
 using HamletTwoSacks.Infrastructure.LifeCycle.States;
 using HamletTwoSacks.Infrastructure.StaticData;
@@ -47,7 +45,7 @@ namespace HamletTwoSacks.Infrastructure
 
         private void BindLifeCycle()
         {
-            Container.Bind<IGameLifeCycle>().To<GameLifeCycle>().AsSingle();
+            Container.BindInterfacesTo<GameLifeCycle>().AsSingle();
             Container.BindInterfacesAndSelfTo<LoadingScreenShower>().AsSingle().NonLazy();
             Container.Bind<SceneLoader>().AsSingle();
             Container.Bind<LevelManager>().AsSingle();
@@ -58,6 +56,7 @@ namespace HamletTwoSacks.Infrastructure
             Container.Bind<NewGameState>().AsSingle();
             Container.Bind<ExitGameState>().AsSingle();
             Container.Bind<GameState>().AsSingle();
+            Container.Bind<SelectLevelState>().AsSingle();
         }
 
         private void BindCamera()

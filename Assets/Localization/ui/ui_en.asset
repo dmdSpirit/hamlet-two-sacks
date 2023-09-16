@@ -42,6 +42,26 @@ MonoBehaviour:
     m_Localized: Menu
     m_Metadata:
       m_Items: []
+  - m_Id: 7798012622495744
+    m_Localized: Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7798327384039424
+    m_Localized: Level 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7798367787769856
+    m_Localized: Level 2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7798384183304192
+    m_Localized: Level 3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7800384354607104
+    m_Localized: Show Map
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
