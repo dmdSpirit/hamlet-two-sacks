@@ -287,7 +287,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 16b110068a7fc854996c82dfadb439d4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6c681f159a2bc9a41b46d63ba5fb2c0d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -736,6 +736,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 75.72
       objectReference: {fileID: 0}
+    - target: {fileID: 5986403728404018224, guid: e7adf5d8d15d5e547a39dd28cbb7e79e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6295833585884335992, guid: e7adf5d8d15d5e547a39dd28cbb7e79e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -755,6 +759,10 @@ PrefabInstance:
     - target: {fileID: 6295833585884335992, guid: e7adf5d8d15d5e547a39dd28cbb7e79e, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 21.795
+      objectReference: {fileID: 0}
+    - target: {fileID: 6295833585884335992, guid: e7adf5d8d15d5e547a39dd28cbb7e79e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
