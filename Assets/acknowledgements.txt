@@ -13,3 +13,8 @@
 4. UniTask
     - Project URL: https://github.com/Cysharp/UniTask
     - Description: Efficient allocation free async/await integration for Unity
+    
+5. xNode
+    - Project URL: https://github.com/siccity/xNode
+    - Description: Lets you view and edit node graphs inside Unity
+    
