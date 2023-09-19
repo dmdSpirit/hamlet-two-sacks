@@ -14,11 +14,13 @@ namespace HamletTwoSacks.Time
         private readonly Subject<float> _update = new();
         private readonly Subject<float> _fixedUpdate = new();
         private readonly Subject<float> _lateUpdate = new();
+        private readonly Subject<float> _aiTick = new();
 
         public IReadOnlyReactiveProperty<bool> IsTimeRunning => _isTimeRunning;
         public IObservable<float> Update => _update;
         public IObservable<float> FixedUpdate => _fixedUpdate;
         public IObservable<float> LateUpdate => _lateUpdate;
+        public IObservable<float> AITick => _aiTick;
 
         public float DeltaTime => UnityEngine.Time.deltaTime;
         public float FixedDeltaTime => UnityEngine.Time.fixedDeltaTime;
@@ -36,6 +38,7 @@ namespace HamletTwoSacks.Time
         {
             if (!_isTimeRunning.Value)
                 return;
+            _aiTick.OnNext(DeltaTime);
             _update.OnNext(DeltaTime);
         }
 

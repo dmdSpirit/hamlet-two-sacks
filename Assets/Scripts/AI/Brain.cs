@@ -2,7 +2,6 @@
 
 using System.Collections.Generic;
 using dmdspirit.Core.Attributes;
-using dmdspirit.Core.CommonInterfaces;
 using HamletTwoSacks.Infrastructure;
 using HamletTwoSacks.Time;
 using UniRx;
