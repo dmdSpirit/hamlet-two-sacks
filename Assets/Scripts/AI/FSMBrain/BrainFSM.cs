@@ -17,7 +17,7 @@ namespace HamletTwoSacks.AI.FSMBrain
         private string _fsmName = null!;
 
         [SerializeField]
-        private bool _log;
+        private bool _log = false;
 
         [SerializeField]
         private BaseBrainState _initialBrainState = null!;
@@ -40,10 +40,13 @@ namespace HamletTwoSacks.AI.FSMBrain
             SetState(_initialBrainState!);
         }
 
+        private void OnDestroy()
+            => _timeSub.Dispose();
+
         public void SetState(BaseBrainState state, BrainTransition? transition = null)
         {
             BaseBrainState? previousState = CurrentBrainState;
-            CurrentBrainState = _initialBrainState;
+            CurrentBrainState = state;
             if (!_log)
                 return;
             string previousStateName = previousState == null ? "[Null]" : $"[{previousState.name}]";
