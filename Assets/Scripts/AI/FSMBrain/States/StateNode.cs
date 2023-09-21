@@ -8,8 +8,8 @@ using UnityEngine;
 
 namespace HamletTwoSacks.AI.FSMBrain.States
 {
-    [CreateNodeMenu("State")]
-    public sealed class StateNode : FSMBaseNode
+    [CreateNodeMenu("State"), NodeTint("#0e1c0f")]
+    public sealed class StateNode : BrainBaseNode
     {
         private readonly static Dictionary<TransitionNode, StateNode> _executedTransitions = new();
 
@@ -25,7 +25,7 @@ namespace HamletTwoSacks.AI.FSMBrain.States
                 action.Tick(brain, time);
 
             _executedTransitions.Clear();
-            IEnumerable<TransitionNode> transitions = GetAllOnPort<TransitionNode>(nameof(TransitionNode));
+            IEnumerable<TransitionNode> transitions = GetAllOnPort<TransitionNode>(nameof(_transitions));
             foreach (TransitionNode transition in transitions)
             {
                 StateNode? nextState = transition.GetNextState(brain);
@@ -34,7 +34,9 @@ namespace HamletTwoSacks.AI.FSMBrain.States
                 _executedTransitions.Add(transition, nextState);
             }
 
-            if (_executedTransitions.Count > 0)
+            if (_executedTransitions.Count == 0)
+                return;
+            if (_executedTransitions.Count > 1)
                 brain.LogMultipleTransitionsExecuted(_executedTransitions);
             KeyValuePair<TransitionNode, StateNode> executedTransition = _executedTransitions.First();
             brain.SetState(executedTransition.Value, executedTransition.Key);

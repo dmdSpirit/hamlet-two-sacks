@@ -1,13 +1,22 @@
 ﻿#nullable enable
 
+using UnityEngine;
+
 namespace HamletTwoSacks.AI.FSMBrain.States
 {
-    [CreateNodeMenu("Initial Node"), NodeTint("#00ff52")]
-    public class InitialStateNode : FSMBaseNode
+    [CreateNodeMenu("Initial Node"), NodeTint("#163216"), DisallowMultipleNodes]
+    public class InitialStateNode : BrainBaseNode
     {
-        [Output]
-        public StateNode? InitialNode;
+        private StateNode? _node;
 
-        public StateNode? NextNode => InitialNode != null ? GetFirst<StateNode>(nameof(InitialNode)) : null;
+        [Output(connectionType: ConnectionType.Override), SerializeField]
+        private StateNode? _initialNode;
+
+        public StateNode? GetNextNode()
+        {
+            if (_node == null)
+                _node = GetFirst<StateNode>(nameof(_initialNode));
+            return _node;
+        }
     }
 }

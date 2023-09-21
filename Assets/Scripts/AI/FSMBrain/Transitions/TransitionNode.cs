@@ -6,15 +6,16 @@ using UnityEngine;
 
 namespace HamletTwoSacks.AI.FSMBrain.Transitions
 {
-    public sealed class TransitionNode : FSMBaseNode
+    [CreateNodeMenu("Transition"), NodeTint("#420c1a")]
+    public sealed class TransitionNode : BrainBaseNode
     {
         [SerializeField]
         private BrainDecision _decision = null!;
 
-        [Output]
+        [Output(connectionType: ConnectionType.Override), SerializeField]
         private StateNode? _trueState;
 
-        [Output]
+        [Output(connectionType: ConnectionType.Override), SerializeField]
         private StateNode? _falseState;
 
         public StateNode? GetNextState(BrainGraphFSM brain)
