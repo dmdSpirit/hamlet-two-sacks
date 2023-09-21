@@ -2,6 +2,7 @@
 
 using System.Collections.Generic;
 using HamletTwoSacks.AI;
+using HamletTwoSacks.AI.SimpleBrain;
 using HamletTwoSacks.Buildings.DroneStation.Config;
 using HamletTwoSacks.Characters.Drones;
 using HamletTwoSacks.Commands;

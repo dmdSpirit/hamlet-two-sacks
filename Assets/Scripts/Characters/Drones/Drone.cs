@@ -1,6 +1,7 @@
 ﻿#nullable enable
 
 using HamletTwoSacks.AI;
+using HamletTwoSacks.AI.SimpleBrain;
 using HamletTwoSacks.Crystals;
 using HamletTwoSacks.Infrastructure;
 using UnityEngine;

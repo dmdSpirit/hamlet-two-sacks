@@ -9,7 +9,7 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using Zenject;
 
-namespace HamletTwoSacks.AI
+namespace HamletTwoSacks.AI.SimpleBrain
 {
     public sealed class Brain : MonoBehaviour
     {

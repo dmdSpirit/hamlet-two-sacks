@@ -6,6 +6,6 @@ namespace HamletTwoSacks.AI.FSMBrain.Actions
 {
     public abstract class BrainAction : ScriptableObject
     {
-        public abstract void Tick(BrainFSM brain, float time);
+        public abstract void Tick(BrainGraphFSM brain, float time);
     }
 }

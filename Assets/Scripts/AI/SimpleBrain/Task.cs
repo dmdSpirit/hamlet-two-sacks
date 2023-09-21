@@ -5,7 +5,7 @@ using HamletTwoSacks.Infrastructure;
 using UniRx;
 using UnityEngine;
 
-namespace HamletTwoSacks.AI
+namespace HamletTwoSacks.AI.SimpleBrain
 {
     public abstract class Task : MonoBehaviour
     {

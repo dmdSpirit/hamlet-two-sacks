@@ -8,7 +8,7 @@ using UniRx;
 using UnityEngine;
 using Zenject;
 
-namespace HamletTwoSacks.AI
+namespace HamletTwoSacks.AI.SimpleBrain.Tasks
 {
     public sealed class LoadOutCrystalsTask : Task
     {

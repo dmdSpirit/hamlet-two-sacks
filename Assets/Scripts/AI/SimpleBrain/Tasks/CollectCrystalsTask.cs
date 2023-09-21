@@ -5,7 +5,7 @@ using HamletTwoSacks.Crystals;
 using HamletTwoSacks.Infrastructure;
 using UniRx;
 
-namespace HamletTwoSacks.AI
+namespace HamletTwoSacks.AI.SimpleBrain.Tasks
 {
     public sealed class CollectCrystalsTask : Task
     {

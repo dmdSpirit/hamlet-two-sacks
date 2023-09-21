@@ -4,7 +4,7 @@ using HamletTwoSacks.Infrastructure;
 using HamletTwoSacks.TwoD;
 using UnityEngine;
 
-namespace HamletTwoSacks.AI
+namespace HamletTwoSacks.AI.SimpleBrain.Tasks
 {
     public sealed class FlyHorizontallyToTargetTask : Task
     {

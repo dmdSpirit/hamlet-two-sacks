@@ -8,26 +8,27 @@ using UnityEngine;
 
 namespace HamletTwoSacks.AI.FSMBrain.States
 {
-    [CreateAssetMenu(menuName = "BrainFSM/State", fileName = "state", order = 0)]
-    public sealed class BrainState : BaseBrainState
+    [CreateNodeMenu("State")]
+    public sealed class StateNode : FSMBaseNode
     {
-        private readonly static Dictionary<BrainTransition, BaseBrainState> _executedTransitions = new();
+        private readonly static Dictionary<TransitionNode, StateNode> _executedTransitions = new();
 
         [SerializeField]
         private List<BrainAction> _actions = null!;
 
-        [SerializeField]
-        private List<BrainTransition> _transitions = null!;
+        [Output, SerializeField]
+        private List<TransitionNode> _transitions = null!;
 
-        public override void Tick(BrainFSM brain, float time)
+        public void Tick(BrainGraphFSM brain, float time)
         {
             foreach (BrainAction action in _actions)
                 action.Tick(brain, time);
 
             _executedTransitions.Clear();
-            foreach (BrainTransition transition in _transitions)
+            IEnumerable<TransitionNode> transitions = GetAllOnPort<TransitionNode>(nameof(TransitionNode));
+            foreach (TransitionNode transition in transitions)
             {
-                BaseBrainState? nextState = transition.GetNextState(brain);
+                StateNode? nextState = transition.GetNextState(brain);
                 if (nextState == null)
                     continue;
                 _executedTransitions.Add(transition, nextState);
@@ -35,7 +36,7 @@ namespace HamletTwoSacks.AI.FSMBrain.States
 
             if (_executedTransitions.Count > 0)
                 brain.LogMultipleTransitionsExecuted(_executedTransitions);
-            KeyValuePair<BrainTransition, BaseBrainState> executedTransition = _executedTransitions.First();
+            KeyValuePair<TransitionNode, StateNode> executedTransition = _executedTransitions.First();
             brain.SetState(executedTransition.Value, executedTransition.Key);
         }
     }
