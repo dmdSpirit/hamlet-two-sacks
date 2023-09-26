@@ -1,0 +1,3 @@
+[submodule "Assets/Scripts/Aether"]
+	path = Assets/Scripts/Aether
+	url = https://github.com/dmdSpirit/aether.git
