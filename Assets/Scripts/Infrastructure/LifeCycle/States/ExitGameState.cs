@@ -1,8 +1,8 @@
 #nullable enable
 
-using dmdspirit.Core;
-using dmdspirit.Core.AssetManagement;
-using dmdspirit.Core.CommonInterfaces;
+using aether.Aether;
+using aether.Aether.AssetManagement;
+using aether.Aether.CommonInterfaces;
 using JetBrains.Annotations;
 
 namespace HamletTwoSacks.Infrastructure.LifeCycle.States

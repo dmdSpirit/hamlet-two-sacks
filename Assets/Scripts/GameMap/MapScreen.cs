@@ -1,7 +1,7 @@
 ﻿#nullable enable
 
-using dmdspirit.Core.UI;
-using dmdspirit.Core.UI.Buttons;
+using aether.Aether.UI;
+using aether.Aether.UI.Buttons;
 using HamletTwoSacks.Infrastructure.LifeCycle;
 using UniRx;
 using UnityEngine;

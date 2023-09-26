@@ -1,10 +1,10 @@
 ﻿#nullable enable
 
 using System;
+using aether.Aether;
+using aether.Aether.CommonInterfaces;
+using aether.Aether.UI;
 using Cysharp.Threading.Tasks;
-using dmdspirit.Core;
-using dmdspirit.Core.CommonInterfaces;
-using dmdspirit.Core.UI;
 using HamletTwoSacks.Characters.PlayerControl;
 using HamletTwoSacks.Input;
 using HamletTwoSacks.Time;

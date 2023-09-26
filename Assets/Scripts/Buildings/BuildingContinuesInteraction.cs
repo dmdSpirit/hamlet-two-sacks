@@ -1,7 +1,6 @@
 ﻿#nullable enable
 
 using System;
-using dmdspirit.Core.CommonInterfaces;
 using HamletTwoSacks.Characters.PlayerControl;
 using HamletTwoSacks.Crystals;
 using HamletTwoSacks.Crystals.UI;

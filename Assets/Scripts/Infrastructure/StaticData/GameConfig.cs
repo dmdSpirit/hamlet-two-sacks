@@ -1,7 +1,7 @@
 ﻿#nullable enable
 
 using System.Linq;
-using dmdspirit.Core.Attributes;
+using aether.Aether.Attributes;
 using UnityEngine;
 
 namespace HamletTwoSacks.Infrastructure.StaticData

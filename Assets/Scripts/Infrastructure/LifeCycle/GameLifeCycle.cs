@@ -1,7 +1,7 @@
 #nullable enable
 
-using dmdspirit.Core;
-using dmdspirit.Core.CommonInterfaces;
+using aether.Aether;
+using aether.Aether.CommonInterfaces;
 using HamletTwoSacks.Infrastructure.LifeCycle.States;
 using JetBrains.Annotations;
 

@@ -1,8 +1,8 @@
 ﻿#nullable enable
 
-using dmdspirit.Core;
-using dmdspirit.Core.UI;
-using dmdspirit.Core.UI.Buttons;
+using aether.Aether;
+using aether.Aether.UI;
+using aether.Aether.UI.Buttons;
 using HamletTwoSacks.GameMap;
 using UniRx;
 using UnityEngine;

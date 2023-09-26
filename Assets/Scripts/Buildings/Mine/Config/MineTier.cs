@@ -1,7 +1,7 @@
 ﻿#nullable enable
 
 using System;
-using dmdspirit.Core.Attributes;
+using aether.Aether.Attributes;
 using HamletTwoSacks.Buildings.Config;
 
 namespace HamletTwoSacks.Buildings.Mine.Config

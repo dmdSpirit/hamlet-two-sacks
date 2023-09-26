@@ -1,6 +1,6 @@
 ﻿#nullable enable
 
-using dmdspirit.Core.UI;
+using aether.Aether.UI;
 using UnityEngine;
 
 namespace HamletTwoSacks.UI

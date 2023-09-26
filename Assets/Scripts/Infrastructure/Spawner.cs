@@ -1,6 +1,6 @@
 ﻿#nullable enable
 
-using dmdspirit.Core.Attributes;
+using aether.Aether.Attributes;
 using HamletTwoSacks.Characters;
 using HamletTwoSacks.Level;
 using UnityEngine;
