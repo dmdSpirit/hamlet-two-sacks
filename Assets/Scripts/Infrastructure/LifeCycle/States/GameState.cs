@@ -1,9 +1,9 @@
 ﻿#nullable enable
 
 using System;
-using aether.Aether;
-using aether.Aether.CommonInterfaces;
-using aether.Aether.UI;
+using Aether;
+using Aether.CommonInterfaces;
+using Aether.UI;
 using Cysharp.Threading.Tasks;
 using HamletTwoSacks.Characters.PlayerControl;
 using HamletTwoSacks.Input;

@@ -1,7 +1,7 @@
 ﻿#nullable enable
 
 using System.Collections.Generic;
-using aether.Aether.Attributes;
+using Aether.Attributes;
 using HamletTwoSacks.Infrastructure;
 using HamletTwoSacks.Time;
 using UniRx;

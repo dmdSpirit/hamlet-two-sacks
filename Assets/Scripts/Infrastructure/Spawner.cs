@@ -1,6 +1,6 @@
 ﻿#nullable enable
 
-using aether.Aether.Attributes;
+using Aether.Attributes;
 using HamletTwoSacks.Characters;
 using HamletTwoSacks.Level;
 using UnityEngine;

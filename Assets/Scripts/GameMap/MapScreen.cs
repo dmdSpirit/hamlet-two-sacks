@@ -1,7 +1,7 @@
 ﻿#nullable enable
 
-using aether.Aether.UI;
-using aether.Aether.UI.Buttons;
+using Aether.UI;
+using Aether.UI.Buttons;
 using HamletTwoSacks.Infrastructure.LifeCycle;
 using UniRx;
 using UnityEngine;

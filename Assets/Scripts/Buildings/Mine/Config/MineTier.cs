@@ -1,7 +1,7 @@
 ﻿#nullable enable
 
 using System;
-using aether.Aether.Attributes;
+using Aether.Attributes;
 using HamletTwoSacks.Buildings.Config;
 
 namespace HamletTwoSacks.Buildings.Mine.Config

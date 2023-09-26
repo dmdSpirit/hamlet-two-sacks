@@ -1,7 +1,7 @@
 ﻿#nullable enable
 
 using System.Linq;
-using aether.Aether.Attributes;
+using Aether.Attributes;
 using UnityEngine;
 
 namespace HamletTwoSacks.Infrastructure.StaticData

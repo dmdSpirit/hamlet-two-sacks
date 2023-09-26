@@ -1,7 +1,7 @@
 ﻿#nullable enable
 
-using aether.Aether.UI;
-using aether.Aether.UI.Buttons;
+using Aether.UI;
+using Aether.UI.Buttons;
 using UniRx;
 using UnityEngine;
 

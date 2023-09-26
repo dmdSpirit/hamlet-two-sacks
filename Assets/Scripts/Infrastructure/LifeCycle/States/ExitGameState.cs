@@ -1,8 +1,8 @@
 #nullable enable
 
-using aether.Aether;
-using aether.Aether.AssetManagement;
-using aether.Aether.CommonInterfaces;
+using Aether;
+using Aether.AssetManagement;
+using Aether.CommonInterfaces;
 using JetBrains.Annotations;
 
 namespace HamletTwoSacks.Infrastructure.LifeCycle.States

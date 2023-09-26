@@ -1,7 +1,7 @@
 #nullable enable
 
-using aether.Aether;
-using aether.Aether.CommonInterfaces;
+using Aether;
+using Aether.CommonInterfaces;
 using HamletTwoSacks.UI;
 using JetBrains.Annotations;
 

@@ -1,6 +1,6 @@
 ﻿#nullable enable
 
-using aether.Aether.UI;
+using Aether.UI;
 using JetBrains.Annotations;
 using Zenject;
 

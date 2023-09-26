@@ -1,8 +1,8 @@
 ﻿#nullable enable
 
-using aether.Aether;
-using aether.Aether.CommonInterfaces;
-using aether.Aether.UI;
+using Aether;
+using Aether.CommonInterfaces;
+using Aether.UI;
 using HamletTwoSacks.GameMap;
 using HamletTwoSacks.UI;
 using JetBrains.Annotations;
